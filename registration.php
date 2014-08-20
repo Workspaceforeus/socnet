@@ -1,30 +1,54 @@
+<?php 
+if((!empty($_POST['login'])) && (!empty($_POST['password'])) && (!empty($_POST['email']))&& (!empty($_POST['dob']))) 
+{
+ $db = new PDO('mysql:host=localhost;dbname=vk;charset=utf8', 'root', '');
+ $db->query('INSERT into users (email, login, password,sex,numberofgames,dob,historical,party,economic,sf,rpg,allgames) values ("' . $_POST['email'] . '", "' . $_POST['login'] . '", "' . $_POST['password'] . '", "' . $_POST['pol'] . '", "' . $_POST['numberofgames'] . '", "' . $_POST['dob'] .'", "' . $_POST['historical']. '" , "' . $_POST['party'] . '", "' . $_POST['economic'] .'", "' . $_POST['sf'] .'", "' . $_POST['rpg'] . '", "' . $_POST['all'] .'")');  
+ $thankYouMessage = $_POST['login'] . ', thank you for registration';
+}
+else
+{
+ $thankYouMessage = 'Please, complete all mandatory fields!';
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="utf-8">
 <title>Registration</title>
-<style>
-body{background-image: url(registr.png);  background-size: cover; font-size: 105%; color: white; line-height: 65%;}
-form{margin-left: 470px;}
-.enter{margin-left: 70px;}
-.enter.sec{margin-left: 100px;}
-</style>
-</head>
-<body>
-<h1>Complete this form for registration.</h2>
+<link rel="stylesheet" type="text/css" href="/regstyle.css">
 
+</head>
+
+<body>
+
+<?php
+if(!empty($_POST))
+{
+echo $thankYouMessage;
+}
+?>
+
+<h1>Complete this form for registration.</h1>
 <form method="post">
-<p>E-mail:</p>
+
+<p>E-mail*:</p>
 <div class="enter">
  <input  type="name" name="email" placeholder="Enter exist e-mail">
 </div>
-<p>Login:</p>
+<p>Login*:</p>
 <div class="enter">
 <input type="name" name="login"> </p>
 </div>
-<p>Password:</p>
+<p>Password*:</p>
 <div class="enter">
 <input type="password" name="password"></p>
+</div>
+<p>Date of birth*:</p>
+<div class="enter">
+ <input  type="name" name="dob" placeholder="DD.MM.YYYY">
 </div>
 <p>Choose your sex:</p> 
 <div class="enter">
@@ -40,19 +64,19 @@ form{margin-left: 470px;}
 					</p>
 <p>What genre of board games do you like? </p>
 <div class="enter">
-					<input type="checkbox" name="genre" value="Hist"> Historical	
-					<input type="checkbox" name="genre" value="Party"> Party
+					<input type="checkbox" name="historical" value="1"> Historical	
+					<input type="checkbox" name="party" value="1"> Party
 <br></br>
-					<input type="checkbox" name="genre" value="Econ"> Economic simulation
-					<input type="checkbox" name="genre" value="SF">  Science fiction
+					<input type="checkbox" name="economic" value="1"> Economic simulation
+					<input type="checkbox" name="sf" value="1">  Science fiction
 <br></br>
-					<input type="checkbox" name="genre" value="rpg">  RPG
-					<input type="checkbox" name="genre" value="all">  all
+					<input type="checkbox" name="rpg" value="1">  RPG
+					<input type="checkbox" name="all" value="1">  all
 </div>	
 <br></br>
 <label for="kapcha"><img src="kapcha.png"></label>
  <input type="name" name="kapcha">
-<p><input type="submit" value="Send">
+ <p><input type="submit" value="Send">
 <input type="reset" value="Reset">
 <input type="button" value="Back" onclick="location.href='/index.php'" />
 </p>

@@ -3,11 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Welcome!</title>
-<style>
-body{background-image: url(registr.png);  background-size: cover; color: white;}
-form{margin-left: 20px;}
-#information{text-align: center; font-size: 108%;}
-</style>
+<link rel="stylesheet" type="text/css" href="/indstyle.css">
 </head>
 <body link=#FFFFFF vlink=#E5140B>
 <h1> Welcome to our website!</h1>
@@ -26,7 +22,7 @@ Password
 <p><input type="submit" value="Log in"> </p>
  </form>
 <div id="information"> 
-<p>Our site is the only existing social network for people people who love board games!
+<h2>Our site is the only existing social network for people people who love board games!</h2>
 <p><a href="/registration.php" >Registration</a></p>
 </div>
 </body>
