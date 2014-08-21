@@ -23,7 +23,13 @@ else
 </head>
 
 <body>
+<div id="bg">
+<img src="bg.png">
+</div> 
 
+
+<h1>Complete this form for registration.</h1>
+<br></br>
 <?php
 if(!empty($_POST))
 {
@@ -31,7 +37,6 @@ echo $thankYouMessage;
 }
 ?>
 
-<h1>Complete this form for registration.</h1>
 <form method="post">
 
 <p>E-mail*:</p>

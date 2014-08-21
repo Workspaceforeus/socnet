@@ -1,3 +1,4 @@
-body{background-image: url(registr.png);  background-size: cover; color: white;}
-form{margin-left: 20px;}
-#information{text-align: center; font-size: 108%;}
+body{background: url(registr.png) no-repeat center center fixed; background-size: cover; color: black;}
+form{float:left; width:12%; left:0; top: 130px;}
+#bg{left:20px; top:20px;}
+#information{left: 13%; width:74%;  text-align: center; font-size: 100%;}
