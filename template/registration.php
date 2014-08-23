@@ -37,7 +37,7 @@ echo $thankYouMessage;
 }
 ?>
 
-<form method="post">
+<form method="post" action="thank.php">
 
 <p>E-mail*:</p>
 <div class="enter">
@@ -53,7 +53,7 @@ echo $thankYouMessage;
 </div>
 <p>Date of birth*:</p>
 <div class="enter">
- <input  type="name" name="dob" placeholder="DD.MM.YYYY">
+ <input  type="name" name="dob" maxlength=10 placeholder="DD/MM/YYYY">
 </div>
 <p>Choose your sex:</p> 
 <div class="enter">
