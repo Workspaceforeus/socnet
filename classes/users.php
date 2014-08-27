@@ -8,6 +8,8 @@ class User extends Database
 	const TABLE='users';
 
 	public $result;
+	public $username;
+	public $pass;
 
 	public function registration($data)
 	{	
@@ -29,6 +31,39 @@ class User extends Database
 		{
 			$this->result = $e->getMessage();
 		}
+	}
+
+	public function login($data)
+	{
+		try
+		{
+			
+			$username=$data['login'];
+			$pass=$data['password'];
+			$sql="SELECT login,password FROM users WHERE login='$username'";
+			$insert = $this->db->prepare($sql);
+			$insert->execute();
+			$myrow = $insert->fetch(PDO::FETCH_ASSOC);
+			if (empty($myrow['password']))
+				{
+					$this->result= 'Sorry, your login or passwors is wrong!!';
+				}
+			else
+				{
+					if ($myrow['password']==$pass)
+						{$this->result= 'Hello!!';}
+
+					else
+						{$this->result='Password is wrong!';}
+
+				}	
+		}
+ 
+		catch(Exception $e)
+		{
+			$this->result=$e->getMessage();
+		}
+
 	}
 
 

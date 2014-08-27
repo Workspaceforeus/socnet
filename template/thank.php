@@ -1,13 +1,12 @@
 <?php 
 include "../classes/users.php";
 
-if((!empty($_POST['login'])) && (!empty($_POST['password'])) && (!empty($_POST['email']))&& (!empty($_POST['dob'])&& (!empty($_POST['confirm']))) 
+if( (!empty($_POST['login'])) && (!empty($_POST['password'])) && (!empty($_POST['email']))&& (!empty($_POST['dob'])) && (!empty($_POST['confirm']))) 
 {
 	$user = new User();
 	$user->registration($_POST);
 	$thankYouMessage = $user->result;
 }
-
 else
 	{
 	 	$error = 'Please, back and complete all mandatory fields!';
@@ -28,24 +27,7 @@ else
 <body link=#FFFFFF vlink=#1F3778>
 
 <?php include 'header.php'; ?>
-
-<form method="post" class="login"> <!--форма авторизации-->
-
-		<label for="login">Login:</label>
-		<div class="Enter">
-		<input type="text" name="login">
-		</div>
-
-		<label for="password">Password:</label>
-		<div class="Enter">
-		<input type="password" name="password">
-		</div>
-
-		<p><input type="checkbox" name="mem" value="1"><b>Remember my account</b></p>
-		<p><input type="submit" value="Log in"> </p>
-
-</form>
-
+<?php include "../template/login.php"; ?>
 <div id="information"> 
 <p>
 <h1> Welcome to our website!</h1>

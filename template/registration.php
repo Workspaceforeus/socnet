@@ -20,13 +20,14 @@
 
 
 
-<form method="post" class="registr" action="thank.php">
+<form  method="post" class="registr" action="thank.php">
 
 <div class="left">
 	<div class="enterl">
 		<label for="email">E-mail*:</label>
 		<input  type="name" name="email" placeholder="Enter exist e-mail">
 	</div>
+
 
 	<div class="enterl">
 		<label for="login">Login*:</label>
@@ -37,6 +38,7 @@
 		<label for="password">Password*:</label>
 		<input type="password" name="password"></p>
 	</div>
+
 
 	<div class="enterl">
 		<label for="confirm">Confirm password*:</label>

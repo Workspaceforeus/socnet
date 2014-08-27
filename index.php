@@ -10,23 +10,8 @@
 <body link=#FFFFFF vlink=#1F3778>
 
 <?php include "/template/header.php"; ?>
+<?php include "/template/login.php"; ?>
 
-<form method="post" class="login"> <!--форма авторизации-->
-
-		<label for="login">Login:</label>
-		<div class="Enter">
-		<input type="text" name="login">
-		</div>
-
-		<label for="password">Password:</label>
-		<div class="Enter">
-		<input type="password" name="password">
-		</div>
-
-		<p><input type="checkbox" name="mem" value="1"><b>Remember my account</b></p>
-		<p><input type="submit" value="Log in"> </p>
-
-</form>
 
 <div id="information"> 
 <p>
@@ -35,6 +20,7 @@
 <h2><pre>Our site is the only existing social network for people,
  who like board games!</pre></h2>
 
+ 
 <p><a href="/template/registration.php" >Registration</a></p>
 </p>
 </div>
