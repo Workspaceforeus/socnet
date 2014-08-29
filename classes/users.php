@@ -10,6 +10,39 @@ class User extends Database
 	public $result;
 	public $username;
 	public $pass;
+	public $validate;
+
+	public function validate($data)
+	{
+		$username=$data['login'];
+		$mail=$data['email'];
+		$pass=$data['password'];
+		$conf=$data['confirm'];
+		$sql1="SELECT COUNT(id) FROM users WHERE email='$mail'";
+		$sql2="SELECT COUNT(id) FROM users WHERE login='$username'";
+		$idmail = $this->db->prepare($sql1);
+		$idlogin = $this->db->prepare($sql2);
+		$idmail->execute();
+		if(!empty($idmail))
+		{
+				$this->validate='This e-mail already in use!';
+		}
+		else
+		{
+			$idlogin->execute();
+			if(!empty($idlogin))
+				$this->validate='This login already in use!';
+			else
+			{
+				if(pass!=conf)
+					$this->validate=$this->validate.'Password and confirm password is not equal!';
+				else
+					$this->validate='Ok';
+			}
+
+		}
+			
+`	}
 
 	public function registration($data)
 	{	
