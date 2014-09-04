@@ -1,16 +1,16 @@
 <?php 
-include "../classes/users.php";
+session_start();
+include '../classes/users.php';
 
 if( (!empty($_POST['login'])) && (!empty($_POST['password'])))
 {
-	$user = new User();
-	$user->login($_POST);
-	$thankYouMessage=$user->result;
+	$_SESSION['login'] = $_POST['login'];
+	$_SESSION['password'] = $_POST['password'];
 }
-else
-	{
-	 	$error = 'something wrong';
-	}
+
+	$user = new User();
+	$user->login($_SESSION);
+	$thankYouMessage=$user->result;
 
 ?>
 
@@ -29,10 +29,17 @@ else
 <?php include 'header.php'; ?>
 
 <div id="information"> 
-<p>
 <h1> Your page!</h1>
-
 <?php
-echo $thankYouMessage;
+if(isset($thankYouMessage)) 
+ 		{echo $thankYouMessage; }
+else 
+	if(isset($error))
+		echo $error;
+	else
+		echo 'arrr';
 ?>
+</div>
+
+
 <?php include 'footer.php'; ?>

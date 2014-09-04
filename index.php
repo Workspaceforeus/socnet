@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(!empty($_SESSION['login']))	
+	header('Location: /template/profile.php');
+else
+	echo 'session is empty';
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +20,17 @@
 <body link=#FFFFFF vlink=#1F3778>
 
 <?php include "/template/header.php"; ?>
-<?php include "/template/login.php"; ?>
 
+	<div id="information"> 
+		<p>
+		<h1> Welcome to our website!</h1>
+		<h2><pre>Our site is the only existing social network for people,
+		 who like board games!</pre></h2>
+		 <?php include "/template/login.php" ?>
+		 <p><a href="/template/registration.php"> Registration </a></p>
+	 </div>
+	
 
-<div id="information"> 
-<p>
-<h1> Welcome to our website!</h1>
-
-<h2><pre>Our site is the only existing social network for people,
- who like board games!</pre></h2>
-
- 
-<p><a href="/template/registration.php" >Registration</a></p>
-</p>
-</div>
 
 <?php include "/template/footer.php" ?>
+

@@ -1,5 +1,6 @@
 
-
+<?php include "../classes/users.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>

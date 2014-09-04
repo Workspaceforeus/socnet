@@ -1,7 +1,7 @@
 <?php 
 include "../classes/users.php";
 
-if( (empty($_POST['login'])) && (!empty($_POST['password'])) && (!empty($_POST['email']))&& (!empty($_POST['dob'])) && (!empty($_POST['confirm']))) 
+if( (empty($_POST['login'])) || (empty($_POST['password'])) || (empty($_POST['email'])) || (empty($_POST['dob'])) || (empty($_POST['confirm']))) 
 {
 	$error = 'Please, back and complete all mandatory fields!';
 }

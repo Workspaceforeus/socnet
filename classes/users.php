@@ -42,7 +42,7 @@ class User extends Database
 
 		}
 			
-`	}
+	}
 
 	public function registration($data)
 	{	
@@ -84,7 +84,7 @@ class User extends Database
 			else
 				{
 					if ($myrow['password']==$pass)
-						{$this->result= 'Hello!!';}
+						{$this->result= 'Hello' . $username . '!' ;}
 
 					else
 						{$this->result='Password is wrong!';}
