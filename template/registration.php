@@ -1,5 +1,5 @@
 
-<?php include "../classes/users.php";
+<?php include "../model/users.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
 
 
 
-<form  method="post" class="registr" action="thank.php">
+<form  method="post" class="registr" action="/controller/thank.php">
 
 <div class="left">
 	<div class="enterl">

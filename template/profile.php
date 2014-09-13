@@ -8,7 +8,7 @@ if( (!empty($_POST['login'])) && (!empty($_POST['password'])))
 	$_SESSION['password'] = $_POST['password'];
 }
 
-	$user = new User();
+	$user = new Users();
 	$user->login($_SESSION);
 	$thankYouMessage=$user->result;
 

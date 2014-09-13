@@ -2,9 +2,8 @@
 
 include "databases.php";
 
-class User extends Database
+class Users extends Database
 {
-	
 	const TABLE='users';
 
 	public $result;
