@@ -1,7 +1,11 @@
+<?php if(isset($data['result'])): ?>
+	<h1><?php echo $data['result']; ?></h1>
+<?php endif; ?>
+
 <html>
 <body>
 
-	<form method="post" class="login" action="../template/profile.php"> <!--форма авторизации-->
+	<form method="post" class="login" action="http://vk.loc/index.php?r=user&a=login"> <!--форма авторизации-->
 
 			<label for="login">Login:</label>
 			<div class="Enter">

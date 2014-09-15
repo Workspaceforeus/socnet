@@ -1,6 +1,6 @@
 <?php
 
-include "databases.php";
+include "Db.php";
 
 class Users extends Database
 {
@@ -9,7 +9,8 @@ class Users extends Database
 	public $result;
 	public $username;
 	public $pass;
-	public $validate;
+	public $val;
+	public $temp;
 
 	public function validate($data)
 	{
@@ -24,17 +25,17 @@ class Users extends Database
 		$idmail->execute();
 		if(!empty($idmail))
 		{
-				$this->validate='This e-mail already in use!';
+				$this->val='This e-mail is already in use!';
 		}
 		else
 		{
 			$idlogin->execute();
 			if(!empty($idlogin))
-				$this->validate='This login already in use!';
+				$this->val='This login is already in use!';
 			else
 			{
-				if(pass!=conf)
-					$this->validate=$this->validate.'Password and confirm password is not equal!';
+				if($pass!=$conf)
+					$this->val=$this->val.'Password and confirm password is not equal!';
 				else
 					$this->validate='Ok';
 			}
@@ -79,14 +80,15 @@ class Users extends Database
 			if (empty($myrow['password']))
 				{
 					$this->result= 'Sorry, your login or passwors is wrong!!';
+					$this->temp='0';
 				}
 			else
 				{
 					if ($myrow['password']==$pass)
-						{$this->result= 'Hello' . $username . '!' ;}
+						{$this->result= 'Hello' . $username . '!' ; $this->temp = '1';}
 
 					else
-						{$this->result='Password is wrong!';}
+						{$this->result='Password is wrong!';$this->temp = '0';}
 
 				}	
 		}

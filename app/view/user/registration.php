@@ -1,27 +1,8 @@
+<?php if(isset($data['result'])): ?>
+	<h2><?php echo $data['result']; ?></h2>
+<?php endif; ?>
 
-<?php include "../model/users.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-
-<meta charset="utf-8">
-<title>Registration</title>
-
-<link rel="stylesheet" type="text/css" href="/css/regstyle.css">
-
-</head>
-
-<body>
-<?php include "header.php"; ?>
-
-
-<h1>Complete this form for registration.</h1>
-<br></br>
-
-
-
-<form  method="post" class="registr" action="/controller/thank.php">
+<form  method="post" class="main"  action="http://vk.loc/index.php?r=user&a=registration">
 
 <div class="left">
 	<div class="enterl">
@@ -95,4 +76,3 @@
 
 </form>
 
-<?php include "/footer.php" ?>
