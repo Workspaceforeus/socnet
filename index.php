@@ -1,19 +1,7 @@
 <?php
+ 
+session_start(); 
 
-/*if(!empty($_SESSION['login']))	
-	header('Location: /template/profile.php');
-
-$rout = $_GET['rout'];
-$action = $_GET['action'];
-
-	if(isset($rout))
-{
-$object = new $rout;
-$object->{$action}();
-}
-
-else include '/template/1.html';
-*/
 define('BASE_PATH', dirname(__FILE__));
 
 class App

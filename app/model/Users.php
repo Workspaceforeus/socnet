@@ -18,29 +18,32 @@ class Users extends Database
 		$mail=$data['email'];
 		$pass=$data['password'];
 		$conf=$data['confirm'];
-		$sql1="SELECT COUNT(id) FROM users WHERE email='$mail'";
-		$sql2="SELECT COUNT(id) FROM users WHERE login='$username'";
+		$sql1="SELECT email FROM users WHERE email='$mail'";
+		$sql2="SELECT login FROM users WHERE login='$username'";
 		$idmail = $this->db->prepare($sql1);
 		$idlogin = $this->db->prepare($sql2);
 		$idmail->execute();
-		if(!empty($idmail))
+		$mailrow = $idmail->fetch(PDO::FETCH_ASSOC);
+		if(!empty($mailrow['email']))
 		{
 				$this->val='This e-mail is already in use!';
 		}
 		else
 		{
 			$idlogin->execute();
-			if(!empty($idlogin))
+			$logrow = $idlogin->fetch(PDO::FETCH_ASSOC);
+			if(!empty($logrow['login']))
 				$this->val='This login is already in use!';
 			else
 			{
 				if($pass!=$conf)
-					$this->val=$this->val.'Password and confirm password is not equal!';
+					$this->val='Password and confirm password is not equal!';
 				else
-					$this->validate='Ok';
+					$this->val='2';
 			}
 
 		}
+
 			
 	}
 

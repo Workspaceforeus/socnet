@@ -17,6 +17,9 @@
 
 <div class="main"> 
 <h2> Your page!</h2>
+<form method="post" class="login" action="http://vk.loc/index.php?r=user&a=logout">
+<p><input type="submit" value="logout"> </p>
+</form>
 </div>
 
 
