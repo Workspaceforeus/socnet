@@ -2,12 +2,12 @@
 	<h2><?php echo $data['result']; ?></h2>
 <?php endif; ?>
 
-<form  method="post" class="main"  action="http://vk.loc/index.php?r=user&a=registration">
+<form  method="post" class="main"  action="http://vk.loc/index.php?r=user&a=update">
 
 <div class="left">
 	<div class="enterl">
 		<label for="email">E-mail*:</label>
-		<input  type="name" name="email" placeholder="Enter exist e-mail">
+		<?php echo "<input  type=\"text\" name=\"email\" value=\"$data['result']\">"?>
 	</div>
 
 
@@ -15,15 +15,19 @@
 		<label for="login">Login*:</label>
 		<input type="name" name="login"> </p>
 	</div>
-
-	<div class="enterl">
-		<label for="password">Password*:</label>
+Change pass:
+<div class="enterl">
+		<label for="password">Old password*:</label>
 		<input type="password" name="password"></p>
+	</div>
+	<div class="enterl">
+		<label for="password">New password*:</label>
+		<input type="password" name="newpassword"></p>
 	</div>
 
 
 	<div class="enterl">
-		<label for="confirm">Confirm password*:</label>
+		<label for="confirm">Confirm new password*:</label>
 		<input type="password" name="confirm"></p>
 	</div>
 

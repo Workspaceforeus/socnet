@@ -8,7 +8,7 @@ class Users extends Database
 
 	public $result;
 	public $username;
-	public $pass;
+	public $mymail;
 	public $val;
 	public $temp;
 
@@ -88,7 +88,7 @@ class Users extends Database
 			else
 				{
 					if ($myrow['password']==$pass)
-						{$this->result= 'Hello' . $username . '!' ; $this->temp = '1';}
+						{$this->result= 'Hello  ' . $username . '!' ; $this->temp = '1';}
 
 					else
 						{$this->result='Password is wrong!';$this->temp = '0';}
@@ -101,6 +101,35 @@ class Users extends Database
 			$this->result=$e->getMessage();
 		}
 
+	}
+
+	public function getinformation($data)
+	{
+		$username=$data['login'];
+		$sql=" SELECT email FROM users WHERE login='$username'";
+		$get = $this->db->prepare($sql);
+		$get->execute();
+		
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) {$this->mymail.=$myrow['email'];}
+		echo $this->mymail;
+
+	}
+
+	public function update($data1, $data2)
+	{
+		try
+		{
+			$username=$data1['login'];
+			$mail=$data2['email'];
+			$sql="UPDATE users SET email='$mail' WHERE login='$username'";
+			$insert = $this->db->prepare($sql);
+			$insert->execute();
+			$this->result='Hi, '.$mail.'!';
+		}
+		catch(Exception $e)
+		{
+			$this->result=$e->getMessage();
+		}
 	}
 
 

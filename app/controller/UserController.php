@@ -29,9 +29,9 @@ class UserController extends Controller
 
 	public function login()
 	{
+
 		if(empty($_SESSION['login']))
 		{
-
 			if( (!empty($_POST['login'])) && (!empty($_POST['password'])))
 			{
 				
@@ -72,6 +72,26 @@ class UserController extends Controller
 	 		unset($_SESSION['password']);
 	 		$this->renderView('user/login');
 		}
+	}
+
+	public function update()
+	{
+		if(empty($_POST))
+		{
+			$user=new Users();
+			$user->getinformation($_SESSION);
+			$this->renderView('user/setting', array('result'=>$user->mymail));
+			return;
+		}
+
+		if(!empty($_POST['email']))
+			{
+				$user=new Users();
+				$user->update($_SESSION, $_POST);
+				//$this->renderView('user/setting', array('result' => $this->result));
+				header('Location:http://vk.loc/index.php?r=user&a=login');
+
+			}
 	}
 
 }

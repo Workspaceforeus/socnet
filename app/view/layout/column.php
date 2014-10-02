@@ -15,7 +15,7 @@
 
 		
 		 <?php include BASE_PATH.'/app/view/'.$view.'.php'; ?>
-		 <p><a href = "http://vk.loc/index.php?r=user&a=registration"> Registration </a></p>
+		 <p><a href = "http://vk.loc/index.php?r=user&a=registration"> Registration! </a></p>
  </div>
 
 
