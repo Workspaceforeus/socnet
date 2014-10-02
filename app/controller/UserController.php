@@ -71,7 +71,7 @@ class UserController extends Controller
 	{
 			unset($_SESSION['login']);
 	 		unset($_SESSION['password']);
-	 		$this->renderView('user/login');
+	 		header('Location:http://vk.loc/');
 	}
 
 	public function update()

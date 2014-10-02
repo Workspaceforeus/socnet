@@ -30,7 +30,7 @@
                 </div>
                 <div class="fact">
                     <div class="title">Interests</div>
-                    <div class="value"><?php if($data['genre']!='N;') echo $data['genre']; else echo 'Haven\'t played yet' ?></div>
+                    <div class="value"><?php if($data['genre']!='N;') echo $data['genre']; else echo 'Haven\'t decide yet' ?></div>
                 </div>
                 <div class="fact">
                     <div class="title">Sex</div>
