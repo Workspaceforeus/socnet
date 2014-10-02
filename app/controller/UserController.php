@@ -13,7 +13,7 @@ class UserController extends Controller
 			{
 				$user = new Users();
 				$user->validate($_POST);
-				if($user->val=='2')
+				if($user->result=='Ok')
 				{
 					$user->registration($_POST);
 					$this->renderView('user/login', array('result' => $user->result));
@@ -21,7 +21,7 @@ class UserController extends Controller
 				}
 				else
 				{
-					$this->renderView('user/registration', array('result' => $user->val));
+					$this->renderView('user/registration', array('result' => $user->result));
 					return;
 				}	
 			}
@@ -66,34 +66,35 @@ class UserController extends Controller
 		}
 
 	}
+
 	public function logout()
 	{
-		if($_POST['logout'] == "logout")
-		{
-	 		unset($_SESSION['login']);
+			unset($_SESSION['login']);
 	 		unset($_SESSION['password']);
 	 		$this->renderView('user/login');
-		}
 	}
 
 	public function update()
 	{
-		if(empty($_POST))
+		if(empty($_POST['oldpass']))
 		{
-			$user=new Users();
-			$user->getinformation($_SESSION);
-			$this->renderView('user/setting', array('result'=>$user->mymail));
+			//$user=new Users();
+			//$user->getinformation($_SESSION);
+			$this->renderView('user/setting');
 			return;
 		}
-
-		if(!empty($_POST['email']))
+		else
+		{
+			$user=new Users();
+			$user->update($_SESSION, $_POST);
+			if($user->result!='Ok')
 			{
-				$user=new Users();
-				$user->update($_SESSION, $_POST);
-				//$this->renderView('user/setting', array('result' => $this->result));
-				header('Location:http://vk.loc/index.php?r=user&a=login');
-
+				$this->renderView('user/setting', array('result' => $user->result));
 			}
+			else
+				header('Location:http://vk.loc/index.php?r=user&a=login');
+		}
+	
 	}
 
 }

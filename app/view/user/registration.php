@@ -15,8 +15,8 @@
 
 <div><label for="email">E-mail*:</label> <input name="email" class="input-login" type="email" placeholder="Enter exist e-mail" title="Напишите свой электронный адрес" </div>
 <div> <label for="login">Login*:</label> <input name="login" class="input-login" type="text" placeholder="enter your login" title="enter your name" </div>
-<div><label for="confirm">Confirm password*:</label><input name="password" class="input-login" type="password" placeholder="insert password" title="insert password" </div>
-<div><label for="password">Password*:</label><input name="confirm" class="input-login" type="password" placeholder="confirm password" title="confirm password" </div>
+<div><label for="password">Password*:</label><input name="password" class="input-login" type="password" placeholder="insert password" title="insert password" </div>
+<div><label for="confirm">Confirm password*:</label><input name="confirm" class="input-login" type="password" placeholder="confirm password" title="confirm password" </div>
 <div><label for="dob">Date of birth*::</label><input name="dob" class="input-login" id="age" type="date" placeholder="insert your age" title="insert your age" ></div><br>
 <div><label for "pol">Choose your sex:</label> <input type="radio" name="sex" value="male"> Male <input type="radio" name="sex" value="female"> Female</p></div>
 			

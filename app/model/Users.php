@@ -7,11 +7,12 @@ class Users extends Database
 	const TABLE='users';
 
 	public $result;
-	public $username;
+	
 	public $mymail;
 	public $mysex;
 	public $mygenre;
 	public $mylogin;
+	protected $mypass;
 	public $val;
 	public $temp;
 	public $id;
@@ -30,20 +31,20 @@ class Users extends Database
 		$mailrow = $idmail->fetch(PDO::FETCH_ASSOC);
 		if(!empty($mailrow['email']))
 		{
-				$this->val='This e-mail is already in use!';
+				$this->result='This e-mail is already in use!';
 		}
 		else
 		{
 			$idlogin->execute();
 			$logrow = $idlogin->fetch(PDO::FETCH_ASSOC);
 			if(!empty($logrow['login']))
-				$this->val='This login is already in use!';
+				$this->result='This login is already in use!';
 			else
 			{
 				if($pass!=$conf)
-					$this->val='Password and confirm password is not equal!';
+					$this->result='Password and confirm password is not equal!';
 				else
-					$this->val='2';
+					$this->result='Ok';
 			}
 
 		}
@@ -62,8 +63,7 @@ class Users extends Database
 			$insert->bindParam(':sex', $data['sex']);
 			$insert->bindParam(':numberofgames', $data['numberofgames']);
 			$insert->bindParam(':dob', $data['dob']);
-			$h=serialize($data['game_type']);
-			$insert->bindParam(':genre', $h);
+			$insert->bindParam(':genre', $data['game_type']);
 			$insert->execute();
 			$this->result = 'Hello ' . $data['login']. '! Now you can log in!';
 		} 
@@ -73,6 +73,19 @@ class Users extends Database
 		}
 	}
 
+	protected function getpassword($data)
+	{
+		$username=$data['login'];
+		$sql="SELECT password FROM users WHERE login='$username'";
+		$insert = $this->db->prepare($sql);
+		$insert->execute();
+		while ($myrow = $insert->fetch(PDO::FETCH_ASSOC)) 
+			{
+				$this->mypass.=$myrow['password'];
+			}
+
+	}
+
 	public function login($data)
 	{
 		try
@@ -80,22 +93,25 @@ class Users extends Database
 			
 			$username=$data['login'];
 			$pass=$data['password'];
-			$sql="SELECT login,password FROM users WHERE login='$username'";
-			$insert = $this->db->prepare($sql);
-			$insert->execute();
-			$myrow = $insert->fetch(PDO::FETCH_ASSOC);
-			if (empty($myrow['password']))
+			$this->getpassword($data);
+			if(empty($this->mypass))
 				{
 					$this->result= 'Sorry, your login or passwors is wrong!!';
 					$this->temp='0';
 				}
 			else
 				{
-					if ($myrow['password']==$pass)
-						{$this->result= 'Hello  ' . $username . '!' ; $this->temp = '1';}
+					if($this->mypass==$pass)
+						{
+							$this->result= 'Hello  ' . $username . '!' ; 
+							$this->temp = '1';
+						}
 
 					else
-						{$this->result='Password is wrong!';$this->temp = '0';}
+						{
+							$this->result='Password is wrong!';
+							$this->temp = '0';
+						}
 
 				}	
 		}
@@ -126,20 +142,34 @@ class Users extends Database
 
 	public function update($data1, $data2)
 	{
-		try
+		$username=$data1['login'];
+		$sex=$data2['sex'];
+		$oldpass=$data2['oldpass'];
+		$pass=$data2['pass'];
+		$confirm=$data2['confirm'];
+		if($sex) 
 		{
-			$username=$data1['login'];
-			$mail=$data2['email'];
-			$sql="UPDATE users SET email='$mail' WHERE login='$username'";
-			$insert = $this->db->prepare($sql);
+			$sqlsex="UPDATE users SET sex='$sex' WHERE login='$username'";
+			$insert = $this->db->prepare($sqlsex);
 			$insert->execute();
-			$this->result='Hi, '.$mail.'!';
 		}
-		catch(Exception $e)
+		if(($oldpass)&&($pass)&&($confirm))
 		{
-			$this->result=$e->getMessage();
+			$this->getpassword($data1);
+			if($this->mypass==$oldpass)
+				{
+					if($pass==$confirm)
+						{
+							$sqlpass="UPDATE users SET password='$pass' WHERE login='$username'";
+							$insert = $this->db->prepare($sqlpass);
+							$insert->execute();
+							$this->result='Ok';
+						}
+					else $this->result='Password and confirm password is not equal!';
+				}
+			else
+				$this->result='Password is wrong!';
 		}
+		
 	}
-
-
 }

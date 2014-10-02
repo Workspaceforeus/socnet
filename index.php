@@ -38,8 +38,17 @@ $route=ucfirst($_GET['r']) . 'Controller';
 $action = $_GET['a'];
 if ((!isset($route))||(!isset($action)))
 {
-	$route='HomeController';
-	$action='index';
+	if(empty($_SESSION))
+	{
+		$route='HomeController';
+		$action='index';
+	}
+	else
+	{
+		$route='UserController';
+		$action='login';
+
+	}
 }
 $controller=new $route;
 $controller->{$action}();
