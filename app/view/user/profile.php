@@ -36,6 +36,10 @@
                     <div class="title">Sex</div>
                     <div class="value"><?php echo $data['sex'] ?></div>
                 </div>
+				     <div class="fact">
+                    <div class="title">Age</div>
+                    <div class="value"><?php echo $data['age'] ?></div>
+                </div>
                 <h2>Albums</h2>
                 <div class="albums">
 					<img src="/image/4.jpg">
