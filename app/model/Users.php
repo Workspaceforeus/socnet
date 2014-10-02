@@ -9,8 +9,12 @@ class Users extends Database
 	public $result;
 	public $username;
 	public $mymail;
+	public $mysex;
+	public $mygenre;
+	public $mylogin;
 	public $val;
 	public $temp;
+	public $id;
 
 	public function validate($data)
 	{
@@ -106,12 +110,17 @@ class Users extends Database
 	public function getinformation($data)
 	{
 		$username=$data['login'];
-		$sql=" SELECT email FROM users WHERE login='$username'";
+		$sql=" SELECT login,email,sex,genre FROM users WHERE login='$username'";
 		$get = $this->db->prepare($sql);
 		$get->execute();
 		
-		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) {$this->mymail.=$myrow['email'];}
-		echo $this->mymail;
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+			{
+				$this->mymail.=$myrow['email'];
+				$this->mysex.=$myrow['sex'];
+				$this->mylogin.=$myrow['login'];
+				$this->mygenre.=$myrow['genre'];
+			}
 
 	}
 

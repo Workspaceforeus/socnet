@@ -7,7 +7,7 @@
 <div class="left">
 	<div class="enterl">
 		<label for="email">E-mail*:</label>
-		<?php echo "<input  type=\"text\" name=\"email\" value=\"$data['result']\">"?>
+		<input  type="text" name="email">
 	</div>
 
 

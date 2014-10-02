@@ -17,7 +17,7 @@
             <div class="photo">
                 <img src="/image/lol.jpg">
 				<form>
-                <input class="button stroke" type="submit"  value="Edit profile">
+                <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
                 <input class="button feed" type="submit"  	value="Fun">
 				<input class="button startle" type="submit" value="Logout">
 				</form>
@@ -26,15 +26,15 @@
                 <h2 id="info-title">Общая информация</h2>
                 <div class="fact">
                     <div class="title">Name</div>
-                    <div class="value"><?php echo 'Вставить переменную имени' ?></div>
+                    <div class="value"><?php echo $data['name'] ?></div>
                 </div>
                 <div class="fact">
                     <div class="title">Interests</div>
-                    <div class="value"><?php echo 'Вставить переменную жанра' ?></div>
+                    <div class="value"><?php if($data['genre']!='N;') echo $data['genre']; else echo 'Haven\'t played yet' ?></div>
                 </div>
                 <div class="fact">
                     <div class="title">Sex</div>
-                    <div class="value"><?php echo 'Вставить переменную пола' ?></div>
+                    <div class="value"><?php echo $data['sex'] ?></div>
                 </div>
                 <h2>Albums</h2>
                 <div class="albums">
@@ -49,9 +49,6 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div>
-		<form method="post" class="login" action="http://vk.loc/index.php?r=user&a=logout">
-		<p><input type="submit" value="logout"> </p>
-		</form>
 		</div>
     </body>
 </html>	
