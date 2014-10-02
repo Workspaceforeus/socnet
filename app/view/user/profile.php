@@ -2,7 +2,6 @@
 	<h1><?php echo $data['result']; ?></h1>
 <?php endif; ?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,6 +35,10 @@
                     <div class="title">Sex</div>
                     <div class="value"><?php echo $data['sex'] ?></div>
                 </div>
+				     <div class="fact">
+                    <div class="title">Age</div>
+                    <div class="value"><?php echo $data['age'] ?></div>
+                </div>
                 <h2>Albums</h2>
                 <div class="albums">
 					<img src="/image/4.jpg">
@@ -50,5 +53,9 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div>
 		</div>
+		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
+		
+
+		
     </body>
 </html>	

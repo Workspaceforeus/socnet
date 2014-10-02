@@ -26,8 +26,9 @@
 		<input  type="radio" name="numberofgames" value="several"> 5-10 <br>
 		<input  type="radio" name="numberofgames" value="many"> 10 and more
 	</div>
-			
-<div>
+			<h3>What genre of board games do you like? </h3>
+			<div><textarea name="interests" class="input-login" type="text" placeholder="favorite games"> </textarea>  </div>
+<!-- <div>
 								<h3>What genre of board games do you like? </h3>
 								<select><option>Choose one </option>
 								<option>Historical</option>
@@ -35,7 +36,7 @@
 								<option> Science fiction</option><
 								<option>RPG</option></select>
 								<option> qall</option></select>
-						<!-- НЕ УВЕРЕН ЧТО НУЖНЫ ИМПУТЫ (ВРОДЕ ВООБЩЕ НЕ НУЖНЫ) НО НЕ ДУМАЮ, ЧТО БЕЗ НИХ БУДЕТ РАБОТАТЬ. И БУДЕТ ЛИ РАБОТЬТАК ВООБЩЕ.
+						 НЕ УВЕРЕН ЧТО НУЖНЫ ИМПУТЫ (ВРОДЕ ВООБЩЕ НЕ НУЖНЫ) НО НЕ ДУМАЮ, ЧТО БЕЗ НИХ БУДЕТ РАБОТАТЬ. И БУДЕТ ЛИ РАБОТЬТАК ВООБЩЕ.
 						 <input type="checkbox" name="game_type[]" value=" Historical"> Historical	
 						 <input type="checkbox" name="game_type[]" value="Party"> Party
 						 <input type="checkbox" name="game_type[]" value="Economic simulation"> Economic simulation
@@ -44,7 +45,6 @@
 						<input type="checkbox" name="game_type[]" value="RPG">  RPG
 						<input type="checkbox" name="game_type[]" value="all">  all 
 </div>
-<!--
 	<label for="kapcha"><img src="/image/kapcha.png"></label>
 	<input type="name" name="kapcha">
 	-->
