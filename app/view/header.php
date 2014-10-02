@@ -1,3 +1,3 @@
 <header>
-<a href="../index.php" ><img src="/image/bg.png"></a></p>
+<a href="http://vk.loc/" ><img src="/image/bg.png"></a></p>
 </header>
