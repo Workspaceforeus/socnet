@@ -2,7 +2,6 @@
 	<h1><?php echo $data['result']; ?></h1>
 <?php endif; ?>
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,5 +53,9 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div>
 		</div>
+		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
+		
+
+		
     </body>
 </html>	
