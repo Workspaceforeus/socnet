@@ -151,9 +151,10 @@ class Users extends Database
 			$insert->execute();
 			$this->result='Ok';
 		}
+
 		$inter=$data2['interests'];
 
-		if($inter)
+		if($inter!=' ')
 		{
 			$sqlin="UPDATE users SET genre='$inter' WHERE login='$username'";
 			$insert = $this->db->prepare($sqlin);

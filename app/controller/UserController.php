@@ -90,7 +90,7 @@ class UserController extends Controller
 			{					
 				$user->updatepass($_SESSION, $_POST);
 			}
-			if(!empty($_POST['interests']))
+			if(!empty($_POST['interests'])||(!empty($_POST['sex'])))
 			{
 				$user->updateinfo($_SESSION, $_POST);
 			}
