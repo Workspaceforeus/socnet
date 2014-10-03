@@ -12,10 +12,12 @@ class Users extends Database
 	public $mysex;
 	public $mygenre;
 	public $mylogin;
-	public $mypass;
+	protected $mypass;
 	public $val;
 	public $temp;
 	public $id;
+	public $mydob;
+	public $myage;
 
 	public function validate($data)
 	{
@@ -126,7 +128,7 @@ class Users extends Database
 	public function getinformation($data)
 	{
 		$username=$data['login'];
-		$sql=" SELECT login,email,sex,genre FROM users WHERE login='$username'";
+		$sql=" SELECT login,email,sex,genre,dob FROM users WHERE login='$username'";
 		$get = $this->db->prepare($sql);
 		$get->execute();
 		
@@ -136,9 +138,25 @@ class Users extends Database
 				$this->mysex.=$myrow['sex'];
 				$this->mylogin.=$myrow['login'];
 				$this->mygenre.=$myrow['genre'];
+				$this->mydob.=$myrow['dob'];
 			}
 
 	}
+
+	public function getage($data)
+	{
+		$this->getinformation($data);
+		$dayof=$this->mydob;
+		$year=substr($dayof, 0, 4);
+		$month=substr($dayof,5,2);
+		$day=substr($dayof,8,2);
+		if($month > date('m') || $month == date('m') && $day > date('d'))
+    		$this->myage=date('Y') - $year - 1;
+    	else
+      		$this->myage= date('Y') - $year;
+
+	
+	} 
 
 	public function updateinfo($data1, $data2)
 	{

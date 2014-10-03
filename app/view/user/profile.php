@@ -37,7 +37,7 @@
                 </div>
 				     <div class="fact">
                     <div class="title">Age</div>
-                    <div class="value"><?php echo $data['age'] ?></div>
+                    <div class="value"><?php echo $data['dob'] ?></div>
                 </div>
                 <h2>Albums</h2>
                 <div class="albums">
