@@ -96,5 +96,9 @@ class UserController extends Controller
 		}
 	
 	}
+	public function galery ()
+	{
+		$this->renderView('user/galery');
+	}
 
 }

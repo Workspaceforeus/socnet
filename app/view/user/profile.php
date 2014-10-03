@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>профайл</title>
+        <title>Profile</title>
         <meta charset="utf-8">
 
     </head>
@@ -17,8 +17,8 @@
                 <img src="/image/lol.jpg">
 				<form>
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
-                <input class="button feed" type="submit"  	value="Fun">
-				<input class="button startle" type="button" value="Logout" onclick="location.href='http://vk.loc/index.php?r=user&a=logout'"
+                <input class="button feed" type="submit" value="Galery"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
+				<input class="button startle" type="button" value="Logout" onclick="location.href='http://vk.loc/index.php?r=user&a=logout'">
 				</form>
             </div>
             <div class="info">
@@ -54,7 +54,6 @@
 		<div>
 		</div>
 		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
-		
 
 		
     </body>
