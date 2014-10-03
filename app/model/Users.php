@@ -12,7 +12,7 @@ class Users extends Database
 	public $mysex;
 	public $mygenre;
 	public $mylogin;
-	protected $mypass;
+	public $mypass;
 	public $val;
 	public $temp;
 	public $id;
@@ -63,7 +63,7 @@ class Users extends Database
 			$insert->bindParam(':sex', $data['sex']);
 			$insert->bindParam(':numberofgames', $data['numberofgames']);
 			$insert->bindParam(':dob', $data['dob']);
-			$insert->bindParam(':genre', $data['game_type']);
+			$insert->bindParam(':genre', $data['interests']);
 			$insert->execute();
 			$this->result = 'Hello ' . $data['login']. '! Now you can log in!';
 		} 
@@ -140,23 +140,38 @@ class Users extends Database
 
 	}
 
-	public function update($data1, $data2)
+	public function updateinfo($data1, $data2)
 	{
 		$username=$data1['login'];
 		$sex=$data2['sex'];
-		$oldpass=$data2['oldpass'];
-		$pass=$data2['pass'];
-		$confirm=$data2['confirm'];
 		if($sex) 
 		{
 			$sqlsex="UPDATE users SET sex='$sex' WHERE login='$username'";
 			$insert = $this->db->prepare($sqlsex);
 			$insert->execute();
+			$this->result='Ok';
 		}
+		$inter=$data2['interests'];
+
+		if($inter)
+		{
+			$sqlin="UPDATE users SET genre='$inter' WHERE login='$username'";
+			$insert = $this->db->prepare($sqlin);
+			$insert->execute();
+			$this->result='Ok';
+		}
+	}
+
+	public function updatepass($data1,$data2)
+	{
+		$username=$data1['login'];
+		$oldpass=$data2['oldpass'];
+		$pass=$data2['pass'];
+		$confirm=$data2['confirm'];
 		if(($oldpass)&&($pass)&&($confirm))
 		{
 			$this->getpassword($data1);
-			if($this->mypass==$oldpass)
+				if($this->mypass==$oldpass)
 				{
 					if($pass==$confirm)
 						{
@@ -170,6 +185,8 @@ class Users extends Database
 			else
 				$this->result='Password is wrong!';
 		}
+		else $this->result='WTF';
 		
 	}
+
 }

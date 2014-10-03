@@ -76,7 +76,7 @@ class UserController extends Controller
 
 	public function update()
 	{
-		if(empty($_POST['oldpass']))
+		if(empty($_POST))
 		{
 			//$user=new Users();
 			//$user->getinformation($_SESSION);
@@ -86,17 +86,26 @@ class UserController extends Controller
 		else
 		{
 			$user=new Users();
-			$user->update($_SESSION, $_POST);
-			if($user->result!='Ok')
-			{
-				$this->renderView('user/setting', array('result' => $user->result));
+			if(!empty($_POST['oldpass']))
+			{					
+				$user->updatepass($_SESSION, $_POST);
 			}
-			else
-				header('Location:http://vk.loc/index.php?r=user&a=login');
+			if(!empty($_POST['interests']))
+			{
+				$user->updateinfo($_SESSION, $_POST);
+			}
+			
+
+			if($user->result=='Ok')
+				{
+					header('Location:http://vk.loc/index.php?r=user&a=login');
+				}
+				else
+					$this->renderView('user/setting', array('result' => $user->result));
+					
 		}
-	
 	}
-	public function galery ()
+	public function galery()
 	{
 		$this->renderView('user/galery');
 	}

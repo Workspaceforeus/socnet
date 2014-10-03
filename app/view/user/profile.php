@@ -17,7 +17,7 @@
                 <img src="/image/lol.jpg">
 				<form>
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
-                <input class="button feed" type="submit" value="Galery"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
+                <input class="button feed" type="button" value="My galery"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
 				<input class="button startle" type="button" value="Logout" onclick="location.href='http://vk.loc/index.php?r=user&a=logout'">
 				</form>
             </div>
