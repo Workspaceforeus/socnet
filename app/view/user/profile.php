@@ -14,7 +14,7 @@
 			<h2> Your page!</h2>
         <div class="profile">
             <div class="photo">
-                <img src="/image/avatar/.jpg">
+                <?php echo '<img src="/image/avatar/'.$_SESSION['login'].'.jpg">'; ?> 
 				<form action="http://vk.loc/index.php?r=resize&a=upload" method="post" enctype="multipart/form-data">
 				<input <input class="button picture" type="file" name="filename" > <input <input class="button picture"  type="submit" value="load">
 				</form>
