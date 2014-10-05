@@ -41,8 +41,11 @@ class UserController extends Controller
 				{
 					$_SESSION['login']=$_POST['login'];
 					$_SESSION['password']=$_POST['password'];
-					$user->getinformation($_SESSION);
-					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
+					//$user->getinformation($_SESSION);
+					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
+					$user->getage($_SESSION);
++					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+ 					
 					return;
 				}
 				else
@@ -61,8 +64,11 @@ class UserController extends Controller
 		{
 			$user = new Users();
 			$user->login($_SESSION);
-			$user->getinformation($_SESSION);
-			$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
+			//$user->getinformation($_SESSION);
+			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
+			$user->getage($_SESSION);
++			$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+ 					
 		}
 
 	}
