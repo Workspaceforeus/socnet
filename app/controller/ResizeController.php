@@ -1,4 +1,4 @@
- <?php 
+<?php 
  class ResizeController extends Controller
 {
 	// *** Class variables
@@ -11,12 +11,13 @@
 	 {
 	 $newfilename=$_POST[""].".jpg";
 	 $oldfilename=$_FILES["filename"]["name"];
-	 echo "<br>";
+	 //echo "<br>";
 		if($_FILES["filename"]["size"] > 1024*3*1024)
 		{
 			echo ("Размер файла превышает три мегабайта");
 			exit;
 		}
+        
 		// Проверяем загружен ли файл
 		if(is_uploaded_file($_FILES["filename"]["tmp_name"]))
 		{
@@ -27,10 +28,10 @@
 			$resizeObj =$this-> resizeImage(250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
 			$resizeObj =$this-> saveImage("image/avatar/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
 			$resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_POST["username"]); //фунция переименования изображения в username
-			/*echo "Done :) <br>";
-			echo '<a href =index.php?r=user&a=login> Back to your page </a>';*/
-           // $this->renderView('user/profile');
-           header('Location:http://vk.loc/index.php?r=user&a=login');
+			//echo "Done :) <br>";
+			//echo '<a href =index.php?r=user&a=login> Back to your page </a>';
+            header('Location:http://vk.loc/index.php?r=user&a=login');
+            
 		}
 		else {echo("Error!"); }
 	}
