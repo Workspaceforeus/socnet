@@ -20,8 +20,8 @@
 <div><label for="oldpass">Old password*:</label><input name="oldpass" class="input-login" type="password" placeholder="password" title="insert old password" </div>
 <div><label for="pass">New password*:</label><input name="pass" class="input-login" type="password" placeholder="insert new password" title="insert new password" </div>
 <div><label for="confirm">Confirm password*:</label><input name="confirm" class="input-login" type="password" placeholder="confirm password" title="confirm password" </div>
-<div><label for "sex"><h3>Change your sex realy?:</h3></label> <input type="radio" name="sex" value="male"> Male <input type="radio" name="sex" value="female"> Female</p></div>
-			
+<div><label for "sex">Change your sex realy?:</h3></label> <input type="radio" name="sex" value="male"> Male <input type="radio" name="sex" value="female"> Female</p></div>
+<div><label for="dob"><h3>My new age</h3></label><input name="dob" class="input-login" id="age" type="date" placeholder="insert your age" title="insert your age" ></div><br>			
 			
 			<h3> New interests </h3>
 			<div><textarea name="interests" class="input-login" type="text" placeholder="favorite games"> </textarea>  </div>

@@ -1,4 +1,4 @@
-﻿<?php if(isset($data['result'])): ?>
+<?php if(isset($data['result'])): ?>
 	<h1><?php echo $data['result']; ?></h1>
 <?php endif; ?>
 
@@ -14,10 +14,13 @@
 			<h2> Your page!</h2>
         <div class="profile">
             <div class="photo">
-                <img src="/image/lol.jpg">
+                <img src="/image/avatar/.jpg">
+				<form action="http://vk.loc/index.php?r=resize&a=upload" method="post" enctype="multipart/form-data">
+				<input <input class="button picture" type="file" name="filename" > <input <input class="button picture"  type="submit" value="load">
+				</form>
 				<form>
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
-                <input class="button feed" type="button" value="My galery"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
+                <input class="button feed" type="button" value="Achivments"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
 				<input class="button startle" type="button" value="Logout" onclick="location.href='http://vk.loc/index.php?r=user&a=logout'">
 				</form>
             </div>
@@ -54,6 +57,7 @@
 		<div>
 		</div>
 		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
+		 
 
 		
     </body>
