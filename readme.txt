@@ -1,1 +1,1 @@
-Kate load
+Cлава load(конвертация в jpeg)

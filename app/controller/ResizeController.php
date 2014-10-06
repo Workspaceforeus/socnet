@@ -1,56 +1,56 @@
 <?php 
  class ResizeController extends Controller
 {
-	// *** Class variables
+    // *** Class variables
     private $image;
     private $width;
     private $height;
     private $imageResized;
-	
-	public function upload() 
-	 {
-	 $newfilename=$_POST[""].".jpg";
-	 $oldfilename=$_FILES["filename"]["name"];
-	 //echo "<br>";
-		if($_FILES["filename"]["size"] > 1024*3*1024)
-		{
-			echo ("Размер файла превышает три мегабайта");
-			exit;
-		}
+    
+    public function upload() 
+     {
+     $newfilename=$_POST[""].".jpg";
+     $oldfilename=$_FILES["filename"]["name"];
+     //echo "<br>";
+        if($_FILES["filename"]["size"] > 1024*3*1024)
+        {
+            echo ("Размер файла превышает три мегабайта");
+            exit;
+        }
         
-		// Проверяем загружен ли файл
-		if(is_uploaded_file($_FILES["filename"]["tmp_name"]))
-		{
-			// Если файл загружен успешно, перемещаем его
-			// из временной директории в конечную
-			move_uploaded_file($_FILES["filename"]["tmp_name"], "image/".$_FILES["filename"]["name"]);
-			$resizeObj =$this->OpenBigImage("image/".$_FILES["filename"]["name"]); //функция открытия изображения
-			$resizeObj =$this-> resizeImage(250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
-			$resizeObj =$this-> saveImage("image/avatar/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
-			$resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_SESSION["login"]); //фунция переименования изображения в username
-			//echo "Done :) <br>";
-			//echo '<a href =index.php?r=user&a=login> Back to your page </a>';
+        // Проверяем загружен ли файл
+        if(is_uploaded_file($_FILES["filename"]["tmp_name"]))
+        {
+            // Если файл загружен успешно, перемещаем его
+            // из временной директории в конечную
+            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/".$_FILES["filename"]["name"]);
+            $resizeObj =$this->OpenBigImage("image/".$_FILES["filename"]["name"]); //функция открытия изображения
+            $resizeObj =$this-> resizeImage(250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
+            $resizeObj =$this-> saveImage("image/avatar/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
+            $resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_SESSION["login"]); //фунция переименования изображения в username
+            //echo "Done :) <br>";
+            //echo '<a href =index.php?r=user&a=login> Back to your page </a>';
             header('Location:http://vk.loc/index.php?r=user&a=login');
             
-		}
-		else {echo("Error!"); }
-	}
+        }
+        else {echo("Error!"); }
+    }
  
-			//Функция переименования загруженных файлов
-			
-			private function RenameImage ($oldname,$newname){
-				$extension = strtolower(strrchr($oldname, '.'));
-				$newname.=$extension;
-				rename("image/$oldname","image/$newname");
-				rename("image/avatar/$oldname","image/avatar/$newname");
-			}
-			
-			
+            //Функция переименования загруженных файлов
+            
+            private function RenameImage ($oldname,$newname){
+                $extension = strtolower(strrchr($oldname, '.'));
+                $newname.=".jpg";
+                rename("image/$oldname","image/$newname");
+                rename("image/avatar/$oldname","image/avatar/$newname");
+            }
+            
+            
             function OpenBigImage($fileName)
             {
                 // *** Open up the file
                 $this->image = $this->openImage($fileName);
- 
+            //  $this->image =imagejpeg($fileName);
                 // *** Get width and height
                 $this->width  = imagesx($this->image);
                 $this->height = imagesy($this->image);
@@ -229,8 +229,9 @@
                 // *** Get extension
                 $extension = strrchr($savePath, '.');
                 $extension = strtolower($extension);
+                imagejpeg($this->imageResized, $savePath, $imageQuality);
  
-                switch($extension)
+              /*  switch($extension)
                 {
                     case '.jpg':
                     case '.jpeg':
@@ -262,7 +263,7 @@
                     default:
                         // *** No extension - No save.
                         break;
-                }
+                }*/
  
                 imagedestroy($this->imageResized);
             }
