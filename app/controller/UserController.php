@@ -115,8 +115,8 @@ class UserController extends Controller
 	{
 		$user=new Users();
 		$user->getcount($_SESSION);
-
-		$this->renderView('user/galery', array('count'=>$user->count));
+		$user->countphoto=Controller::count_files("image/galery");
+		$this->renderView('user/galery', array('count'=>$user->count,'photo'=>$user->countphoto));
 	}
 
 	public function editphoto()

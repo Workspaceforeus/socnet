@@ -19,6 +19,7 @@ class Users extends Database
 	public $id;
 	public $myage;
 	public $count;//кол-во залогинивания на сайте
+	public $countphoto;//
 
 	public function validate($data)
 	{
