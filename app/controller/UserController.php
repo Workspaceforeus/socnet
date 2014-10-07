@@ -119,10 +119,17 @@ class UserController extends Controller
 		$this->renderView('user/galery', array('count'=>$user->count));
 	}
 
-	public function photo()
+	public function editphoto()
 	{
 
 		$this->renderView('user/editphoto');
 	}
+
+	public function photogalery()
+	{
+		$this->renderView('user/photogalery');
+	}	
+
+	
 
 }

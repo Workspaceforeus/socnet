@@ -6,6 +6,7 @@
     private $width;
     private $height;
     private $imageResized;
+    private $cf;
     
     public function upload() 
      {
@@ -23,8 +24,8 @@
         {
             // Если файл загружен успешно, перемещаем его
             // из временной директории в конечную
-            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/".$_FILES["filename"]["name"]);
-            $resizeObj =$this->OpenBigImage("image/".$_FILES["filename"]["name"]); //функция открытия изображения
+            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/galery/".$_FILES["filename"]["name"]);
+            $resizeObj =$this->OpenBigImage("image/galery/".$_FILES["filename"]["name"]); //функция открытия изображения
             $resizeObj =$this-> resizeImage(250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
             $resizeObj =$this-> saveImage("image/avatar/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
             $resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_SESSION["login"]); //фунция переименования изображения в username
@@ -35,16 +36,23 @@
         }
         else {echo("Error!"); }
     }
- 
+
+           
             //Функция переименования загруженных файлов
             
-            private function RenameImage ($oldname,$newname){
+            private function RenameImage ($oldname,$newname)
+            {
                 $extension = strtolower(strrchr($oldname, '.'));
-                $newname.=".jpg";
-                rename("image/$oldname","image/$newname");
-                rename("image/avatar/$oldname","image/avatar/$newname");
+                $newnameav=$newname.".jpg";
+                rename("image/avatar/$oldname","image/avatar/$newnameav");
+                $this->cf=Controller::count_files("image/galery");
+                $newnameg=$newname.$this->cf.".jpg";
+                rename("image/galery/$oldname","image/galery/$newnameg");
+
             }
-            
+
+              
+        
             
             function OpenBigImage($fileName)
             {
@@ -265,7 +273,7 @@
                         break;
                 }*/
  
-                imagedestroy($this->imageResized);
+               imagedestroy($this->imageResized);
             }
  
  
