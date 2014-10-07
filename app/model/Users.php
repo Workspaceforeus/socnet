@@ -98,19 +98,20 @@ class Users extends Database
 		$insert->execute();
 		while ($myrow = $insert->fetch(PDO::FETCH_ASSOC)) 
 		{
-			$this->count.=$myrow['count'];
+			$this->count=$myrow['count'];
 		}
 
 	}
 
 	public function count($data)
 	{
+		$username=$data['login'];
 		$this->getcount($data);
 		$this->count++;
 		$sqlcount="UPDATE users SET count='$this->count' WHERE login='$username'";
 		$insert = $this->db->prepare($sqlcount);
 		$insert->execute();
-	
+		
 	}
 
 	public function login($data)
