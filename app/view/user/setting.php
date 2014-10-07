@@ -26,7 +26,7 @@
 <br/>	
 	
 <input  class="submit" type="submit" value="Save Changes"  title="Save" >	
-	
+<input id="hoi" class="submit" type="button" value="back to profile"  title="back to profile" onclick="location.href='http://vk.loc/index.php?r=user&a=login'">
 	
 	
 	

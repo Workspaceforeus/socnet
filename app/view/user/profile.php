@@ -9,14 +9,11 @@
     </head>
     <body>
 	<div class="main"> 
-			<?php if(isset($data['result'])): ?>
-			<h2><?php echo $data['result']; ?></h2>
-			<?php endif; ?>
         <div class="profile">
             <div class="photo">
                 <?php echo '<img src="/image/avatar/'.$_SESSION['login'].'.jpg">'; ?> 
 				<form>
-				<input class="button stroke" type="button"  value="Edit photo" onclick="location.href='http://vk.loc/index.php?r=user&a=editphoto'" >
+				<input class="button stroke1" type="button"  value="Edit photo" onclick="location.href='http://vk.loc/index.php?r=user&a=editphoto'" >
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
                 <input class="button feed" type="button" value="Achivments"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
                 <input class="button feed" type="button" value="Photo gallery"  onclick="location.href='http://vk.loc/index.php?r=user&a=photogalery'" 	>
@@ -24,7 +21,7 @@
 				</form>
             </div>
             <div class="info">
-                <h2 id="info-title">Общая информация</h2>
+                <h2 id="info-title">General information</h2>
                 <div class="fact">
                     <div class="title">Name</div>
                     <div class="value"><?php echo $data['name'] ?></div>

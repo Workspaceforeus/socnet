@@ -12,9 +12,11 @@
         <?php $ar=glob('image/galery/*.jpg');
         foreach($ar as $file)
             {
-             echo '<img src="'.$file.'">';
+             echo '<a tabindex="1"><img src="'.$file.'"></a>';
             }
         ?>
         </div>
+		<!--Я еще присобачу этот чертов футер, когда найду-->
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </body>
 </html>	

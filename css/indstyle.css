@@ -84,6 +84,10 @@ background:#f1f1f1;
 border: 1px solid #f26522; 
 }
 
+
+#hoi{ margin-left:42%;
+}
+
 #main
 {
 margin-top:-45px;
@@ -161,6 +165,9 @@ margin-top:-45px;
 }
 .stroke{
     background:#48D1CC;
+}
+.stroke1{
+    background:#F8A1CC;
 }
 .feed{
     background:#48D1CC;
