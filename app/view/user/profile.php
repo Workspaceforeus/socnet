@@ -1,6 +1,4 @@
-<?php if(isset($data['result'])): ?>
-	<h1><?php echo $data['result']; ?></h1>
-<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -11,14 +9,14 @@
     </head>
     <body>
 	<div class="main"> 
-			<h2> Your page!</h2>
+			<?php if(isset($data['result'])): ?>
+			<h2><?php echo $data['result']; ?></h2>
+			<?php endif; ?>
         <div class="profile">
             <div class="photo">
                 <?php echo '<img src="/image/avatar/'.$_SESSION['login'].'.jpg">'; ?> 
-				<form action="http://vk.loc/index.php?r=resize&a=upload" method="post" enctype="multipart/form-data">
-				<input <input class="button picture" type="file" name="filename" > <input <input class="button picture"  type="submit" value="load">
-				</form>
 				<form>
+				<input class="button stroke" type="button"  value="Edit photo" onclick="location.href='http://vk.loc/index.php?r=user&a=photo'" >
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
                 <input class="button feed" type="button" value="Achivments"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
 				<input class="button startle" type="button" value="Logout" onclick="location.href='http://vk.loc/index.php?r=user&a=logout'">

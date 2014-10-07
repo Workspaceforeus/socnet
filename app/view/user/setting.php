@@ -13,7 +13,6 @@
 
 
 <div class="block-wear">
-
 <form  method="post" class="main"  action="http://vk.loc/index.php?r=user&a=update">
 <div class="left">
 <h2>Change pass:</h2>

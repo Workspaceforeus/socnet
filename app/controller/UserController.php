@@ -37,6 +37,7 @@ class UserController extends Controller
 				
 				$user = new Users();
 				$user->login($_POST);
+				$user->count($_POST);
 				if($user->temp == '1')
 				{
 					$_SESSION['login']=$_POST['login'];
@@ -44,9 +45,8 @@ class UserController extends Controller
 					//$user->getinformation($_SESSION);
 					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 					$user->getage($_SESSION);
-+					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
- 					
-					return;
+					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+ 					return;
 				}
 				else
 				{
@@ -67,7 +67,7 @@ class UserController extends Controller
 			//$user->getinformation($_SESSION);
 			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 			$user->getage($_SESSION);
-			$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
  					
 		}
 
@@ -113,7 +113,16 @@ class UserController extends Controller
 	}
 	public function galery()
 	{
-		$this->renderView('user/galery');
+		$user=new Users();
+		$user->getcount($_SESSION);
+
+		$this->renderView('user/galery', array('count'=>$user->count));
+	}
+
+	public function photo()
+	{
+
+		$this->renderView('user/editphoto');
 	}
 
 }

@@ -18,6 +18,7 @@ class Users extends Database
 	public $temp;
 	public $id;
 	public $myage;
+	public $count;//кол-во залогинивания на сайте
 
 	public function validate($data)
 	{
@@ -88,6 +89,29 @@ class Users extends Database
 
 	}
 
+	public function getcount($data)
+	{
+		$username=$data['login'];
+		$sql="SELECT count FROM users WHERE login='$username'";
+		$insert = $this->db->prepare($sql);
+		$insert->execute();
+		while ($myrow = $insert->fetch(PDO::FETCH_ASSOC)) 
+		{
+			$this->count.=$myrow['count'];
+		}
+
+	}
+
+	public function count($data)
+	{
+		$this->getcount($data);
+		$this->count++;
+		$sqlcount="UPDATE users SET count='$this->count' WHERE login='$username'";
+		$insert = $this->db->prepare($sqlcount);
+		$insert->execute();
+	
+	}
+
 	public function login($data)
 	{
 		try
@@ -105,7 +129,7 @@ class Users extends Database
 				{
 					if($this->mypass==$pass)
 						{
-							$this->result= 'Hello  ' . $username . '!' ; 
+							$this->result=$username; 
 							$this->temp = '1';
 						}
 
