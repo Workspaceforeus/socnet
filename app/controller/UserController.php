@@ -129,6 +129,10 @@ class UserController extends Controller
 	{
 		$this->renderView('user/photogalery');
 	}	
+	public function friends()
+	{
+		$this->renderView('user/friends');
+	}	
 
 	
 
