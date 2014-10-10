@@ -134,7 +134,7 @@ class UserController extends Controller
 	{
 		$user=new Users();
 		$user->friends($_SESSION);
-		$this->renderView('user/friends', array('logins'=>$user->count,'dobs'=>$user->countphoto));
+		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob));
 
 	}
 
