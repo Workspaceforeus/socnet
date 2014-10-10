@@ -23,6 +23,8 @@ class Users extends Database
 	public $myid;
 	public $myfr;
 	public $myfrdob;
+	public $peoplen;
+	public $peopled;
 
 	public function validate($data)
 	{
@@ -269,7 +271,8 @@ class Users extends Database
 			$this->myfrdob[]=$myrow['dob'];
 		}
 	}
-		public function people($people)
+
+	public function people($people)
 	{
 		$this->getid($people);
 		$ql=" SELECT login, dob FROM users ";
