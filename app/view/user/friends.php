@@ -10,14 +10,21 @@
 		<input class="friends" type="button"  value="All people" onclick="location.href='http://vk.loc/index.php?r=user&a=people'"  >
 		</div>
 		<hr class="friedsline"/>
-		<div>
+		<div class="block-wear spesial">
+		<div class="out-here">
 		<?php
-			var_dump($data);
-			foreach($data as $K=>$v)
-			{
-				echo $k .'='.$v;
-			}
+		 foreach($data['logins'] as $k=> $massiv)
+		{
+		//foreach($massiv  as  $inner_key => $value)
+		//{
+		
+		echo  '<div class="letter">'. $massiv .'</div>' . '<img width="200" heigh="150" src="/image/avatar/'.$_SESSION['login'].'.jpg">' . '<input class=" button stroke1" type="button"  value="Add friend^_^""  >' 
+		 . '<input class=" button startle" type="button"  value="Delete friend" onclick="location.href=""  >'. '<br/>';
+		//}
+		}
+		
 		?>
+		</div>
 		</div>
 		
 		<!--Я еще присобачу этот чертов футер, когда найду-->
