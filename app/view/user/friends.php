@@ -12,6 +12,13 @@
 		</div>
 		<hr class="friedsline"/>
 		<div>
+		<?php
+			var_dump($data);
+			foreach($data as $K=>$v)
+			{
+				echo $k .'='.$v;
+			}
+		?>
 		</div>
 		
 		<!--Я еще присобачу этот чертов футер, когда найду-->

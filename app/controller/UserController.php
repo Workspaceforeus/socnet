@@ -137,6 +137,14 @@ class UserController extends Controller
 		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob));
 
 	}
+	//Катя допили плиз :)
+	public function people()
+	{
+		$user=new Users();
+		$user->friends($_SESSION);
+		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled));
+
+	}
 
 	
 
