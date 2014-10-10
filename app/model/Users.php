@@ -269,6 +269,17 @@ class Users extends Database
 			$this->myfrdob[]=$myrow['dob'];
 		}
 	}
-	
+		public function people($people)
+	{
+		$this->getid($people);
+		$ql=" SELECT login, dob FROM users ";
+		$ople = $this->db->prepare($sql);
+		$ople->execute();
+		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))
+		{
+			$this->peoplen[]=$myrow['login'];
+			$this->peopled[]=$myrow['dob'];
+		}
+	}
 
 }

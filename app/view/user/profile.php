@@ -15,7 +15,7 @@
 				<form>
 				<input class="button stroke1" type="button"  value="Edit photo" onclick="location.href='http://vk.loc/index.php?r=user&a=editphoto'" >
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='http://vk.loc/index.php?r=user&a=update'" >
-				<input class="button friends" type="button"  value="friends" onclick="location.href='http://vk.loc/index.php?r=user&a=friends'" >
+				<input class="button friends1" type="button"  value="friends" onclick="location.href='http://vk.loc/index.php?r=user&a=friends'" >
                 <input class="button feed" type="button" value="Achivments"  onclick="location.href='http://vk.loc/index.php?r=user&a=galery'" 	>
                 <input class="button feed" type="button" value="Photo gallery"  onclick="location.href='http://vk.loc/index.php?r=user&a=photogalery'" 	>
 				<input class="button startle" type="button" value="Logout" onclick="location.href='http://vk.loc/index.php?r=user&a=logout'">

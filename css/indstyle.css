@@ -172,8 +172,8 @@ margin-top:-45px;
 /* особые кнопочки для пиу-пиу в друзьях*/
 .friends{ 
     height:35px;
-	margin-left:11%;
-    margin-right:12%;
+	margin-left:8%;
+    margin-right:9%;
 	margin-top:10px;
 	margin-bottom:10px;
     text-align:center;
@@ -181,6 +181,10 @@ margin-top:-45px;
     color:#fff;
     border-radius:50px;
 	width: 400px;
+	background:#C0C0C0;
+}
+.friends1{ 
+    
 	background:#C0C0C0;
 }
 
