@@ -20,6 +20,9 @@ class Users extends Database
 	public $myage;
 	public $count;//кол-во залогинивания на сайте
 	public $countphoto;//
+	public $myid;
+	public $myfr;
+	public $myfrdob;
 
 	public function validate($data)
 	{
@@ -239,5 +242,33 @@ class Users extends Database
 		else $this->result='WTF';
 		
 	}
+
+	public function getid($data)
+	{
+		$username=$data['login'];
+		$sql=" SELECT id FROM users WHERE login='$username'";
+		$get = $this->db->prepare($sql);
+		$get->execute();
+		
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+			{
+				$this->myid.=$myrow['id'];
+			}			
+
+	}
+
+	public function friends($data)
+	{
+		$this->getid($data);
+		$sql=" SELECT login, dob FROM users JOIN FRIENDS WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
+		$peo = $this->db->prepare($sql);
+		$peo->execute();
+		while($myrow = $peo->fetch(PDO::FETCH_ASSOC))
+		{
+			$this->myfr[]=$myrow['login'];
+			$this->myfrdob[]=$myrow['dob'];
+		}
+	}
+	
 
 }

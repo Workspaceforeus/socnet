@@ -37,7 +37,7 @@ class UserController extends Controller
 				
 				$user = new Users();
 				$user->login($_POST);
-				$user->count($_POST);
+				$user->count($_POST); 
 				if($user->temp == '1')
 				{
 					$_SESSION['login']=$_POST['login'];
@@ -129,10 +129,14 @@ class UserController extends Controller
 	{
 		$this->renderView('user/photogalery');
 	}	
+
 	public function friends()
 	{
-		$this->renderView('user/friends');
-	}	
+		$user=new Users();
+		$user->friends($_SESSION);
+		$this->renderView('user/friends', array('logins'=>$user->count,'dobs'=>$user->countphoto));
+
+	}
 
 	
 
