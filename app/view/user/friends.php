@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,11 +6,18 @@
     </head>
     <body>		
 		<div>
-        <input class="friends" type="button"  value="My friends^_^" onclick="" >
-		<input class="friends" type="button"  value="Other people" onclick="" >
+        <input class="friends" type="button"  value="My friends^_^" onclick="http://vk.loc/index.php?r=user&a=friends >
+		<input class="friends" type="button"  value="All people" onclick="http://vk.loc/index.php?r=user&a=people" >
 		</div>
 		<hr class="friedsline"/>
 		<div>
+		<?php
+			var_dump($data);
+			foreach($data as $K=>$v)
+			{
+				echo $k .'='.$v;
+			}
+		?>
 		</div>
 		
 		<!--Я еще присобачу этот чертов футер, когда найду-->
