@@ -275,7 +275,7 @@ class Users extends Database
 	public function people($people)
 	{
 		$this->getid($people);
-		$ql=" SELECT login, dob FROM users ";
+		$sql=" SELECT login, dob FROM users ";
 		$ople = $this->db->prepare($sql);
 		$ople->execute();
 		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))

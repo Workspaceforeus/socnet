@@ -6,8 +6,8 @@
     </head>
     <body>		
 		<div>
-        <input class="friends" type="button"  value="My friends^_^" onclick="http://vk.loc/index.php?r=user&a=friends >
-		<input class="friends" type="button"  value="All people" onclick="http://vk.loc/index.php?r=user&a=people" >
+        <input class="friends" type="button"  value="My friends^_^" onclick="location.href='http://vk.loc/index.php?r=user&a=friends'"  >
+		<input class="friends" type="button"  value="All people" onclick="location.href='http://vk.loc/index.php?r=user&a=people'"  >
 		</div>
 		<hr class="friedsline"/>
 		<div>
