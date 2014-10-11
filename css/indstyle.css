@@ -16,6 +16,10 @@ h1
 form
 { background-image:url(/image/fonio.jpg);
 }
+#centerdeterb{
+margin-left:25%;
+background-color:#889;
+}
 .letter { 
 
 color:#1E90FF;  

@@ -11,6 +11,7 @@
 		</div>
 		<hr class="friedsline"/>
 		<div class="block-wear spesial">
+		<input class=" button stroke" id="centerdeterb" type="button"  value="My profile" onclick="location.href='index.php?r=user&a=login'" >
 		<div class="out-here">
 		<?php
 		 foreach($data['logins'] as $k=> $massiv)
