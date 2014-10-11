@@ -262,27 +262,58 @@ class Users extends Database
 	public function friends($data)
 	{
 		$this->getid($data);
-		$sql=" SELECT login, dob FROM users JOIN FRIENDS WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
+		$sql="SELECT users.id,users.login, users.dob FROM users JOIN FRIENDS WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
 		$peo = $this->db->prepare($sql);
 		$peo->execute();
 		while($myrow = $peo->fetch(PDO::FETCH_ASSOC))
 		{
 			$this->myfr[]=$myrow['login'];
 			$this->myfrdob[]=$myrow['dob'];
+			$this->myfrid[]=$myrow['id'];
 		}
 	}
 
 	public function people($people)
 	{
 		$this->getid($people);
-		$sql=" SELECT login, dob FROM users ";
+		$sql="SELECT users.id,users.login, users.dob FROM users ";
 		$ople = $this->db->prepare($sql);
 		$ople->execute();
 		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))
 		{
 			$this->peoplen[]=$myrow['login'];
 			$this->peopled[]=$myrow['dob'];
+			$this->peopleid[]=$myrow['id'];
 		}
 	}
 
+	// метод отвечает за внесение id нового друга в таблицу friends для пользователя
+	public function addNewFriendToBase($Friend_login,$user_login){
+			$this->getid($user_login);
+			$user_id=$this->myid;
+			$this->myid=null;
+			$this->getid($Friend_login);
+			$newFriendId=$this->myid;
+			$sqladdfriend="INSERT INTO FRIENDS (id,friend_id)VALUES ('$user_id','$newFriendId')";
+			$insert=$this->db->prepare($sqladdfriend);
+			$insert->execute();
+			$this->result='ok';
+			}
+			
+	// метод отвечает за удаление id друга из таблицы friends для пользователя
+	public function DeleteFriendFromBase($Friend_login,$user_login){
+			//var_dump($user_login);
+			//var_dump($Friend_login);
+			//echo "     Friend_login=".$Friend_login."\n";
+			$this->getid($user_login);
+			$user_id=$this->myid;
+			$this->myid=null;
+			$this->getid($Friend_login);
+			$newFriendId=$this->myid;
+			$sqladdfriend="DELETE FROM FRIENDS WHERE id='$user_id' AND friend_id='$newFriendId'";
+			//echo $sqladdfriend;
+			$insert=$this->db->prepare($sqladdfriend);
+			$insert->execute();
+			$this->result='ok';
+			}
 }

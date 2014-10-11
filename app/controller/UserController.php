@@ -144,7 +144,31 @@ class UserController extends Controller
 		$user->people($_SESSION);
 		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled));
 	}
-
 	
+	//добавление в друзья
+	
+	public function addFriend ()
+	{
+		//$a=array ('id'=>2,'friend_id'=>6);
+		$user = new Users();
+		if ( isset($_GET['add']) ) {
+			$friendID['login'] = $_GET['add'];
+			if ( !empty($friendID) ){
+				$user->addNewFriendToBase($friendID,$_SESSION); //метод по заносу id нового пользователя в друзья
+			}
+		}
+	}
+	
+	public function DeleteFriend ()
+	{
+		//$a=array ('id'=>2,'friend_id'=>6);
+		$user = new Users();
+		if ( isset($_GET['add']) ) {
+			$friendID['login'] = $_GET['add'];
+			if ( !empty($friendID) ){
+				$user->DeleteFriendFromBase($friendID,$_SESSION); //метод по заносу id нового пользователя в друзья
+			}
+		}
+	}
 
 }
