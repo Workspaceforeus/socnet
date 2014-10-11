@@ -1,0 +1,366 @@
+﻿*
+{
+margin:0;
+padding:0;
+outline:none;
+}
+body
+{ background-image: url(/image/fon.jpg);
+  font-family: 'Cantarell', sans-serif;
+}
+h1
+{text-align:center;
+ color:#889;
+ font-size:38px;
+}
+form
+{ background-image:url(/image/fonio.jpg);
+}
+.letter { 
+
+color:#1E90FF;  
+font-size: 200%; 
+font-family: serif; 
+position: center; 
+top: 5px; 
+margin-left:20px; 
+	 }
+.out-here{
+margin-left:30%; 
+}
+
+.block-wear
+{
+width:600px;
+margin:10px auto;
+background:#f5f5f5;
+border: solid 1px;
+-webkit-border-radius:7px;
+-moz-border-radius:7px;
+padding:20px;
+}
+.spesial{
+width:700px;
+margin:10px auto;
+background:#f5f5f5;
+border: solid 3px;
+-webkit-border-radius:50px;
+-moz-border-radius:50px;
+background-image: url(/image/fonegro.jpg);
+}
+.input-login
+{
+width:500px;
+height:50px;
+padding:0 20px;
+margin:20px;
+color:#777;
+border: solid 1px;
+border-radius:7px;
+-webkit-border-radius:7px;
+-moz-border-radius:7px;
+font-size:18px;
+background:#f1f1f1;
+}
+.input-login:hover  
+{
+border: 1px solid #f26522; 
+}
+.submit
+{
+width:160px;
+height:60px;
+-webkit-border-radius:30px;
+-moz-border-radius:30px;
+font-size:18px;
+color:#889;
+margin-left:10px;
+margin-right:5px;
+}
+.login{
+width:600px;
+margin:10px auto;
+border: solid 1px;
+-webkit-border-radius:7px;
+-moz-border-radius:7px;
+padding:20px;
+}
+.input-login1
+{
+width:500px;
+height:50px;
+padding:0 20px;
+margin:20px;
+color:#777;
+border: solid 1px;
+border-radius:7px;
+-webkit-border-radius:7px;
+-moz-border-radius:7px;
+font-size:18px;
+background:#f1f1f1;
+}
+.input-login1:hover  
+{
+border: 1px solid #f26522; 
+}
+
+
+#hoi{ margin-left:42%;
+}
+
+#main
+{
+margin-top:-45px;
+
+}
+.profile{
+    padding:5px 10px;
+}
+.profile img{
+    display:block;
+    padding:10px;
+    border: 2px solid #34495e;
+    border-radius:8px;
+}
+.profile .photo{
+    float:left;
+    width:152px;
+}
+.profile .info{
+    float:left;
+    width:50%;
+    margin-left:160px;
+}
+.info h2{
+    margin:0;
+    padding:10px;
+    font-size:20px;
+    font-weight:normal;
+    background:#ADD8E6;
+    color:#E0FFFF;
+    border-radius:5px;
+}
+.fact{
+    padding:10px;
+    background:white;
+}
+.fact:nth-child(odd){
+    background:#ecf0f1;
+}
+.fact:after{
+    content:"";
+    clear:both;
+    display:table;
+}
+.fact .title{
+   float:left;
+   width:120px;
+   text-align:right;
+   color:#7f8c8d;
+}
+.fact .value{
+   margin-left:140px;
+   color:#34495e;
+}
+.albums{
+    margin-top:5px;    
+}
+.albums img{
+    float:left;
+    margin-right:5px;
+}
+.albums img:last-child{
+    margin-right:0;
+	text-align:center;
+}
+.button{
+    display:block;
+    height:30px;
+    margin:5px 0;
+    text-align:center;
+    line-height:30px;
+    color:#fff;
+    border-radius:4px;
+	width: 260px;
+}
+.stroke{
+    background:#48D1CC;
+}
+.stroke1{
+    background:#F8A1CC;
+}
+/* особые кнопочки для пиу-пиу в друзьях*/
+.friends{ 
+    height:35px;
+	margin-left:8%;
+    margin-right:9%;
+	margin-top:10px;
+	margin-bottom:10px;
+    text-align:center;
+    line-height:30px;
+    color:#fff;
+    border-radius:50px;
+	width: 400px;
+	background:#C0C0C0;
+}
+.friends1{ 
+    
+	background:#C0C0C0;
+}
+
+.friedsline {
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+}
+.feed{
+    background:#48D1CC;
+}
+.startle{
+    background:#DD0000;
+}
+.picture{
+ background:#009900;
+}
+
+.footer {
+		position: relative;
+       	text-align: center;
+   		clear:both;
+ } 
+
+ .maininfo
+ {
+ 	text-align:center;
+ }
+ .gallery {
+    margin: 100px auto 0;
+    width: 800px;
+}
+.gallery a {
+    display: inline-block;
+    height: 135px;
+    position: relative;
+    width: 180px;
+
+    /* CSS3 Prevent selections */
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+.gallery a img {
+    border: 8px solid #fff;
+    border-bottom: 20px solid #fff;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+
+    /* CSS3 Box sizing property */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 1.0s ease;
+    -moz-transition: all 1.0s ease;
+    -o-transition: all 1.0s ease;
+    transition: all 1.0s ease;
+
+    /* CSS3 Box Shadow */
+    -moz-box-shadow: 2px 2px 4px #444;
+    -webkit-box-shadow: 2px 2px 4px #444;
+    -o-box-shadow: 2px 2px 4px #444;
+    box-shadow: 2px 2px 4px #444;
+}
+
+/* Custom CSS3 rotate transformation */
+.gallery a:nth-child(1) img {
+    -moz-transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    transform: rotate(-25deg);
+}
+.gallery a:nth-child(2) img {
+    -moz-transform: rotate(-20deg);
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+.gallery a:nth-child(3) img {
+    -moz-transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+}
+.gallery a:nth-child(4) img {
+    -moz-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+.gallery a:nth-child(5) img {
+    -moz-transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+.gallery a:nth-child(6) img {
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.gallery a:nth-child(7) img {
+    -moz-transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    transform: rotate(5deg);
+}
+.gallery a:nth-child(8) img {
+    -moz-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+}
+.gallery a:nth-child(9) img {
+    -moz-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    transform: rotate(15deg);
+}
+.gallery a:nth-child(10) img {
+    -moz-transform: rotate(20deg);
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg);
+}
+.gallery a:nth-child(11) img {
+    -moz-transform: rotate(25deg);
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
+}
+.gallery a:nth-child(12) img {
+    -moz-transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
+.gallery a:focus img {
+    cursor: default;
+    height: 250%;
+    left: -150px;
+    top: -100px;
+    position: absolute;
+    width: 250%;
+    z-index: 25;
+
+    /* CSS3 transition rules */
+    -webkit-transition: all 1.0s ease;
+    -moz-transition: all 1.0s ease;
+    -o-transition: all 1.0s ease;
+    transition: all 1.0s ease;
+
+    /* CSS3 transform rules */
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
