@@ -133,42 +133,58 @@ class UserController extends Controller
 	public function friends()
 	{
 		$user=new Users();
+		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Delete from your friends"' . 'onclick=' . "location.href='http://vk.loc/index.php?r=user&a=DeleteFriend&add=";
 		$user->friends($_SESSION);
-		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob));
+		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton));
 
 	}
 
 	public function people()
 	{
 		$user=new Users();
+		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Add to your friends"' . 'onclick=' . "location.href='http://vk.loc/index.php?r=user&a=addFriend&add=";
 		$user->people($_SESSION);
-		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled));
+		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton));
 	}
 	
 	//добавление в друзья
 	
 	public function addFriend ()
 	{
-		//$a=array ('id'=>2,'friend_id'=>6);
 		$user = new Users();
 		if ( isset($_GET['add']) ) {
 			$friendID['login'] = $_GET['add'];
 			if ( !empty($friendID) ){
-				$user->addNewFriendToBase($friendID,$_SESSION); //метод по заносу id нового пользователя в друзья
-			}
+				$user->friends($_SESSION);
+				$oldFriendId=$user->myfr;
+				$dublicate = false;
+				//проверка добавляемого друга на его наличие в друзьях
+				foreach ($oldFriendId as $key=>$id){
+					if ($friendID["login"] == $id){
+						$dublicate = true;
+						echo "friend";
+					}
+				}
+				if (!$dublicate){
+					$user->addNewFriendToBase($friendID,$_SESSION); //метод по заносу id нового пользователя в друзья
+				}
 		}
+		};
+		$this->friends();
 	}
-	
+		
+		//удаление из друзей
+		
 	public function DeleteFriend ()
 	{
-		//$a=array ('id'=>2,'friend_id'=>6);
 		$user = new Users();
 		if ( isset($_GET['add']) ) {
 			$friendID['login'] = $_GET['add'];
 			if ( !empty($friendID) ){
-				$user->DeleteFriendFromBase($friendID,$_SESSION); //метод по заносу id нового пользователя в друзья
+				$user->DeleteFriendFromBase($friendID,$_SESSION); //метод по удалению записи таблицы о пренадлежности к друзьям
 			}
 		}
+		$this->friends();
 	}
 
 }

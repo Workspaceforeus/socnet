@@ -17,10 +17,9 @@
 		{
 		//foreach($massiv  as  $inner_key => $value)
 		//{
-		echo  '<div class="letter">'. $massiv .'</div>' . '<img width="200" heigh="150" src="/image/avatar/'.$massiv.'.jpg">' . '<input class=" button stroke1" type="submit"  value="Add friend^_^"onclick="location.href="http://vk.loc/index.php?r=user&a=friends"  >' ;
-		echo '<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Delete from your friend"' . 'onclick=' . "location.href='http://vk.loc/index.php?r=user&a=DeleteFriend&add=".$massiv."'".'>';
+		echo  '<div class="letter">'. $massiv .'</div>' . '<img width="200" heigh="150" src="/image/avatar/'.$massiv.'.jpg">' ;
+		echo $data['batton'].$massiv."'". '>';
 		//}
-		echo '<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Add friend^_^"' . 'onclick=' . "location.href='http://vk.loc/index.php?r=user&a=addFriend&add=".$massiv."'" . '>';
 		}
 		
 		?>

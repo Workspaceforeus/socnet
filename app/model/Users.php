@@ -289,31 +289,27 @@ class Users extends Database
 
 	// метод отвечает за внесение id нового друга в таблицу friends для пользователя
 	public function addNewFriendToBase($Friend_login,$user_login){
-			$this->getid($user_login);
+			$this->myid=null; 
+			$this->getid($user_login); // отдаем Login username, получаем его id
 			$user_id=$this->myid;
 			$this->myid=null;
-			$this->getid($Friend_login);
+			$this->getid($Friend_login); // отдаем Login добавляемого друга, получаем его id
 			$newFriendId=$this->myid;
 			$sqladdfriend="INSERT INTO FRIENDS (id,friend_id)VALUES ('$user_id','$newFriendId')";
 			$insert=$this->db->prepare($sqladdfriend);
 			$insert->execute();
-			$this->result='ok';
 			}
 			
 	// метод отвечает за удаление id друга из таблицы friends для пользователя
 	public function DeleteFriendFromBase($Friend_login,$user_login){
-			//var_dump($user_login);
-			//var_dump($Friend_login);
-			//echo "     Friend_login=".$Friend_login."\n";
-			$this->getid($user_login);
+			$this->myid=null;
+			$this->getid($user_login); // отдаем Login username, получаем его id
 			$user_id=$this->myid;
 			$this->myid=null;
-			$this->getid($Friend_login);
+			$this->getid($Friend_login); // отдаем Login удаляемого друга, получаем его id
 			$newFriendId=$this->myid;
 			$sqladdfriend="DELETE FROM FRIENDS WHERE id='$user_id' AND friend_id='$newFriendId'";
-			//echo $sqladdfriend;
 			$insert=$this->db->prepare($sqladdfriend);
 			$insert->execute();
-			$this->result='ok';
 			}
 }
