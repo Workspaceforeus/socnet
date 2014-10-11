@@ -162,7 +162,7 @@ class UserController extends Controller
 				foreach ($oldFriendId as $key=>$id){
 					if ($friendID["login"] == $id){
 						$dublicate = true;
-						echo "friend";
+						echo "<h1>friend</h1>";
 					}
 				}
 				if (!$dublicate){
