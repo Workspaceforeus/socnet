@@ -24,8 +24,8 @@
         {
             // Если файл загружен успешно, перемещаем его
             // из временной директории в конечную
-            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/galery/".$_FILES["filename"]["name"]);
-            $resizeObj =$this->OpenBigImage("image/galery/".$_FILES["filename"]["name"]); //функция открытия изображения
+            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/galery/".$_SESSION["login"]."/".$_FILES["filename"]["name"]);
+            $resizeObj =$this->OpenBigImage("image/galery/".$_SESSION["login"]."/".$_FILES["filename"]["name"]); //функция открытия изображения
             $resizeObj =$this-> resizeImage(250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
             $resizeObj =$this-> saveImage("image/avatar/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
             $resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_SESSION["login"]); //фунция переименования изображения в username
@@ -45,9 +45,9 @@
                 $extension = strtolower(strrchr($oldname, '.'));
                 $newnameav=$newname.".jpg";
                 rename("image/avatar/$oldname","image/avatar/$newnameav");
-                $this->cf=Controller::count_files("image/galery");
+                $this->cf=Controller::count_files("image/galery/".$_SESSION["login"]);
                 $newnameg=$newname.$this->cf.".jpg";
-                rename("image/galery/$oldname","image/galery/$newnameg");
+                rename("image/galery/".$_SESSION["login"]."/$oldname","image/galery/".$_SESSION["login"]."/$newnameg");
 
             }
 

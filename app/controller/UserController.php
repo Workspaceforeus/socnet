@@ -16,6 +16,7 @@ class UserController extends Controller
 				if($user->result=='Ok')
 				{
 					$user->registration($_POST);
+					mkdir("image/galery/".$_POST['login'], 0700);
 					$this->renderView('user/login', array('result' => $user->result));
 		            return;
 				}
@@ -115,7 +116,7 @@ class UserController extends Controller
 	{
 		$user=new Users();
 		$user->getcount($_SESSION);
-		$user->countphoto=Controller::count_files("image/galery");
+		$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
 		$this->renderView('user/galery', array('count'=>$user->count,'photo'=>$user->countphoto));
 	}
 
