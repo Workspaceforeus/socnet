@@ -138,6 +138,10 @@ class UserController extends Controller
 	{
 		$this->renderView('user/photogalery');
 	}	
+	public function maketprof() //Рендер на посмотреть
+	{
+		$this->renderView('user/maketprof');
+	}	
 
 	public function friends()
 	{
