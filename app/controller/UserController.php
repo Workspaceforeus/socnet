@@ -28,6 +28,8 @@ class UserController extends Controller
 			}
 	}
 
+
+
 	public function login()
 	{
 
@@ -46,7 +48,8 @@ class UserController extends Controller
 					//$user->getinformation($_SESSION);
 					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 					$user->getage($_SESSION);
-					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+					$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
+					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto));
  					return;
 				}
 				else
@@ -68,7 +71,8 @@ class UserController extends Controller
 			//$user->getinformation($_SESSION);
 			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 			$user->getage($_SESSION);
-			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
+			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto));
  					
 		}
 
