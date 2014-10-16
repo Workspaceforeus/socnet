@@ -40,11 +40,11 @@
                     <div class="value"><?php echo $data['dob'] ?></div>
                 </div>
                 <h2>Albums</h2>
-                <div class="albums">
-					<img src="/image/4.jpg">
-                    <img src="/image/1.jpg">
-                    <img src="/image/2.jpg">
-                    <img src="/image/3.jpg">
+                <div class="album">
+					<?php echo '<a tabindex="13"><img src="image/galery/'.$_SESSION["login"].'/'.$_SESSION['login'].$data['cf'].'.jpg"></a>'; ?>
+                    <?php $cf= $data['cf']-1; echo '<a tabindex="13"><img src="image/galery/'.$_SESSION["login"].'/'.$_SESSION['login'].$cf.'.jpg"></a>'; ?>
+                    <?php $cf= $data['cf']-2; echo '<a tabindex="13"><img src="image/galery/'.$_SESSION["login"].'/'.$_SESSION['login'].$cf.'.jpg"></a>'; ?>
+                    <?php $cf= $data['cf']-3; echo '<a tabindex="13"><img src="image/galery/'.$_SESSION["login"].'/'.$_SESSION['login'].$cf.'.jpg"></a>'; ?>
                 </div>
             </div>
         </div>

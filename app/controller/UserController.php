@@ -2,6 +2,8 @@
 
 class UserController extends Controller
 {
+	public $check;
+	
 	public function registration()
 	{
 		if( (empty($_POST['login'])) || (empty($_POST['password'])) || (empty($_POST['email'])) || (empty($_POST['dob'])) || (empty($_POST['confirm']))) 
@@ -15,6 +17,8 @@ class UserController extends Controller
 				$user->validate($_POST);
 				if($user->result=='Ok')
 				{
+					$data=$this->ecran($_POST);
+					//$user->registration($data);
 					$user->registration($_POST);
 					mkdir("image/galery/".$_POST['login'], 0700);
 					$this->renderView('user/login', array('result' => $user->result));
@@ -27,6 +31,8 @@ class UserController extends Controller
 				}	
 			}
 	}
+
+
 
 	public function login()
 	{
@@ -46,7 +52,8 @@ class UserController extends Controller
 					//$user->getinformation($_SESSION);
 					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 					$user->getage($_SESSION);
-					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+					$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
+					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto));
  					return;
 				}
 				else
@@ -68,7 +75,8 @@ class UserController extends Controller
 			//$user->getinformation($_SESSION);
 			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 			$user->getage($_SESSION);
-			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage));
+			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
+			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto));
  					
 		}
 
@@ -187,6 +195,15 @@ class UserController extends Controller
 		}
 		$this->friends();
 	}
-
+	
+	
+	
+	// функция экранирования введенных данных
+	
+	private function ecran($data){
+		$check['login']=mysql_real_escape_string($data['login']);
+		$check['email']=mysql_real_escape_string($data['email']);
+		$check['password']=mysql_real_escape_string($data['password']);
+	}
 
 }
