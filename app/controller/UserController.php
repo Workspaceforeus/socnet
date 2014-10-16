@@ -2,6 +2,8 @@
 
 class UserController extends Controller
 {
+	public $check;
+	
 	public function registration()
 	{
 		if( (empty($_POST['login'])) || (empty($_POST['password'])) || (empty($_POST['email'])) || (empty($_POST['dob'])) || (empty($_POST['confirm']))) 
@@ -15,6 +17,8 @@ class UserController extends Controller
 				$user->validate($_POST);
 				if($user->result=='Ok')
 				{
+					$data=$this->ecran($_POST);
+					//$user->registration($data);
 					$user->registration($_POST);
 					mkdir("image/galery/".$_POST['login'], 0700);
 					$this->renderView('user/login', array('result' => $user->result));
@@ -134,6 +138,10 @@ class UserController extends Controller
 	{
 		$this->renderView('user/photogalery');
 	}	
+	public function maketprof() //Рендер на посмотреть
+	{
+		$this->renderView('user/maketprof');
+	}	
 
 	public function friends()
 	{
@@ -191,6 +199,15 @@ class UserController extends Controller
 		}
 		$this->friends();
 	}
-
+	
+	
+	
+	// функция экранирования введенных данных
+	
+	private function ecran($data){
+		$check['login']=mysql_real_escape_string($data['login']);
+		$check['email']=mysql_real_escape_string($data['email']);
+		$check['password']=mysql_real_escape_string($data['password']);
+	}
 
 }
