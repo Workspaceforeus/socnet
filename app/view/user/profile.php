@@ -1,14 +1,25 @@
-
-
 <!DOCTYPE html>
+
 <html>
     <head>
         <title>Profile</title>
         <meta charset="utf-8">
-
-    </head>
+    
+      </head>
     <body>
-	<div class="main"> 
+    
+    <div id="content" contenteditable="true" onclick="return showForm()"><?php echo $data["status"]?></div><!--вывод статуса на странице-->
+
+    <form method="post" action="" id="update_status" style="display:none" > <!--форма изменения статуса-->
+            Имя: <input type="text" name="status" /><br/>
+            <input type="button" value="Отправить" onclick="AjaxFormRequest('content', 'update_status', '/index.php?r=user&a=updatestatus')" />
+        </form>
+ 
+    
+    
+
+
+<div class="main"> 
         <div class="profile">
             <div class="photo">
                 <?php echo '<img src="/image/avatar/'.$_SESSION['login'].'.jpg">'; ?> 
@@ -19,6 +30,7 @@
                 <input class="button feed" type="button" value="Achivments"  onclick="location.href='/index.php?r=user&a=galery'" 	>
                 <input class="button feed" type="button" value="Photo gallery"  onclick="location.href='/index.php?r=user&a=photogalery'" 	>
 				<input class="button startle" type="button" value="Logout" onclick="location.href='/index.php?r=user&a=logout'">
+	
 				</form>
             </div>
             <div class="info">

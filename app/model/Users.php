@@ -23,8 +23,11 @@ class Users extends Database
 	public $myid;
 	public $myfr;
 	public $myfrdob;
+	public $myfrstatus;
+	public $peoplestatus;
 	public $peoplen;
 	public $peopled;
+	public $status;
 
 	public function validate($data)
 	{
@@ -259,10 +262,36 @@ class Users extends Database
 
 	}
 
+
+	public function getstatus($data)
+	{
+		$username=$data;
+		$sql=" SELECT status FROM users WHERE login='$username'";
+		$get = $this->db->prepare($sql);
+		$get->execute();
+		
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+			{
+				$this->status.=$myrow['status'];
+			}			
+
+	}
+
+	public function updatestatus($data1,$data2)
+	{
+		$username=$data1['login'];
+		$status=$data2['status'];
+		$sqldob="UPDATE users SET status='$status' WHERE login='$username'";
+		$insert = $this->db->prepare($sqldob);
+		$insert->execute();
+	}
+
+
+	
 	public function friends($data)
 	{
 		$this->getid($data);
-		$sql="SELECT users.id,users.login, users.dob FROM users JOIN FRIENDS WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
+		$sql="SELECT users.id,users.login, users.dob, users.status FROM users JOIN FRIENDS WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
 		$peo = $this->db->prepare($sql);
 		$peo->execute();
 		while($myrow = $peo->fetch(PDO::FETCH_ASSOC))
@@ -270,6 +299,7 @@ class Users extends Database
 			$this->myfr[]=$myrow['login'];
 			$this->myfrdob[]=$myrow['dob'];
 			$this->myfrid[]=$myrow['id'];
+			$this->myfrstatus[]=$myrow['status'];
 		}
 	}
 
@@ -284,6 +314,7 @@ class Users extends Database
 			$this->peoplen[]=$myrow['login'];
 			$this->peopled[]=$myrow['dob'];
 			$this->peopleid[]=$myrow['id'];
+			$this->peoplestatus[]=$myrow['status'];
 		}
 	}
 

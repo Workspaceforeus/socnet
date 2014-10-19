@@ -52,8 +52,9 @@ class UserController extends Controller
 					//$user->getinformation($_SESSION);
 					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 					$user->getage($_SESSION);
+					$user->getstatus($_SESSION['login']);
 					$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto));
+					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'status'=>$user->status));
  					return;
 				}
 				else
@@ -75,8 +76,9 @@ class UserController extends Controller
 			//$user->getinformation($_SESSION);
 			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 			$user->getage($_SESSION);
+			$user->getstatus($_SESSION['login']);
 			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto));
+			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'status'=>$user->status));
  					
 		}
 
@@ -148,7 +150,7 @@ class UserController extends Controller
 		$user=new Users();
 		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Delete from your friends"' . 'onclick=' . "location.href='index.php?r=user&a=DeleteFriend&add=";
 		$user->friends($_SESSION);
-		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton));
+		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton,'status'=>$user->myfrstatus));
 
 	}
 
@@ -157,7 +159,7 @@ class UserController extends Controller
 		$user=new Users();
 		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Add to your friends"' . 'onclick=' . "location.href='index.php?r=user&a=addFriend&add=";
 		$user->people($_SESSION);
-		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton));
+		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton, 'status'=>$user->peoplestatus));
 	}
 	
 	//добавление в друзья
@@ -210,4 +212,16 @@ class UserController extends Controller
 		$check['password']=mysql_real_escape_string($data['password']);
 	}
 
+	
+	public function updatestatus()
+	{
+		if(isset($_POST["status"]))
+			{
+				echo $_POST["status"];
+				$user = new Users();
+				$user->updatestatus($_SESSION,$_POST);
+			}
+	}
+
+	
 }
