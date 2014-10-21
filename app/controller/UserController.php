@@ -232,7 +232,9 @@ class UserController extends Controller
 				$user->updatestatus($_SESSION,$_POST);
 			}
 	}
-
+	
+	
+	// метод отвечает за вывод домашней страницы "друга"
 	public function userpage()
 	{
 		$user = new Users();
