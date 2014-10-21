@@ -53,8 +53,13 @@ class UserController extends Controller
 					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 					$user->getage($_SESSION);
 					$user->getstatus($_SESSION['login']);
+					if(empty($user->status))
+						$status='Поменять статус';
+					else
+						$status=$user->status;
+					$user->GetCommentsFromBase($_SESSION);
 					$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'status'=>$user->status));
+					$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'status'=>$status, 'id'=>$CommentsId,'image'=>$user->CommentsUrl,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt));
  					return;
 				}
 				else
@@ -77,8 +82,14 @@ class UserController extends Controller
 			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
 			$user->getage($_SESSION);
 			$user->getstatus($_SESSION['login']);
+				if(empty($user->status))
+						$status='Поменять статус';
+					else
+						$status=$user->status;
+				
+			$user->GetCommentsFromBase($_SESSION);
 			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'status'=>$user->status));
+			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'status'=>$status, 'id'=>$CommentsId,'image'=>$user->CommentsUrl,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt));
  					
 		}
 
@@ -221,6 +232,26 @@ class UserController extends Controller
 				$user = new Users();
 				$user->updatestatus($_SESSION,$_POST);
 			}
+	}
+
+	public function userpage()
+	{
+		$user = new Users();
+		$comments=new CommentController();
+		$$friendLogin = $_POST;
+		if ( isset($_GET['add']) ) {
+			$friendLogin['login']= $_GET['add'];
+			$user->getage($friendLogin);
+			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
+			$user->GetCommentsFromBase($friendLogin);
+			$user->getstatus($friendlogin);
+			if(empty($user->status))
+				$status='Пользователь не поставил себе статус';
+			else
+				$status=$user->status;
+			$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'id'=>$CommentsId,'image'=>$user->CommentsUrl,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status));
+			
+		};
 	}
 
 	

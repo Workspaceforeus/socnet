@@ -1,5 +1,4 @@
-
-            function AjaxFormRequest(result_id,form_id,url) {
+ function AjaxFormRequest(result_id,form_id,url) {
                 jQuery.ajax({
                     url:     url, //Адрес подгружаемой страницы
                     type:     "POST", //Тип запроса
@@ -12,7 +11,8 @@
                 document.getElementById(result_id).innerHTML = "Ошибка при отправке формы";
                 }
              });
-                 document.getElementById('update_status').style.display = 'none';
-                  document.getElementById('content').style.display = 'block';
+                document.getElementById('update_status').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+
 
         }

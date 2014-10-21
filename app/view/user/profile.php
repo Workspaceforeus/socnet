@@ -7,15 +7,20 @@
     
       </head>
     <body>
+    <?if(isset($_GET['add'])):?>
+    <div id="content"><?php echo $data["status"]?></div><!--вывод статуса другого пользователя на странице-->
     
+     <?else:?>   
     <div id="content" contenteditable="true" onclick="return showForm()"><?php echo $data["status"]?></div><!--вывод статуса на странице-->
 
     <form method="post" action="" id="update_status" style="display:none" > <!--форма изменения статуса-->
-            Имя: <input type="text" name="status" /><br/>
+            Введите статус: <input type="text" name="status" /><br/>
             <input type="button" value="Отправить" onclick="AjaxFormRequest('content', 'update_status', '/index.php?r=user&a=updatestatus')" />
         </form>
- 
     
+    
+    <?endif?>
+        
     
 
 
@@ -51,6 +56,27 @@
                     <div class="title">Age</div>
                     <div class="value"><?php echo $data['dob'] ?></div>
                 </div>
+
+                <div class="fact">
+                    <?php
+                    echo "<br>ID author<br>";
+                    var_dump($data['id']);
+                    echo "<br>url<br>";
+                    var_dump($data['url']);
+                    echo "<br>Id author of commit<br>";
+                    var_dump($data['Friend_id']);
+                    echo "<br>text of commit<br>";
+                    var_dump($data['body']);
+                    echo "<br>time of commit<br>";
+                    var_dump($data['dt']);
+                    ?>
+                </div>
+                <div id="lastfact">
+                
+                </div>
+
+               
+                
                 <h2>Albums</h2>
                 <div class="album">
 					<?php echo '<a tabindex="13"><img src="image/galery/'.$_SESSION["login"].'/'.$_SESSION['login'].$data['cf'].'.jpg"></a>'; ?>
@@ -66,8 +92,18 @@
 		<div>
 		</div>
 		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
-		 
 
-		
+    </form>-->
+
+   <p>Add post</p>
+    <form action="/index.php?r=comment&a=AddComment&add=<?php echo $data['name'];?>" method="post" enctype="multipart/form-data" onsubmit="return sendForm(this, ge('lastfact'))">
+ 
+    <textarea name="body" id="body"> </textarea>
+    <progress class="pBar" min="0" max="100" value="0">0% complete</progress>
+    <input type="file" name="filename" id="file" />
+    <div align="right"><div id="status"></div>
+    <input type="submit" name="go" id="go" value="Загрузить" /></div>
+    </form>
+   
     </body>
 </html>	

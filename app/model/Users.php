@@ -28,6 +28,11 @@ class Users extends Database
 	public $peoplen;
 	public $peopled;
 	public $status;
+	public $CommentsId; //массив хранящий ID пользователей - авторов комментариев
+	public $CommentsImage; //массив хранящий URL ссылок из комментариев
+	public $CommentsFriend_id; //массив хранящий ID пользователей - чью страницу прокомментировали
+	public $CommentsBody;   //массив содержащий текст комментариев
+	public $CommentsDt;		//массив содержащий время комментария
 
 	public function validate($data)
 	{
@@ -343,4 +348,57 @@ class Users extends Database
 			$insert=$this->db->prepare($sqladdfriend);
 			$insert->execute();
 			}
+
+			
+	// Метод который добавляет комментарий (полученный в виде массива) в БД		
+	public function AddCommentToDatabase($comment){
+		$id=$comment['id'];
+		$Friend_Id=$comment['Friend_Id'];
+		$body=$comment['body'];
+		$dt=$comment['dt'];
+		$image=$comment['filename'];
+		$sqladdcomment="INSERT INTO comments(id,image,friend_id,body,dt) VALUES ('$id','$image','$Friend_Id','$body','$dt')";
+		//echo $sqladdcomment;
+		$insert=$this->db->prepare($sqladdcomment);
+		$insert->execute();
+			//	Данные в $arr подготовлены для запроса mysql,
+			//	но нам нужно делать вывод на экран, поэтому 
+			//	готовим все элементы в массиве:
+	//	$arr = array_map('stripslashes',$comment);
+	
+	//	$insertedComment = new CommentController($comment);
+
+		//	Вывод разметки только-что вставленного комментария:
+		
+	//	echo json_encode(array('status'=>1,'html'=>$insertedComment->markup()));
+	
+	}
+		
+		// Метод выводит комментарии на странице для указанного пользователя
+	public function GetCommentsFromBase($FriendLogin){
+		//echo "login=".$FriendLogin;
+		$this->myid=null;
+		$this->getid($FriendLogin);
+		$Friend_Id=$this->myid;
+		$sqlcomment="SELECT comments.id,comments.image, comments.friend_id,comments.body,comments.dt  FROM comments WHERE friend_id='$this->myid'";
+		//echo $sqlcomment;
+		$ople= $this->db->prepare($sqlcomment);
+		$ople->execute();
+		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))
+		{
+			$this->CommentsId[]=$myrow['id'];
+			$this->CommentsImage[]=$myrow['image'];
+			$this->CommentsFriend_id[]=$myrow['friend_id'];
+			$this->CommentsBody[]=$myrow['body'];
+			$this->CommentsDt[]=$myrow['dt'];
+		//	echo "<br> my row=".$myrow['body'];
+		}
+		/*var_dump($this->CommentsBody);
+		var_dump($this->CommentsId);
+		var_dump($this->CommentsFriend_id);
+		var_dump($this->CommentsUrl);*/
+	}
+	
+	// метод отвечает за выборку данных о пользователе по его id
+	
 }

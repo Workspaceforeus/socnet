@@ -6,6 +6,9 @@
 <script type="text/javascript" src="../app/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../app/js/showform.js"></script>
 <script type="text/javascript" src="../app/js/sendstatusform.js"></script>
+<script type="text/javascript" src="../app/js/addcomment.js"></script>
+
+
 
 
 <link rel="stylesheet" type="text/css" href="/css/indstyle.css"> 
