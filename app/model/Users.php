@@ -33,6 +33,7 @@ class Users extends Database
 	public $CommentsFriend_id; //массив хранящий ID пользователей - чью страницу прокомментировали
 	public $CommentsBody;   //массив содержащий текст комментариев
 	public $CommentsDt;		//массив содержащий время комментария
+	public $CountComments; // количество комментариев
 
 	public function validate($data)
 	{
@@ -384,6 +385,7 @@ class Users extends Database
 		//echo $sqlcomment;
 		$ople= $this->db->prepare($sqlcomment);
 		$ople->execute();
+		$this->CountComments=0;
 		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))
 		{
 			$this->CommentsId[]=$myrow['id'];
@@ -391,7 +393,7 @@ class Users extends Database
 			$this->CommentsFriend_id[]=$myrow['friend_id'];
 			$this->CommentsBody[]=$myrow['body'];
 			$this->CommentsDt[]=$myrow['dt'];
-		//	echo "<br> my row=".$myrow['body'];
+			$this->CountComments++;
 		}
 		/*var_dump($this->CommentsBody);
 		var_dump($this->CommentsId);

@@ -59,7 +59,7 @@
             $resizeObj =$this->OpenBigImage("image/commit/".$_FILES["filename"]["name"]); //функция открытия изображения
             $resizeObj =$this-> resizeImage(400, 400, "auto"); // функция изменения изображения, третий параметр отвечает за вид изменения
             $resizeObj =$this-> saveImage("image/commit/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
-			//$resizeObj =$this-> RenameImageTest($_FILES["filename"]["name"],$_SESSION["login"],"image/commit/"); //фунция переименования изображения в username
+			$resizeObj =$this-> RenameImageTest($_FILES["filename"]["name"],$_SESSION["login"],"image/commit/"); //фунция переименования изображения в username
             //echo "Done :) <br>";
             //echo '<a href =index.php?r=user&a=login> Back to your page </a>';
          //   header('Location:index.php?r=user&a=login');
@@ -85,8 +85,11 @@
             {
                 $extension = strtolower(strrchr($oldname, '.'));
                 $newnameav=$newname.".jpg";
-				echo "rename=".'$folder'.'$oldname','$folder'.'$_SESSION["login"]'.'$newname';
-               // rename('$folder'.'$oldname','$folder'.'$_SESSION["login"]'.'$newname');
+				$newname=$folder.$_SESSION['login'].$oldname;
+				$oldname=$folder.$oldname;
+			//	echo $newname;
+				//echo "rename="."$folder"."$oldname"."$folder"."$_SESSION['login']'"."$newname";
+                rename($oldname,$newname);
 
             }  
         

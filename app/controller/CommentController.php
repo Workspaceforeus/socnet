@@ -134,7 +134,11 @@ class CommentController extends Controller
 		*/
 		$arr = array();
 		$arr = $_POST;
-		$arr['filename']=($_FILES["filename"]["name"]);
+		var_dump($_POST);
+		echo $_FILES["filename"]["name"];
+	//	echo "<br>".$arr['add'];
+		$arr['filename']=$arr['login'].$_FILES["filename"]["name"];
+	//	echo "filename".$arr['filename'];
 		$resize=new ResizeController;
 		$resize->uploadImageforCommit();
 		if ( isset($_GET['add']) ) {

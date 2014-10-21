@@ -59,7 +59,13 @@
 
                 <div class="fact">
                     <?php
-                    echo "<br>ID author<br>";
+					for ($i=0;$i<$data['count'];$i++){
+					echo $data['CommentsId'][$i].'<br>';
+					echo $data['image'][$i].'<br>';
+					echo $data['Friend_id'][$i].'<br>';
+					echo $data['body'][$i].'<br>';
+					echo $data['dt'][$i].'<br>';
+                 /*   echo "<br>ID author<br>";
                     var_dump($data['CommentsId']);
                     echo "<br>image<br>";
                     var_dump($data['image']);
@@ -68,7 +74,9 @@
                     echo "<br>text of commit<br>";
                     var_dump($data['body']);
                     echo "<br>time of commit<br>";
-                    var_dump($data['dt']);
+                    var_dump($data['dt']);*/
+					//var_dump($data['count']);
+					};
                     ?>
                 </div>
                 <div id="lastfact">
