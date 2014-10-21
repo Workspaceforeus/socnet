@@ -396,7 +396,7 @@ class Users extends Database
 		/*var_dump($this->CommentsBody);
 		var_dump($this->CommentsId);
 		var_dump($this->CommentsFriend_id);
-		var_dump($this->CommentsUrl);*/
+		var_dump($this->CommentsImage)*/;
 	}
 	
 	// метод отвечает за выборку данных о пользователе по его id

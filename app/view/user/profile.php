@@ -60,9 +60,9 @@
                 <div class="fact">
                     <?php
                     echo "<br>ID author<br>";
-                    var_dump($data['id']);
-                    echo "<br>url<br>";
-                    var_dump($data['url']);
+                    var_dump($data['CommentsId']);
+                    echo "<br>image<br>";
+                    var_dump($data['image']);
                     echo "<br>Id author of commit<br>";
                     var_dump($data['Friend_id']);
                     echo "<br>text of commit<br>";
