@@ -27,7 +27,7 @@
 <div class="main"> 
         <div class="profile">
             <div class="photo">
-                <?php echo '<img src="/image/avatar/'.$_SESSION['login'].'.jpg">'; ?> 
+                <?php echo '<img src="/image/avatar/'.$data['name'].'.jpg">'; ?> 
 				<form>
 				<input class="button stroke1" type="button"  value="Edit photo" onclick="location.href='/index.php?r=user&a=editphoto'" >
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='/index.php?r=user&a=update'" >
