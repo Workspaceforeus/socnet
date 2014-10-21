@@ -11,7 +11,7 @@
     <div id="content"><?php echo $data["status"]?></div><!--вывод статуса другого пользователя на странице-->
     
      <?else:?>   
-    <div id="content" contenteditable="true" onclick="return showForm()"><?php echo $data["status"]?></div><!--вывод статуса на странице-->
+    <div id="content" contenteditable="true" onclick="return showForm()"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса на странице-->
 
     <form method="post" action="" id="update_status" style="display:none" > <!--форма изменения статуса-->
             Введите статус: <input type="text" name="status" /><br/>
@@ -56,34 +56,7 @@
                     <div class="title">Age</div>
                     <div class="value"><?php echo $data['dob'] ?></div>
                 </div>
-
-                <div class="fact">
-                    <?php
-					for ($i=0;$i<$data['count'];$i++){
-					echo $data['CommentsId'][$i].'<br>';
-					echo $data['image'][$i].'<br>';
-					echo $data['Friend_id'][$i].'<br>';
-					echo $data['body'][$i].'<br>';
-					echo $data['dt'][$i].'<br>';
-                 /*   echo "<br>ID author<br>";
-                    var_dump($data['CommentsId']);
-                    echo "<br>image<br>";
-                    var_dump($data['image']);
-                    echo "<br>Id author of commit<br>";
-                    var_dump($data['Friend_id']);
-                    echo "<br>text of commit<br>";
-                    var_dump($data['body']);
-                    echo "<br>time of commit<br>";
-                    var_dump($data['dt']);*/
-					//var_dump($data['count']);
-					};
-                    ?>
-                </div>
-                <div id="lastfact">
-                
-                </div>
-
-               
+              
                 
                 <h2>Albums</h2>
                 <div class="album">
@@ -96,22 +69,39 @@
         </div>
 		<!-- Костыль! потом исправлю -->
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
 		<div>
 		</div>
 		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
+				<div class="fix">
+		        <div class="fact ">
+                    <?php
+					for ($i=0;$i<$data['count'];$i++){
+					echo '<div class="commentbody">';
+					echo $data['image'][$i].'<br>';
+					echo '<span class="letter">' . $data['commentname'][$i].'</span>'.'<br>';
+					echo '<span class="postcore">'. $data['body'][$i].'</span>' .'<br>';
+					echo $data['dt'][$i].'<br>';
+					echo '</div>';
+					};
+                    ?>
+				<div  id="lastfact">
+				</div>
+                </div>
+				</div>
 
-    </form>-->
-
-   <p>Add post</p>
-    <form action="/index.php?r=comment&a=AddComment&add=<?php echo $data['name'];?>" method="post" enctype="multipart/form-data" onsubmit="return sendForm(this, ge('lastfact'))">
+	
+	
+	<div  class="fix">
+		<h3 id="nepashet">Add post</h3>
+		<form  action="/index.php?r=comment&a=AddComment&add=<?php echo $data['name'];?>" method="post" enctype="multipart/form-data" onsubmit="return sendForm(this, ge('lastfact'))">
  
-    <textarea name="body" id="body"> </textarea>
-    <progress class="pBar" min="0" max="100" value="0">0% complete</progress>
-    <input type="file" name="filename" id="file" />
-    <div align="right"><div id="status"></div>
-    <input type="submit" name="go" id="go" value="Загрузить" /></div>
-    </form>
-   
-    </body>
+		<textarea class="texara" name="body" id="body"> </textarea><br/>
+		<progress class="pBar" min="0" max="100" value="0">0% complete</progress>
+		<input type="file" name="filename" id="file" />
+		<div align="right"></div><div id="status"></div>
+		<input class="button stroke1 mordor" type="submit" name="go" id="go" value="download" />
+		</form>
+		</div>
+		</body>
 </html>	

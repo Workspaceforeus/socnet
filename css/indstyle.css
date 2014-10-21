@@ -20,6 +20,7 @@ form
 margin-left:25%;
 background-color:#889;
 }
+
 .letter { 
 
 color:#1E90FF;  
@@ -247,7 +248,7 @@ margin-top:-45px;
     position: relative;
     width: 180px;
 
-    /* CSS3 Prevent selections */
+    
     -moz-user-select: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -265,26 +266,24 @@ margin-top:-45px;
     width: 100%;
     z-index: 1;
 
-    /* CSS3 Box sizing property */
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
 
-    /* CSS3 transition rules */
     -webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
     transition: all 1.0s ease;
 
-    /* CSS3 Box Shadow */
+    
     -moz-box-shadow: 2px 2px 4px #444;
     -webkit-box-shadow: 2px 2px 4px #444;
     -o-box-shadow: 2px 2px 4px #444;
     box-shadow: 2px 2px 4px #444;
 }
 
-/* Custom CSS3 rotate transformation */
+
 .gallery a:nth-child(1) img {
     -moz-transform: rotate(-25deg);
     -webkit-transform: rotate(-25deg);
@@ -355,13 +354,12 @@ margin-top:-45px;
     width: 250%;
     z-index: 25;
 
-    /* CSS3 transition rules */
+  
     -webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
     transition: all 1.0s ease;
 
-    /* CSS3 transform rules */
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -374,7 +372,7 @@ margin-top:-45px;
     position: relative;
     width: 160px;
 
-    /* CSS3 Prevent selections */
+   
     -moz-user-select: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -390,22 +388,79 @@ margin-top:-45px;
     width: 100%;
     z-index: 1;
 
-    /* CSS3 Box sizing property */
+  
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
 
-    /* CSS3 transition rules */
+  
     -webkit-transition: all 1.0s ease;
     -moz-transition: all 1.0s ease;
     -o-transition: all 1.0s ease;
     transition: all 1.0s ease;
 
-    /* CSS3 Box Shadow */
+
     -moz-box-shadow: 2px 2px 4px #444;
     -webkit-box-shadow: 2px 2px 4px #444;
     -o-box-shadow: 2px 2px 4px #444;
     box-shadow: 2px 2px 4px #444;
 }
+.commentbody{
+padding-left:3%;
+padding-bottom:2%;
+border:solid 1px;
+border-color:grey;
+margin-bottom:10px;
+-webkit-border-radius:40px;
+-moz-border-radius:40px;
+}
+.fix{
+margin-left:20%;
+width:50%;
+border: solid 4px;
+border-color:#ADD8E6;
+margin-bottom:10px;
+-webkit-border-radius:10px;
+-moz-border-radius:10px;
 
+}
+.texara{
+width:80%;
+margin-left:10%;
+margin-right:10%;
+-webkit-border-radius:10px;
+-moz-border-radius:10px;
+}
+#nepashet{
+text-align:center;
+color:#1C9EFF;
+}
+#comtent{
+font-size:150%;
+}
+.postcore{
+font-size:150%;
+color: rgba(0,0,0,0.6);
+text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+0px -5px 35px rgba(255,255,255,0.3);
+}
+.mordor
+{margin-left:58%;
+-webkit-border-radius:20px;
+-moz-border-radius:20px;
+ background-color:aqua;
+}
+.pBar{
+margin-left:38%;
+}
+.greenstat{
+background-color:#F5F5F5;
+font-size:40px;
+color:#A9A9A9;
+text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+0px -5px 35px rgba(255,255,255,0.3);
+-webkit-border-radius:20px;
+-moz-border-radius:20px;
+
+}

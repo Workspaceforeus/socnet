@@ -31,7 +31,7 @@
             $resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_SESSION["login"]); //фунция переименования изображения в username
             //echo "Done :) <br>";
             //echo '<a href =index.php?r=user&a=login> Back to your page </a>';
-            //header('Location:index.php?r=user&a=login');
+            header('Location:index.php?r=user&a=login');
             
         }
         else {echo("Error!"); }
