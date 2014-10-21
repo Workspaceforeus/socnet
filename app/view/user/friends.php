@@ -19,6 +19,7 @@
 		//foreach($massiv  as  $inner_key => $value)
 		//{
 		echo  '<div class="letter">'. $massiv .'</div>' . '<img width="200" heigh="150" src="/image/avatar/'.$massiv.'.jpg">' ;
+		echo '<br><'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="go to the page the user"' . 'onclick=' . "location.href='index.php?r=user&a=userpage&add=".$massiv."'><br>";
 		echo $data['batton'].$massiv."'". '>';
 		//}
 		}
