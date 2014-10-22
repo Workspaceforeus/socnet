@@ -283,7 +283,9 @@ margin-top:-45px;
     box-shadow: 2px 2px 4px #444;
 }
 
+.gallery a:nth-child(0) img {
 
+}
 .gallery a:nth-child(1) img {
     -moz-transform: rotate(-25deg);
     -webkit-transform: rotate(-25deg);
@@ -463,4 +465,6 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
 -webkit-border-radius:20px;
 -moz-border-radius:20px;
 
+}
+.postophoto{
 }

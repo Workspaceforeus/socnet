@@ -4,22 +4,13 @@
 
 <html>
 <body>
+<div class="block-wear">
+<form method="post"  action="http://vk.loc/index.php?r=user&a=login"> <!--форма авторизации-->
+<div> <label for="login">Login*:</label> <input name="login" class="input-login" type="text" placeholder="enter your login" title="enter your name" </div>
+<div><label for="password">Password*:</label><input name="password" class="input-login" type="password" placeholder="insert password" title="insert password" </div>			
 
-	<form method="post" class="login" action="http://vk.loc/index.php?r=user&a=login"> <!--форма авторизации-->
-
-			<label for="login">Login:</label>
-			<div class="Enter">
-			<input type="text" name="login">
-			</div>
-
-			<label for="password">Password:</label>
-			<div class="Enter">
-			<input type="password" name="password">
-			</div>
-
-			<p><input type="submit" value="Log in"> </p>
-	
-
+			<div><input class="submit" type="submit" value="Log in"></div>
 </form>
+</div>
 </body>
 </html>

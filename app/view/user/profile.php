@@ -81,12 +81,16 @@
                     <?php
 					for ($i=0;$i<$data['count'];$i++){
 					echo '<div class="commentbody">';
-					echo $data['image'][$i].'<br>';
 					echo '<span class="letter">' . $data['commentname'][$i].'</span>'.'<br>';
 					echo '<span class="postcore">'. $data['body'][$i].'</span>' .'<br>';
 					echo $data['dt'][$i].'<br>';
+					
+					if (!empty($data['image'][$i])) { 
+						echo '<img height="60px" width="60px" alt="no picture"  src="/image/commit/'. $data['image'][$i].'">';
+					};
 					echo '</div>';
 					};
+					
                     ?>
 				<div  id="lastfact">
 				</div>
