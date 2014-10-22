@@ -137,7 +137,7 @@ class CommentController extends Controller
 		//var_dump($_POST);
 		//echo $_FILES["filename"]["name"];
 	//	echo "<br>".$arr['add'];
-		$arr['filename']=$arr['login'].$_FILES["filename"]["name"];
+		//$arr['filename']=$arr['login'].$_FILES["filename"]["name"];
 	//	echo "filename".$arr['filename'];
 		$resize=new ResizeController;
 		$resize->uploadImageforCommit();
@@ -147,6 +147,7 @@ class CommentController extends Controller
 											//но он нужен, чтобы правильно работать с функцией getID
 	//	$validates = CommentController::validate($arr);
 		$validates=true;  // заглушка чтобы не проверяло введенные данные
+		$arr['filename']=$_SESSION['login'].$_FILES["filename"]["name"];
 		if($validates)
 		{
 			// Все в порядке, вставляем данные в базу: 

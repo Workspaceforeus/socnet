@@ -87,8 +87,6 @@
                 $newnameav=$newname.".jpg";
 				$newname=$folder.$_SESSION['login'].$oldname;
 				$oldname=$folder.$oldname;
-			//	echo $newname;
-				//echo "rename="."$folder"."$oldname"."$folder"."$_SESSION['login']'"."$newname";
                 rename($oldname,$newname);
 
             }  

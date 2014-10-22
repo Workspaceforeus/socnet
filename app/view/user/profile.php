@@ -86,7 +86,7 @@
 					echo $data['dt'][$i].'<br>';
 					
 					if (!empty($data['image'][$i])) { 
-						echo '<img height="60px" width="60px" alt="no picture"  src="/image/commit/'. $data['image'][$i].'">';
+						echo '<img height="60px" width="60px" alt="no picture"  src="/image/commit/'.$data['image'][$i].'">';
 					};
 					echo '</div>';
 					};
