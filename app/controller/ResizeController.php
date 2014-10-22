@@ -41,9 +41,6 @@
 		//создал новый метод-копию upload, т.к. тот меня не устраивает
        public function uploadImageforCommit() 
      {
-		//echo "resize";
-	//	echo $_FILES["filename"]["name"];
-		//var_dump ($_FILES);
         if($_FILES["filename"]["size"] > 1024*3*1024)
         {
             echo ("Размер файла превышает три мегабайта");
@@ -56,15 +53,14 @@
             // Если файл загружен успешно, перемещаем его
             // из временной директории в конечную
             move_uploaded_file($_FILES["filename"]["tmp_name"], "image/commit/".$_FILES["filename"]["name"]);
-            $resizeObj =$this->OpenBigImage("image/commit/".$_FILES["filename"]["name"]); //функция открытия изображения
+			$newname="image/commit/".$_SESSION['login'].$_FILES["filename"]["name"];
+			$oldname="image/commit/".$_FILES["filename"]["name"];
+			$resizeObj =rename($oldname,$newname); //фунция переименования изображения в username
+            $resizeObj =$this->OpenBigImage($newname); //функция открытия изображения
             $resizeObj =$this-> resizeImage(400, 400, "auto"); // функция изменения изображения, третий параметр отвечает за вид изменения
-            $resizeObj =$this-> saveImage("image/commit/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
-			$resizeObj =$this-> RenameImageTest($_FILES["filename"]["name"],$_SESSION["login"],"image/commit/"); //фунция переименования изображения в username
-            //echo "Done :) <br>";
-            //echo '<a href =index.php?r=user&a=login> Back to your page </a>';
-         //   header('Location:index.php?r=user&a=login');
-        /*    $this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'id'=>$CommentsId,'image'=>$user->CommentsUrl,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt));
-		*/	
+            $resizeObj =$this-> saveImage($newname, 100); //функция сохранения нового изображения
+			
+          	
         }
         }
 	
@@ -80,16 +76,6 @@
                 rename("image/galery/".$_SESSION["login"]."/$oldname","image/galery/".$_SESSION["login"]."/$newnameg");
 
             }
-
-             private function RenameImageTest ($oldname,$newname,$folder)
-            {
-                $extension = strtolower(strrchr($oldname, '.'));
-                $newnameav=$newname.".jpg";
-				$newname=$folder.$_SESSION['login'].$oldname;
-				$oldname=$folder.$oldname;
-                rename($oldname,$newname);
-
-            }  
         
             
             function OpenBigImage($fileName)
