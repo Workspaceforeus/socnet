@@ -40,6 +40,9 @@
             </div>
             <div class="info">
                 <h2 id="info-title">General information</h2>
+                <div class="online">
+                <?php echo $data['online'] ?>
+                </div>
                 <div class="fact">
                     <div class="title">Name</div>
                     <div class="value"><?php echo $data['name'] ?></div>

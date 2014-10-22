@@ -134,8 +134,8 @@ class CommentController extends Controller
 		*/
 		$arr = array();
 		$arr = $_POST;
-		var_dump($_POST);
-		echo $_FILES["filename"]["name"];
+		//var_dump($_POST);
+		//echo $_FILES["filename"]["name"];
 	//	echo "<br>".$arr['add'];
 		$arr['filename']=$arr['login'].$_FILES["filename"]["name"];
 	//	echo "filename".$arr['filename'];

@@ -35,6 +35,7 @@ class Users extends Database
 	public $CommentsDt;		//массив содержащий время комментария
 	public $CountComments; // количество комментариев
 	public $CommentsName;//имя коментатора
+	public $isonline;//Онлайн или нет.
 
 	public function validate($data)
 	{
@@ -404,5 +405,37 @@ class Users extends Database
 	}
 	
 	// метод отвечает за выборку данных о пользователе по его id
-	
+
+	public function online($data,$i)// eсли 1 - обновляет последнее время посещения, елси 2 - проверяе онлайн или нет, если 3 - делает оффлайн
+	{
+		$username=$data['login'];	
+		switch ($i)
+		{
+			case 1:
+					$time=time();
+					$sql="UPDATE users SET lasttime='$time' WHERE login='$username'";
+					$insert=$this->db->prepare($sql);
+					$insert->execute();
+					break;
+			case 2:
+					$time_check=time()-600;
+					$sql=" SELECT lasttime FROM users WHERE login='$username'";
+					$get = $this->db->prepare($sql);
+					$get->execute();
+		
+					while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+					{
+						$lasttime.=$myrow['lasttime'];
+					}			
+					if($lasttime>$time_check)
+						$this->isonline='online';
+					else 
+						$this->isonline='offline';
+					break;
+			case 3:
+					$this->isonline='offline';
+					break;
+		}
+	}
+
 }

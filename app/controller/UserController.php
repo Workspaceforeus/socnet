@@ -33,6 +33,21 @@ class UserController extends Controller
 	}
 
 
+ 	private function viewpage($data,$user)//функция, передающая масив данных на страницу профиля
+ 	{
+ 		$user->getage($data);
+		$user->getstatus($data['login']);
+		if(empty($user->status))
+			$status='Поменять статус';
+		else
+			$status=$user->status;
+		$user->GetCommentsFromBase($data);
+		$user->countphoto=Controller::count_files("image/galery/".$data["login"]);
+		$user->online($data,2);
+		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline));
+		
+
+ 	}
 
 	public function login()
 	{
@@ -49,18 +64,8 @@ class UserController extends Controller
 				{
 					$_SESSION['login']=$_POST['login'];
 					$_SESSION['password']=$_POST['password'];
-					//$user->getinformation($_SESSION);
-					//$this->renderView('user/profile', array('result' => $user->result, 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
-					$user->getage($_SESSION);
-					$user->getstatus($_SESSION['login']);
-					if(empty($user->status))
-						$status='Поменять статус';
-					else
-						$status=$user->status;
-					$user->GetCommentsFromBase($_SESSION);
-					$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-					$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments));
-					
+					$user->online($_SESSION,1);
+					$this->viewpage($_SESSION,$user);
 			}
 				else
 				{
@@ -78,25 +83,15 @@ class UserController extends Controller
 		{
 			$user = new Users();
 			$user->login($_SESSION);
-			//$user->getinformation($_SESSION);
-			//$this->renderView('user/profile', array('name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex));
-			$user->getage($_SESSION);
-			$user->getstatus($_SESSION['login']);
-				if(empty($user->status))
-						$status='Поменять статус';
-					else
-						$status=$user->status;
-				
-			$user->GetCommentsFromBase($_SESSION);
-			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-			$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments));
-					
+			$user->online($_SESSION,1);
+			$this->viewpage($_SESSION,$user);		
 		}
 
 	}
 
 	public function logout()
 	{
+			$user->online($_SESSION,3);
 			unset($_SESSION['login']);
 	 		unset($_SESSION['password']);
 			header("Location: index.php?r=user&a=login");
@@ -104,6 +99,7 @@ class UserController extends Controller
 
 	public function update()
 	{
+
 		if(empty($_POST))
 		{
 			//$user=new Users();
@@ -114,6 +110,7 @@ class UserController extends Controller
 		else
 		{
 			$user=new Users();
+			$user->online($_SESSION,1);
 			if(!empty($_POST['oldpass']))
 			{					
 				$user->updatepass($_SESSION, $_POST);
@@ -137,6 +134,7 @@ class UserController extends Controller
 	{
 		$user=new Users();
 		$user->getcount($_SESSION);
+		$user->online($_SESSION,1);
 		$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
 		$this->renderView('user/galery', array('count'=>$user->count,'photo'=>$user->countphoto));
 	}
@@ -161,6 +159,7 @@ class UserController extends Controller
 		$user=new Users();
 		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Delete from your friends"' . 'onclick=' . "location.href='index.php?r=user&a=DeleteFriend&add=";
 		$user->friends($_SESSION);
+		$user->online($_SESSION,1);
 		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton,'status'=>$user->myfrstatus));
 
 	}
@@ -170,6 +169,7 @@ class UserController extends Controller
 		$user=new Users();
 		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Add to your friends"' . 'onclick=' . "location.href='index.php?r=user&a=addFriend&add=";
 		$user->people($_SESSION);
+		$user->online($_SESSION,1);
 		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton, 'status'=>$user->peoplestatus));
 	}
 	
@@ -178,6 +178,7 @@ class UserController extends Controller
 	public function addFriend ()
 	{
 		$user = new Users();
+		$user->online($_SESSION,1);
 		if ( isset($_GET['add']) ) {
 			$friendID['login'] = $_GET['add'];
 			if ( !empty($friendID) ){
@@ -204,6 +205,7 @@ class UserController extends Controller
 	public function DeleteFriend ()
 	{
 		$user = new Users();
+		$user->online($_SESSION,1);
 		if ( isset($_GET['add']) ) {
 			$friendID['login'] = $_GET['add'];
 			if ( !empty($friendID) ){
@@ -230,6 +232,7 @@ class UserController extends Controller
 			{
 				echo $_POST["status"];
 				$user = new Users();
+				$user->online($_SESSION,1);
 				$user->updatestatus($_SESSION,$_POST);
 			}
 	}
@@ -243,15 +246,8 @@ class UserController extends Controller
 		$$friendLogin = $_POST;
 		if ( isset($_GET['add']) ) {
 			$friendLogin['login']= $_GET['add'];
-			$user->getage($friendLogin);
-			$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
-			$user->GetCommentsFromBase($friendLogin);
-			$user->getstatus($friendlogin);
-			if(empty($user->status))
-				$status='Пользователь не поставил себе статус';
-			else
-				$status=$user->status;
-			$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments));
+			$user->online($_SESSION,1);
+			$this->viewpage($friendLogin,$user);
 		};
 	}
 
