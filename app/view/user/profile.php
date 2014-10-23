@@ -8,7 +8,7 @@
       </head>
     <body>
     <?if(isset($_GET['add'])):?>
-    <div id="content"><?php echo $data["status"]?></div><!--вывод статуса другого пользователя на странице-->
+    <div id="content"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса другого пользователя на странице-->
     
      <?else:?>   
     <div id="content" contenteditable="true" onclick="return showForm()"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса на странице-->
@@ -41,7 +41,7 @@
             <div class="info">
                 <h2 id="info-title">General information</h2>
                 <div class="online">
-                <?php echo $data['online'] ?>
+                <?php echo '<span class="greenmary">'. $data['online'] . '</span>' ?>
                 </div>
                 <div class="fact">
                     <div class="title">Name</div>
@@ -87,6 +87,7 @@
 					
 					if (!empty($data['image'][$i])) { 
 						echo '<img height="60px" width="60px" alt="no picture"  src="/image/commit/'.$data['image'][$i].'">';
+						echo '<a href="/image/commit/'.$data['image'][$i]. '">'. 'Открыть картинку в полном размере!' .'</a>';
 					};
 					echo '</div>';
 					};

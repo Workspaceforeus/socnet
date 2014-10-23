@@ -175,14 +175,11 @@ class CommentController extends Controller
 		$comment['filename']=$arr['filename'];
 		$comment['body']=$arr['body'];
 		$comment['dt'] = date('r',time());
-		echo "<br>Id author of commit<br>";
-        echo $comment['Friend_Id'];
-		echo "<br>ID author<br>";
-        echo $comment['id'];
-        echo "<br>text of commit<br>";
-        echo $comment['body'];
-        echo "<br>time of commit<br>";
-        echo $comment['dt'];
+		echo '<div class="commentbody">';
+		echo '<span class="letter">' . $_SESSION['login'].'</span>'.'<br>';
+        echo $comment['login'];
+        echo '<span class="postcore">'. $comment['body'].'</span>' .'<br>';
+		echo $comment['dt'];
 		$commit->AddCommentToDatabase($comment);
 	}	
 	
