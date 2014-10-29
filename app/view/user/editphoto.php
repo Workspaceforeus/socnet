@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
+
     <head>
         <title>Galery</title>
-        <meta charset="utf-8">
-    </head>
-    <body>		
+    </head>	
 		
         <input class="button stroke" type="button"  value="My profile" onclick="location.href='http:index.php?r=user&a=login'" >
 		
@@ -13,5 +10,3 @@
 				<input <input class="button picture" type="file" name="filename" > <input <input class="button picture"  type="submit" value="Load image">
 				</form>
 				<form>
-    </body>
-</html>	

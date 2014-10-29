@@ -20,7 +20,7 @@ class UserController extends Controller
 					$data=$this->ecran($_POST);
 					//$user->registration($data);
 					$user->registration($_POST);
-					mkdir("image/galery/".$_POST['login'], 0700);
+					mkdir("image/galery/".$_POST['login'], 0777);
 					$this->renderView('user/login', array('result' => $user->result));
 		            return;
 				}

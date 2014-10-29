@@ -299,7 +299,7 @@ class Users extends Database
 	public function friends($data)
 	{
 		$this->getid($data);
-		$sql="SELECT users.id,users.login, users.dob, users.status FROM users JOIN FRIENDS WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
+		$sql="SELECT users.id,users.login, users.dob, users.status FROM users JOIN friends WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
 		$peo = $this->db->prepare($sql);
 		$peo->execute();
 		while($myrow = $peo->fetch(PDO::FETCH_ASSOC))
@@ -334,7 +334,7 @@ class Users extends Database
 			$this->myid=null;
 			$this->getid($Friend_login); // отдаем Login добавляемого друга, получаем его id
 			$newFriendId=$this->myid;
-			$sqladdfriend="INSERT INTO FRIENDS (id,friend_id)VALUES ('$user_id','$newFriendId')";
+			$sqladdfriend="INSERT INTO friends (id,friend_id)VALUES ('$user_id','$newFriendId')";
 			$insert=$this->db->prepare($sqladdfriend);
 			$insert->execute();
 			}
@@ -347,7 +347,7 @@ class Users extends Database
 			$this->myid=null;
 			$this->getid($Friend_login); // отдаем Login удаляемого друга, получаем его id
 			$newFriendId=$this->myid;
-			$sqladdfriend="DELETE FROM FRIENDS WHERE id='$user_id' AND friend_id='$newFriendId'";
+			$sqladdfriend="DELETE FROM friends WHERE id='$user_id' AND friend_id='$newFriendId'";
 			$insert=$this->db->prepare($sqladdfriend);
 			$insert->execute();
 			}

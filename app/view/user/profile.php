@@ -1,12 +1,7 @@
-<!DOCTYPE html>
 
-<html>
     <head>
         <title>Profile</title>
-        <meta charset="utf-8">
-    
       </head>
-    <body>
     <?if(isset($_GET['add'])):?>
     <div id="content"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса другого пользователя на странице-->
     
@@ -62,8 +57,8 @@
               
                 
                 <h2>Albums</h2>
-                <div class="album">
-					<?php echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$data['cf'].'.jpg"></a>'; ?>
+               <div class="album">
+				<?php echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$data['cf'].'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-1; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-2; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-3; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
@@ -111,5 +106,3 @@
 		<input class="button stroke1 mordor" type="submit" name="go" id="go" value="download" />
 		</form>
 		</div>
-		</body>
-</html>	

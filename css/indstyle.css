@@ -372,8 +372,11 @@ margin-top:-45px;
     display: inline-block;
     height: 140px;
     position: relative;
-    width: 160px;
-
+    width: 140px;
+	margin-right:5px;
+	margin-bottom:5px;
+	margin-left:5px;
+	margin-top:5px;
    
     -moz-user-select: none;
     -webkit-user-select: none;

@@ -149,7 +149,7 @@ class CommentController extends Controller
 		$validates=true;  // заглушка чтобы не проверяло введенные данные
 		if($_FILES["filename"]["name"]!='')
 			$arr['filename']=$_SESSION['login'].$_FILES["filename"]["name"];
-		else
+			else
 			$arr['filename']=NULL;
 		if($validates)
 		{
