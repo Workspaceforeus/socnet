@@ -1,12 +1,7 @@
-<!DOCTYPE html>
 
-<html>
     <head>
         <title>Profile</title>
-        <meta charset="utf-8">
-    
       </head>
-    <body>
     <?if(isset($_GET['add'])):?>
     <div id="content"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса другого пользователя на странице-->
     
@@ -111,5 +106,3 @@
 		<input class="button stroke1 mordor" type="submit" name="go" id="go" value="download" />
 		</form>
 		</div>
-		</body>
-</html>	

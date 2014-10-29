@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
+
     <head>
         <title>Galery</title>
         <meta charset="utf-8">
-    </head>
-    <body>		
+    </head>	
 		
         <input class="button stroke" type="button"  value="My profile" onclick="location.href='index.php?r=user&a=login'" >
 		
@@ -33,5 +31,3 @@
            <a tabindex="12"><img src="/image/achieve/Locked.jpg"></a>
            <a tabindex="12"><img src="/image/achieve/Locked.jpg"></a>
          </div>
-    </body>
-</html>	

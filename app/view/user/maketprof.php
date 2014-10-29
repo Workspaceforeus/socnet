@@ -1,13 +1,9 @@
 
-
-<!DOCTYPE html>
-<html>
     <head>
         <title>Profile</title>
         <meta charset="utf-8">
 
     </head>
-    <body>
 	<div class="main"> 
         <div class="profile">
             <div class="photo">
@@ -54,8 +50,3 @@
 		<div>
 		</div>
 		<!-- ЕСЛИ ЧТО УДАЛЯТЬ К ХРЕНАМ! -->
-		 
-
-		
-    </body>
-</html>	

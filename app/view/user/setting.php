@@ -1,17 +1,12 @@
 <?php if(isset($data['result'])): ?>
 	<h2><?php echo $data['result']; ?></h2>
 <?php endif; ?>
-<!doctype html>
-<html>
 	<head>
 			<meta charset="UTF-8">
 			<title>Edit profile</title>
 			<link href='http://fonts.googleapis.com/css?family=Cantarell:400,700,400italic' rel='stylesheet' type='text/css'>
 			
 	</head>
-<body>
-
-
 <div class="block-wear">
 <form  method="post" class="main"  action="/index.php?r=user&a=update">
 <div class="left">
@@ -36,5 +31,3 @@
 </div>
 </form>
 </div>
-</body>
-</html>
