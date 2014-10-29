@@ -91,6 +91,7 @@ class UserController extends Controller
 
 	public function logout()
 	{
+			$user = new Users();
 			$user->online($_SESSION,3);
 			unset($_SESSION['login']);
 	 		unset($_SESSION['password']);

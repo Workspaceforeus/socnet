@@ -147,7 +147,10 @@ class CommentController extends Controller
 											//но он нужен, чтобы правильно работать с функцией getID
 	//	$validates = CommentController::validate($arr);
 		$validates=true;  // заглушка чтобы не проверяло введенные данные
-		$arr['filename']=$_SESSION['login'].$_FILES["filename"]["name"];
+		if($_FILES["filename"]["name"]!='')
+			$arr['filename']=$_SESSION['login'].$_FILES["filename"]["name"];
+		else
+			$arr['filename']=NULL;
 		if($validates)
 		{
 			// Все в порядке, вставляем данные в базу: 
