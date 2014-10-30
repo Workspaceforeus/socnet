@@ -72,7 +72,7 @@
             </div>
         </div>
 		<!-- Костыль! потом исправлю -->
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>><br><br><br><br><br><br>
 	
 		<div>
 		</div>
@@ -116,15 +116,20 @@
 
 
         <!--Подарки-->
-        <div>
         <?php
+		
                     for ($i=0;$i<2;$i++){
                     if($data['gifttype'][$i]==1)
+					echo '<div class="gift1">';
                      echo '<img src="image/gifts/gift1.png">';
+					 echo '<div class="gtext">'. 'Тебе меня не удалить!!!!'.'</div>';	
+					 echo'</div>';    
                    if($data['gifttype'][$i]==2)
+					echo '<div class="gift2">';
                     echo '<img src="image/gifts/gift2.png">';
+					echo '<div class="gtext">'. 'Я знаю тайный способ!!!!'.'</div>';
+					echo'</div>';  					
                     };
-                    
+        
         ?>
-    </div>
   

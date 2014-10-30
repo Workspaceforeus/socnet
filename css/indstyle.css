@@ -475,3 +475,28 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
 font-size:130%;
 color:aqua;
 }
+.gift1{
+position:absolute;
+left: 38%;
+margin-left: -150px;
+margin-top:  -58%;
+border-radius:10%;
+}
+.gift2{
+
+position:absolute;
+margin-left: -150px;
+margin-top:  -80%;
+border-radius:10%;
+
+
+}
+.gtext{
+position:absolute;
+left: 10%;
+top: 10%;
+margin-left:0;
+margin-top:0;
+font-size:20px;
+color: #CC0000;
+}
