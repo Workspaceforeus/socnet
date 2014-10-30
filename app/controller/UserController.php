@@ -44,7 +44,9 @@ class UserController extends Controller
 		$user->GetCommentsFromBase($data);
 		$user->countphoto=Controller::count_files("image/galery/".$data["login"]);
 		$user->online($data,2);
-		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline));
+		$flag=0;
+		$user->getgift($user->myid);
+		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline,'giftid'=>$user->giftid,'gifttype'=>$user->gifttype,'gifttime'=>$user->gifttime));
 		
 
  	}

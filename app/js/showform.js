@@ -1,6 +1,6 @@
 
-     function showForm(){
-         document.getElementById('update_status').style.display = 'block';
-         document.getElementById('content').style.display = 'none';
+     function showForm(result,button){
+         document.getElementById(result).style.display = 'block';
+         document.getElementById(button).style.display = 'none';
          return false;
      }

@@ -37,7 +37,7 @@ function sendForm(form, output) {
     fileInp = ge('file'),
     nameInp = ge('body'); 
     if(nameInp.value == '') {
-    ge('status').innerHTML = 'Введите имя!';
+    ge('status').innerHTML = 'Введите комментарий!';
     return false
     }
   

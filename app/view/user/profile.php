@@ -6,7 +6,7 @@
     <div id="content"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса другого пользователя на странице-->
     
      <?else:?>   
-    <div id="content" contenteditable="true" onclick="return showForm()"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса на странице-->
+    <div id="content" contenteditable="true" onclick="return showForm('update_status','content')"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса на странице-->
 
     <form method="post" action="" id="update_status" style="display:none" > <!--форма изменения статуса-->
             Введите статус: <input type="text" name="status" /><br/>
@@ -54,6 +54,13 @@
                     <div class="title">Age</div>
                     <div class="value"><?php echo $data['dob'] ?></div>
                 </div>
+                 <a href="javascript:void(0)" onclick="showForm('gifts','')"><h2>Send a gift</h2></a>
+                <div id="gifts" style="display:none">
+                <a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png"></a>
+                <a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png"></a>
+                
+                </div>
+                <div id="qw"></div>
               
                 
                 <h2>Albums</h2>
@@ -61,7 +68,6 @@
 				<?php echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$data['cf'].'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-1; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-2; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
-                    <?php $cf= $data['cf']-3; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
                 </div>
             </div>
         </div>
@@ -106,3 +112,19 @@
 		<input class="button stroke1 mordor" type="submit" name="go" id="go" value="download" />
 		</form>
 		</div>
+
+
+
+        <!--Подарки-->
+        <div>
+        <?php
+                    for ($i=0;$i<2;$i++){
+                    if($data['gifttype'][$i]==1)
+                     echo '<img src="image/gifts/gift1.png">';
+                   if($data['gifttype'][$i]==2)
+                    echo '<img src="image/gifts/gift2.png">';
+                    };
+                    
+        ?>
+    </div>
+  

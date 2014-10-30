@@ -36,6 +36,10 @@ class Users extends Database
 	public $CountComments; // количество комментариев
 	public $CommentsName;//имя коментатора
 	public $isonline;//Онлайн или нет.
+	public $giftid;//даритель
+	public $gifttype;//типподарка
+	public $gifttime;//время в которое подарен
+	
 
 	public function validate($data)
 	{
@@ -436,6 +440,29 @@ class Users extends Database
 					$this->isonline='offline';
 					break;
 		}
+	}
+
+	public function addgift($id,$friendid,$type)//добавление подарка
+	{
+		$time=time();
+		$sqladdgift="INSERT INTO gifts (id,friend_id,type,time) VALUES ('$id','$friendid','$type','$time')";
+		$insert=$this->db->prepare($sqladdgift);
+		$insert->execute();
+	}
+
+	public function getgift($data)//получение информации о подарках на твоем профиле
+	{
+		
+		$sqlgift="SELECT id,type,time FROM gifts WHERE friend_id='$data'";
+		$get = $this->db->prepare($sqlgift);
+		$get->execute();
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+			{
+				$this->giftid[]=$myrow['id'];
+				$this->gifttype[]=$myrow['type'];
+				$this->gifttime[]=$myrow['time'];
+			}
+
 	}
 
 }
