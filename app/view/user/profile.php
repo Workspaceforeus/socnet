@@ -56,9 +56,9 @@
                 </div>
                  <a href="javascript:void(0)" onclick="showForm('gifts','')"><h2>Send a gift</h2></a> <!--раздел отправить подарок-->
                 
-                <div id="gifts" style="display:none"> <!--выбор подарка-->
-                <a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png"></a>
-                <a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png"></a>
+                <div id="gifts" style="display:none" class="album"> <!--выбор подарка-->
+                <a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png" width="100px" height="100px"></a>
+                <a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png" width="100px" height="100px"></a>
                 </div>
               
 
