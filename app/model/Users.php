@@ -489,7 +489,7 @@ class Users extends Database
 			switch($this->gifttype[$i])
 			{
 				case 1://5 комментариев
-										
+					echo 'Count'.$this->countcomment($data,$this->giftid[$i],$this->gifttime[$i]),'hjk';				
 					if($this->countcomment($data,$this->giftid[$i],$this->gifttime[$i])>=5)
 					{
 						$sql="DELETE FROM gifts WHERE friend_id='$data' AND type='1'";

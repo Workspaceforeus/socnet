@@ -66,6 +66,7 @@ class UserController extends Controller
 					$_SESSION['login']=$_POST['login'];
 					$_SESSION['password']=$_POST['password'];
 					$user->online($_SESSION,1);
+					$user->getid($_SESSION);
 					$user->deletegift($user->myid);
 					$this->viewpage($_SESSION,$user);
 			}
@@ -86,6 +87,7 @@ class UserController extends Controller
 			$user = new Users();
 			$user->login($_SESSION);
 			$user->online($_SESSION,1);
+			$user->getid($_SESSION);
 			$user->deletegift($user->myid);
 			$this->viewpage($_SESSION,$user);		
 		}
@@ -255,7 +257,13 @@ class UserController extends Controller
 		};
 	}
 
-	
+	public function test()
+	{
+		$user = new Users();
+		$user->getid($_SESSION);
+		$user->deletegift($user->myid);
+	}
+
 
 	
 }

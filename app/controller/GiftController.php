@@ -25,23 +25,24 @@ class GiftController extends Controller
 		$gift->getid($arr);
 		$friendid=$gift->myid;
 		$flag=GiftController::validategift($friendid,$_GET['gift']);
-		if($flag && $id!=$friendid)
+		if($flag)
 		{
 			$arr['login']=$_SESSION['login'];
 			$gift->myid=null;
 			$gift->getid($arr);
 			$id=$gift->myid;
 			$type=$_GET['gift'];
-		}
-		
-		if($id!=$friendid){
-			$gift->addgift($id,$friendid,$type);
-			echo 'Ваш подарок отправлен!';	
-			}
-			elseif($id==$friendid){
-			echo 'Подарки нужны, чтобы дарить другим С:';
+			if($id!=$friendid)
+			{
+				$gift->addgift($id,$friendid,$type);
+				echo 'Ваш подарок отправлен!';	
 			}
 			else
+			{
+				echo 'Подарки созданы, чтобы отправлять их другим людям!';
+			}
+		}
+		else
 			{
 			echo 'Пользователю уже был отправлен такой подарок!';
 			}
