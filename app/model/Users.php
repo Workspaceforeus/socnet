@@ -484,7 +484,7 @@ class Users extends Database
 	public function deletegift($data)
 	{
 		$this->getgift($data);
-		for($i=0; $i<2; $i++)
+		for($i=0; $i<3; $i++)
 		{
 			switch($this->gifttype[$i])
 			{
@@ -506,6 +506,10 @@ class Users extends Database
 						$sql="DELETE FROM gifts WHERE friend_id='$data' AND type='2'";
 						$get = $this->db->prepare($sql);
 						$get->execute();
+					}
+					case 3://пока не придумал
+					{
+						
 					}
 					break;
 			}

@@ -8,7 +8,7 @@ class GiftController extends Controller
 		$gift=new Users();
 		$gift->getgift($data);
 		$flag=0;
-		for ($i=0;$i<2;$i++)
+		for ($i=0;$i<3;$i++)
 		{
 			if ($gift->gifttype[$i]==$type)
 				return false;

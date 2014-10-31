@@ -59,6 +59,7 @@
                 <div id="gifts" style="display:none" class="album"> <!--выбор подарка-->
                 <a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png" width="100px" height="100px"></a>
                 <a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png" width="100px" height="100px"></a>
+				 <a href='javascript:void(0)' onclick="sendGift('3','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=3')"><img src="image/gifts/gift3.png" width="100px" height="100px"></a>
                 </div>
               
 
@@ -74,7 +75,7 @@
             </div>
         </div>
 		<!-- Костыль! потом исправлю -->
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
 		<div>
 		</div>
@@ -121,7 +122,7 @@
         <?php
 		if(!isset($_GET['add']))
         {
-                    for ($i=0;$i<2;$i++){
+                    for ($i=0;$i<3;$i++){
                     if($data['gifttype'][$i]==1)
                     {
     					echo '<div class="gift1">';
@@ -135,6 +136,13 @@
                         echo '<img src="image/gifts/gift2.png">';
     					echo '<div class="gtext">'. 'Пользователь '.$data['giftname'][$i].'считает, что ты слишком много сидишь в социальных сетях! Отдохни ближайшие 12 часов!</div>';   
     					echo'</div>';  					
+                    }
+					 if($data['gifttype'][$i]==3)
+                    {
+    					echo '<div class="gift3">';
+                        echo '<img src="image/gifts/gift3.png">';
+    					echo '<div class="gtext">'. 'Пользователь '.$data['giftname'][$i].'завидует вашей красоте</div>';	
+    					echo'</div>';    
                     }
                     }
         }
