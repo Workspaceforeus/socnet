@@ -39,6 +39,7 @@ class Users extends Database
 	public $giftid;//даритель
 	public $gifttype;//типподарка
 	public $gifttime;//время в которое подарен
+	public $giftname;//имя дарителя
 	
 
 	public function validate($data)
@@ -444,7 +445,7 @@ class Users extends Database
 
 	public function addgift($id,$friendid,$type)//добавление подарка
 	{
-		$time=time();
+		$time=date('r',time());
 		$sqladdgift="INSERT INTO gifts (id,friend_id,type,time) VALUES ('$id','$friendid','$type','$time')";
 		$insert=$this->db->prepare($sqladdgift);
 		$insert->execute();
@@ -453,7 +454,7 @@ class Users extends Database
 	public function getgift($data)//получение информации о подарках на твоем профиле
 	{
 		
-		$sqlgift="SELECT id,type,time FROM gifts WHERE friend_id='$data'";
+		$sqlgift="SELECT gifts.id,gifts.type,gifts.time,users.login FROM gifts,users WHERE gifts.friend_id='$data' AND users.id=gifts.id";
 		$get = $this->db->prepare($sqlgift);
 		$get->execute();
 		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
@@ -461,8 +462,55 @@ class Users extends Database
 				$this->giftid[]=$myrow['id'];
 				$this->gifttype[]=$myrow['type'];
 				$this->gifttime[]=$myrow['time'];
+				$this->giftname[]=$myrow['login'];
 			}
 
 	}
+
+	public function countcomment($data1,$data2,$time)//количество комментариев от $data1 к $data2 после контрольного времени
+	{
+
+		$sqlcomments="SELECT * FROM comments WHERE id='$data1' AND friend_id='$data2' AND dt>'$time'";
+		$get = $this->db->prepare($sqlcomments);
+		$get->execute();
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+		{
+			$com++;
+		}
+		return $com;
+
+	}
+
+	public function deletegift($data)
+	{
+		$this->getgift($data);
+		for($i=0; $i<2; $i++)
+		{
+			switch($this->gifttype[$i])
+			{
+				case 1://5 комментариев
+										
+					if($this->countcomment($data,$this->giftid[$i],$this->gifttime[$i])>=5)
+					{
+						$sql="DELETE FROM gifts WHERE friend_id='$data' AND type='1'";
+						$get = $this->db->prepare($sql);
+						$get->execute();
+					}
+					break;
+				case 2://истечение 12 часов
+					$tom=date('r',time());
+					$tom1=date('r',strtotime("-12 hours", strtotime($tom)));
+					$com=$this->gifttime[$i];
+					if($tom1>$com)
+					{
+						$sql="DELETE FROM gifts WHERE friend_id='$data' AND type='2'";
+						$get = $this->db->prepare($sql);
+						$get->execute();
+					}
+					break;
+			}
+		}
+	}
+
 
 }

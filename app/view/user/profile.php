@@ -54,13 +54,15 @@
                     <div class="title">Age</div>
                     <div class="value"><?php echo $data['dob'] ?></div>
                 </div>
-                 <a href="javascript:void(0)" onclick="showForm('gifts','')"><h2>Send a gift</h2></a>
-                <div id="gifts" style="display:none">
+                 <a href="javascript:void(0)" onclick="showForm('gifts','')"><h2>Send a gift</h2></a> <!--раздел отправить подарок-->
+                
+                <div id="gifts" style="display:none"> <!--выбор подарка-->
                 <a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png"></a>
                 <a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png"></a>
-                
                 </div>
-                <div id="qw"></div>
+              
+
+                <div id="qw" style="display:none"></div><!--результат попытки отправить подарок-->
               
                 
                 <h2>Albums</h2>
@@ -117,19 +119,24 @@
 
         <!--Подарки-->
         <?php
-		
+		if(!isset($_GET['add']))
+        {
                     for ($i=0;$i<2;$i++){
                     if($data['gifttype'][$i]==1)
-					echo '<div class="gift1">';
-                     echo '<img src="image/gifts/gift1.png">';
-					 echo '<div class="gtext">'. 'Тебе меня не удалить!!!!'.'</div>';	
-					 echo'</div>';    
+                    {
+    					echo '<div class="gift1">';
+                        echo '<img src="image/gifts/gift1.png">';
+    					echo '<div class="gtext">'. 'Пользователь '.$data['giftname'][$i].'хочет к себе внимания! Оставь на его стене 5 комментариев и эта какашка пропадет с твоего экрана!</div>';	
+    					echo'</div>';    
+                    }
                    if($data['gifttype'][$i]==2)
-					echo '<div class="gift2">';
-                    echo '<img src="image/gifts/gift2.png">';
-					echo '<div class="gtext">'. 'Я знаю тайный способ!!!!'.'</div>';
-					echo'</div>';  					
-                    };
-        
+                   {
+    					echo '<div class="gift2">';
+                        echo '<img src="image/gifts/gift2.png">';
+    					echo '<div class="gtext">'. 'Пользователь '.$data['giftname'][$i].'считает, что ты слишком много сидишь в социальных сетях! Отдохни ближайшие 12 часов!</div>';   
+    					echo'</div>';  					
+                    }
+                    }
+        }
         ?>
   

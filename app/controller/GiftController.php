@@ -3,20 +3,43 @@
 class GiftController extends Controller
 {
 	
+	public static function validategift($data,$type)
+	{
+		$gift=new Users();
+		$gift->getgift($data);
+		$flag=0;
+		for ($i=0;$i<2;$i++)
+		{
+			if ($gift->gifttype[$i]==$type)
+				return false;
+		}
+		return true;
+	}
+
 	public function addgift()
 	{
+		
 		$arr['login'] = $_GET['add'];
 		$gift= new Users();
 		$gift->myid=null;
 		$gift->getid($arr);
 		$friendid=$gift->myid;
-		$arr['login']=$_SESSION['login'];
-		$gift->myid=null;
-		$gift->getid($arr);
-		$id=$gift->myid;
-		$type=$_GET['gift'];
-		echo 'FriendID='.$friendid;
-		$gift->addgift($id,$friendid,$type);
+		$flag=GiftController::validategift($friendid,$_GET['gift']);
+		if($flag)
+		{
+			$arr['login']=$_SESSION['login'];
+			$gift->myid=null;
+			$gift->getid($arr);
+			$id=$gift->myid;
+			$type=$_GET['gift'];
+			$gift->addgift($id,$friendid,$type);
+			echo 'Ваш подарок отправлен!';	
+		}
+		else
+		{
+			echo 'Пользователю уже был отправлен такой подарок!';
+		}
+
 	}
 	
 

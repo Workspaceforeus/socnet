@@ -44,9 +44,8 @@ class UserController extends Controller
 		$user->GetCommentsFromBase($data);
 		$user->countphoto=Controller::count_files("image/galery/".$data["login"]);
 		$user->online($data,2);
-		$flag=0;
 		$user->getgift($user->myid);
-		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline,'giftid'=>$user->giftid,'gifttype'=>$user->gifttype,'gifttime'=>$user->gifttime));
+		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline,'giftid'=>$user->giftid,'gifttype'=>$user->gifttype,'gifttime'=>$user->gifttime,'giftname'=>$user->giftname));
 		
 
  	}
@@ -67,6 +66,7 @@ class UserController extends Controller
 					$_SESSION['login']=$_POST['login'];
 					$_SESSION['password']=$_POST['password'];
 					$user->online($_SESSION,1);
+					$user->deletegift($user->myid);
 					$this->viewpage($_SESSION,$user);
 			}
 				else
@@ -86,6 +86,7 @@ class UserController extends Controller
 			$user = new Users();
 			$user->login($_SESSION);
 			$user->online($_SESSION,1);
+			$user->deletegift($user->myid);
 			$this->viewpage($_SESSION,$user);		
 		}
 
@@ -253,6 +254,8 @@ class UserController extends Controller
 			$this->viewpage($friendLogin,$user);
 		};
 	}
+
+	
 
 	
 }
