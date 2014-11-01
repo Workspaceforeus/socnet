@@ -10,7 +10,7 @@
 
     <form method="post" action="" id="update_status" style="display:none" > <!--форма изменения статуса-->
             Введите статус: <input type="text" name="status" /><br/>
-            <input type="button" value="Отправить" onclick="AjaxFormRequest('content', 'update_status', '/index.php?r=user&a=updatestatus')" />
+            <input id="sendstatus" type="button" value="Отправить" onclick="AjaxFormRequest('content', 'update_status', '/index.php?r=user&a=updatestatus')" />
         </form>
     
     
