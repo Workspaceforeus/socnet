@@ -29,7 +29,7 @@ font-family: serif;
 position: center; 
 top: 5px; 
 margin-left:20px; 
-	 }
+     }
 .out-here{
 margin-left:30%; 
 }
@@ -176,7 +176,7 @@ margin-top:-45px;
 }
 .albums img:last-child{
     margin-right:0;
-	text-align:center;
+    text-align:center;
 }
 .button{
     display:block;
@@ -186,7 +186,7 @@ margin-top:-45px;
     line-height:30px;
     color:#fff;
     border-radius:4px;
-	width: 260px;
+    width: 260px;
 }
 .stroke{
     background:#48D1CC;
@@ -197,20 +197,20 @@ margin-top:-45px;
 /* особые кнопочки для пиу-пиу в друзьях*/
 .friends{ 
     height:35px;
-	margin-left:8%;
+    margin-left:8%;
     margin-right:9%;
-	margin-top:10px;
-	margin-bottom:10px;
+    margin-top:10px;
+    margin-bottom:10px;
     text-align:center;
     line-height:30px;
     color:#fff;
     border-radius:50px;
-	width: 400px;
-	background:#C0C0C0;
+    width: 400px;
+    background:#C0C0C0;
 }
 .friends1{ 
     
-	background:#C0C0C0;
+    background:#C0C0C0;
 }
 
 .friedsline {
@@ -229,14 +229,14 @@ margin-top:-45px;
 }
 
 .footer {
-		position: relative;
-       	text-align: center;
-   		clear:both;
+        position: relative;
+        text-align: center;
+        clear:both;
  } 
 
  .maininfo
  {
- 	text-align:center;
+    text-align:center;
  }
  .gallery {
     margin: 100px auto 0;
@@ -255,6 +255,8 @@ margin-top:-45px;
     user-select: none;
 }
 .gallery a img {
+    margin-top:20%;
+    margin-bottom:20%;
     border: 8px solid #fff;
     border-bottom: 20px solid #fff;
     cursor: pointer;
@@ -373,10 +375,10 @@ margin-top:-45px;
     height: 140px;
     position: relative;
     width: 140px;
-	margin-right:5px;
-	margin-bottom:5px;
-	margin-left:5px;
-	margin-top:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+    margin-left:5px;
+    margin-top:5px;
    
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -384,7 +386,7 @@ margin-top:-45px;
     user-select: none;
 }
 .album a img{
- 	cursor: pointer;
+    cursor: pointer;
     display: block;
     height: 100%;
     left: 0px;
@@ -421,7 +423,8 @@ margin-bottom:10px;
 -moz-border-radius:40px;
 }
 .fix{
-margin-left:20%;
+margin-top:5%;
+margin-left:22%;
 width:50%;
 border: solid 4px;
 border-color:#ADD8E6;
@@ -443,6 +446,10 @@ color:#1C9EFF;
 }
 #comtent{
 font-size:150%;
+}
+#bag{
+margin-top:20%;
+
 }
 .postcore{
 font-size:150%;
@@ -506,4 +513,17 @@ margin-left:0;
 margin-top:0;
 font-size:23px;
 color: #CC0000;
+}
+
+.photo:hover::after { 
+ position:absolute;
+ content: attr(data-title); 
+ left: 0; right: 0; bottom: 600px; /* Положение подсказки */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(0,42,167,0.6); /* Полупрозрачный цвет фона */
+    color: #fff; /* Цвет текста */
+    text-align: center; /* Выравнивание текста по центру */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 40px; /* Размер текста подсказки */
+    padding: 50px 50px; /* Поля */
 }

@@ -55,5 +55,6 @@ function sendForm(form, output) {
     progressBar.value = e.loaded / e.total * 100;
   }
   xhr.send(data);
+  form.reset() 
   return false;
 }

@@ -233,7 +233,7 @@ class UserController extends Controller
 	{
 		if(isset($_POST["status"]))
 			{
-				echo $_POST["status"];
+				echo '<span class="letter greenstat">'.$_POST["status"].'</span>';
 				$user = new Users();
 				$user->online($_SESSION,1);
 				$user->updatestatus($_SESSION,$_POST);
