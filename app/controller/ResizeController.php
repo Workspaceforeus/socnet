@@ -10,37 +10,67 @@
     
     public function upload() 
      {
-     $newfilename=$_POST[""].".jpg";
-     $oldfilename=$_FILES["filename"]["name"];
-     //echo "<br>";
-        if($_FILES["filename"]["size"] > 1024*3*1024)
-        {
-            echo ("Размер файла превышает три мегабайта");
-            exit;
-        }
-        
-        // Проверяем загружен ли файл
-        if(is_uploaded_file($_FILES["filename"]["tmp_name"]))
-        {
-            // Если файл загружен успешно, перемещаем его
-            // из временной директории в конечную
-            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/galery/".$_SESSION["login"]."/".$_FILES["filename"]["name"]);
-            $resizeObj =$this->OpenBigImage("image/galery/".$_SESSION["login"]."/".$_FILES["filename"]["name"]); //функция открытия изображения
-            $resizeObj =$this-> resizeImage(250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
-            $resizeObj =$this-> saveImage("image/avatar/".$_FILES["filename"]["name"], 100); //функция сохранения нового изображения
-            $resizeObj =$this-> RenameImage($_FILES["filename"]["name"],$_SESSION["login"]); //фунция переименования изображения в username
+     //var_dump($_GET);
+     $newfilename=$_GET['add'].".jpg";
+     $oldname=$_FILES["filename"]["name"];
+     $albumfolder="image/galery/".$_SESSION["login"]."/avatar/";
+     $cf=Controller::count_files("image/galery/".$_SESSION["login"]."/avatar/")+1;
+     $newname=$albumfolder.$_GET['add'].$cf.".jpg";
+     $oldname=$albumfolder.$oldname;
+    //  echo $oldname;
+     
+    $this->UploadImage($albumfolder);
+    // $resizeObj =$this-> RenameImage($oldfilename,$newfilename); //фунция переименования изображения в username
+    $resizeObj =rename($oldname,$newname); //фунция переименования изображения в username
+     //echo "<br>".$_FILES["filename"]["name"];
+    // ECHO $newname."<br>";
+           $resizeObj =$this->OpenBigImage($newname); //функция открытия изображения
+            if($this->width > 250)
+            {   
+                $resizeObj =$this-> resizeImage($newname,250, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
+                $resizeObj =$this-> saveImage($newname, 100); //функция сохранения нового изображения
+            };
             //echo "Done :) <br>";
             //echo '<a href =index.php?r=user&a=login> Back to your page </a>';
-            header('Location:index.php?r=user&a=login');
-            
-        }
-        else {echo("Error!"); }
+       header('Location:index.php?r=user&a=login');
+       //$user=new usercontroller();
+       //$user->login();
     }
-	
+    
 
-		//создал новый метод-копию upload, т.к. тот меня не устраивает
-       public function uploadImageforCommit() 
-     {
+        //создал новый метод-копию upload, т.к. тот меня не устраивает
+       public function uploadImageforCommit() {
+            $albumfolder="image/commit/";
+            $this->UploadImage($albumfolder);
+            $newname=$albumfolder.$_SESSION['login'].$_FILES["filename"]["name"];
+            $oldname=$albumfolder.$_FILES["filename"]["name"];
+            $resizeObj =rename($oldname,$newname); //фунция переименования изображения в username
+            $resizeObj =$this->OpenBigImage($newname); //функция открытия изображения
+            if($this->width > 400)
+            {
+                $resizeObj =$this-> resizeImage($newname,400, 400, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
+                $resizeObj =$this-> saveImage($newname, 100); //функция сохранения нового изображения
+            };
+       }
+       
+       //Метод загрузки фотографий в галерею пользователя
+       
+       public function uploadImageToGalery($login,$album){
+        $albumfolder="image/galery/".$login."/".$album."/";
+        $this->UploadImage($albumfolder);
+        $newname=$albumfolder.$_FILES["filename"]["name"];
+        $resizeObj =$this->OpenBigImage($newname); //функция открытия изображения
+        if($this->width > 800)
+        {   
+            $resizeObj =$this-> resizeImage($newname,800, 1200, "landscape"); // функция изменения изображения, третий параметр отвечает за вид изменения
+            $resizeObj =$this-> saveImage($newname, 100); //функция сохранения нового изображения
+        };
+       }
+       
+       
+       
+       //Метод универсальной загрузки фотографии, работает для загрузки фотографии в комментариях и альбомах пользователей
+        public function UploadImage($albumfolder){
         if($_FILES["filename"]["size"] > 1024*3*1024)
         {
             echo ("Размер файла превышает три мегабайта");
@@ -52,28 +82,26 @@
         {
             // Если файл загружен успешно, перемещаем его
             // из временной директории в конечную
-            move_uploaded_file($_FILES["filename"]["tmp_name"], "image/commit/".$_FILES["filename"]["name"]);
-			$newname="image/commit/".$_SESSION['login'].$_FILES["filename"]["name"];
-			$oldname="image/commit/".$_FILES["filename"]["name"];
-			$resizeObj =rename($oldname,$newname); //фунция переименования изображения в username
-            $resizeObj =$this->OpenBigImage($newname); //функция открытия изображения
-            $resizeObj =$this-> resizeImage(400, 400, "auto"); // функция изменения изображения, третий параметр отвечает за вид изменения
-            $resizeObj =$this-> saveImage($newname, 100); //функция сохранения нового изображения
-			
-          	
+            move_uploaded_file($_FILES["filename"]["tmp_name"],$albumfolder.$_FILES["filename"]["name"]);
+            
+              }
+              else {echo "<br>dont download";};
         }
-        }
-	
+        
+        //метод отвечающий за добавление фотографии пользователя в альбома
+    
+        
+    
             //Функция переименования загруженных файлов
             
             private function RenameImage ($oldname,$newname)
             {
                 $extension = strtolower(strrchr($oldname, '.'));
                 $newnameav=$newname.".jpg";
-                rename("image/avatar/$oldname","image/avatar/$newnameav");
-                $this->cf=Controller::count_files("image/galery/".$_SESSION["login"]);
+                rename("image/galery/".$_SESSION["login"]."/avatar/$oldname","image/galery/".$_SESSION["login"]."/avatar/$newnameav");
+               /* $this->cf=Controller::count_files("image/galery/".$_SESSION["login"]);
                 $newnameg=$newname.$this->cf.".jpg";
-                rename("image/galery/".$_SESSION["login"]."/$oldname","image/galery/".$_SESSION["login"]."/$newnameg");
+                rename("image/galery/".$_SESSION["login"]."/$oldname","image/galery/".$_SESSION["login"]."/$newnameg");*/
 
             }
         
@@ -81,10 +109,12 @@
             function OpenBigImage($fileName)
             {
                 // *** Open up the file
+                
                 $this->image = $this->openImage($fileName);
+            //  echo "ширина=".imagesx($this->image);
             //  $this->image =imagejpeg($fileName);
                 // *** Get width and height
-                $this->width  = imagesx($this->image);
+               $this->width  = imagesx($this->image);
                 $this->height = imagesy($this->image);
             }  
  
@@ -92,6 +122,7 @@
  
             private function openImage($file)
             {
+            //  echo "имя файла".$file;
                 // *** Get extension
                 $extension = strtolower(strrchr($file, '.'));
  
@@ -116,7 +147,7 @@
  
             ## --------------------------------------------------------
  
-            public function resizeImage($newWidth, $newHeight, $option="auto")
+            public function resizeImage($newname,$newWidth, $newHeight, $option="auto")
             {
                 // *** Get optimal width and height - based on $option
                 $optionArray = $this->getDimensions($newWidth, $newHeight, $option);

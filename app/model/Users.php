@@ -40,6 +40,7 @@ class Users extends Database
 	public $gifttype;//типподарка
 	public $gifttime;//время в которое подарен
 	public $giftname;//имя дарителя
+	public $AlbumName;//имя альбома
 	
 
 	public function validate($data)
@@ -521,6 +522,33 @@ class Users extends Database
 					break;
 			}
 		}
+	}
+	public function addNewAlbum($User_login,$albumName){
+		$this->myid=null; 
+		$this->getid($User_login); // отдаем Login username, получаем его id
+		$User_id=$this->myid;
+		$sqladdalbum="INSERT INTO albums (id,album_name)VALUES ('$User_id','$albumName')";
+		$insert=$this->db->prepare($sqladdalbum);
+		$insert->execute();
+	}
+	
+	public function GetAlbums($FriendLogin){
+		//echo "Get Albums";
+	//	var_dump($FriendLogin);
+		$this->myid=null;
+		$this->getid($FriendLogin);
+		$Friend_Id=$this->myid;
+		$sqlalbum="SELECT albums.album_name  FROM albums WHERE albums.id='$this->myid'";
+		//echo $sqlalbum;
+		$ople= $this->db->prepare($sqlalbum);
+		$ople->execute();
+		$this->CountComments=0;
+		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))
+		{
+			$this->AlbumName[]=$myrow['album_name'];
+		}
+	//	echo "<br>";
+		//var_dump($this->AlbumName);
 	}
 
 

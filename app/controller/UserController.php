@@ -21,6 +21,7 @@ class UserController extends Controller
 					//$user->registration($data);
 					$user->registration($_POST);
 					mkdir("image/galery/".$_POST['login'], 0777);
+					mkdir("image/galery/".$_POST['login']."/avatar", 0777);
 					$this->renderView('user/login', array('result' => $user->result));
 		            return;
 				}
@@ -42,7 +43,7 @@ class UserController extends Controller
 		else
 			$status=$user->status;
 		$user->GetCommentsFromBase($data);
-		$user->countphoto=Controller::count_files("image/galery/".$data["login"]);
+		$user->countphoto=Controller::count_files("image/galery/".$data["login"].'/avatar');
 		$user->online($data,2);
 		$user->getgift($user->myid);
 		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline,'giftid'=>$user->giftid,'gifttype'=>$user->gifttype,'gifttime'=>$user->gifttime,'giftname'=>$user->giftname));
@@ -100,7 +101,7 @@ class UserController extends Controller
 			$user->online($_SESSION,3);
 			unset($_SESSION['login']);
 	 		unset($_SESSION['password']);
-			header("Location: index.php?r=user&a=login");
+			header("Location: index.php");
 	}
 
 	public function update()
@@ -141,20 +142,16 @@ class UserController extends Controller
 		$user=new Users();
 		$user->getcount($_SESSION);
 		$user->online($_SESSION,1);
-		$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"]);
+		$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"].'/avatar');
 		$this->renderView('user/galery', array('count'=>$user->count,'photo'=>$user->countphoto));
 	}
 
 	public function editphoto()
 	{
-
-		$this->renderView('user/editphoto');
+		$cf=Controller::count_files("image/galery/".$_SESSION["login"].'/avatar');
+		$this->renderView('user/editphoto',array('number'=>$cf));
 	}
 
-	public function photogalery()
-	{
-		$this->renderView('user/photogalery');
-	}	
 	public function maketprof() //Рендер на посмотреть
 	{
 		$this->renderView('user/maketprof');
