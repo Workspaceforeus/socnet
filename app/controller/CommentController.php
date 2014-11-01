@@ -139,17 +139,17 @@ class CommentController extends Controller
 	//	echo "<br>".$arr['add'];
 		//$arr['filename']=$arr['login'].$_FILES["filename"]["name"];
 	//	echo "filename".$arr['filename'];
-		$resize=new ResizeController;
-		$resize->uploadImageforCommit();
 		if ( isset($_GET['add']) ) {
 			$arr['login'] = $_GET['add'];}; //здесь $arr['login'] - это не id залогиненого пользователя,
 											// а id человека, которому пишем комментарий, костыль,
 											//но он нужен, чтобы правильно работать с функцией getID
 	//	$validates = CommentController::validate($arr);
 		$validates=true;  // заглушка чтобы не проверяло введенные данные
-		if($_FILES["filename"]["name"]!='')
+		if($_FILES["filename"]["name"]!=''){
+			$resize=new ResizeController;
+			$resize->uploadImageforCommit();
 			$arr['filename']=$_SESSION['login'].$_FILES["filename"]["name"];
-			else
+			}else
 			$arr['filename']=NULL;
 		if($validates)
 		{
