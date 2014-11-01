@@ -141,7 +141,7 @@
                     {
     					echo '<div class="gift3">';
                         echo '<img src="image/gifts/gift3.png">';
-    					echo '<div class="gtext">'. 'Пользователь '.$data['giftname'][$i].'завидует вашей красоте</div>';	
+    					echo '<div class="gtext">'. 'Пользователь '.$data['giftname'][$i].'завидует вашей красоте. Оставь 3 коментария отравителю, и подожди один час, чтобы он смирился с этим.</div>';	
     					echo'</div>';    
                     }
                     }

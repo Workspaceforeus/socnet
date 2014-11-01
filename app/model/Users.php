@@ -508,8 +508,15 @@ class Users extends Database
 						$get->execute();
 					}
 					case 3://пока не придумал
+					echo 'Count'.$this->countcomment($data,$this->giftid[$i],$this->gifttime[$i]),'hjk';
+					$tom=date('r',time());
+					$tom1=date('r',strtotime("-1 hour", strtotime($tom)));
+					$com=$this->gifttime[$i];
+					if($this->countcomment($data,$this->giftid[$i],$this->gifttime[$i])>=3 && $tom1>$com)
 					{
-						
+						$sql="DELETE FROM gifts WHERE friend_id='$data' AND type='3'";
+						$get = $this->db->prepare($sql);
+						$get->execute();
 					}
 					break;
 			}
