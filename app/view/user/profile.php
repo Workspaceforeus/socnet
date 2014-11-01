@@ -1,16 +1,6 @@
 
     <head>
         <title>Profile</title>
-        <script>
-        $(document).ready(function(){
-             $("#update_status").keypress(function(e){
-               if(e.keyCode==13){
-                AjaxFormRequest('content', 'update_status', '/index.php?r=user&a=updatestatus');         
-               }
-             });
- 
-         });
-</script>
       </head>
     <?if(isset($_GET['add'])):?>
     <div id="content"><?php echo '<span class="letter greenstat">'.$data["status"].'</span>'?></div><!--вывод статуса другого пользователя на странице-->
@@ -67,10 +57,11 @@
                  <a href="javascript:void(0)" onclick="showForm('gifts','')"><h2>Send a gift</h2></a> <!--раздел отправить подарок-->
                 
                 <div id="gifts" style="display:none" class="album"> <!--выбор подарка-->
-                <span class="photo" data-title="Ваш друг не уделяет вам внимания? Отправьте ему этот незабываемый подарок!"><a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png" width="100px" height="100px"></a></span>
-                <a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png" width="100px" height="100px"></a>
-				<a href='javascript:void(0)' onclick="sendGift('3','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=3')"><img src="image/gifts/gift3.png" width="100px" height="100px"></a>
+				<span class="photo" data-title="Ваш друг не уделяет вам внимания? Отправьте ему этот незабываемый подарок!"> <a href='javascript:void(0)' onclick="sendGift('1','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=1')"><img src="image/gifts/gift1.png" width="100px" height="100px"></a></span>
+                <span class="photo" data-title="Ваш друг сидит за компьютером и не выходит гулять? Отправьте ему этот подарок!"><a href='javascript:void(0)' onclick="sendGift('2','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=2')"><img src="image/gifts/gift2.png" width="100px" height="100px"></a></span>
+				<span class="photo" data-title="Ваш друг хвастается своей новой фоткой? Сделайте себе приятное, отправьте ему это!"> <a href='javascript:void(0)' onclick="sendGift('3','/index.php?r=gift&a=addgift&add=<?php echo $data['name'];?>&gift=3')"><img src="image/gifts/gift3.png" width="100px" height="100px"></a></span>
                 </div>
+              
               
 
                 <div id="qw" style="display:none"></div><!--результат попытки отправить подарок-->
