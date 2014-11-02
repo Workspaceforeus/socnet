@@ -3,6 +3,7 @@
 class UserController extends Controller
 {
 	public $check;
+	public $dirarray;
 	
 	public function registration()
 	{
@@ -163,7 +164,12 @@ class UserController extends Controller
 		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Delete from your friends"' . 'onclick=' . "location.href='index.php?r=user&a=DeleteFriend&add=";
 		$user->friends($_SESSION);
 		$user->online($_SESSION,1);
-		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton,'status'=>$user->myfrstatus));
+	//	$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"].'/avatar');
+		$user->countphoto=$this->count_files_array($user->myfr);
+	//	var_dump($this->dirarray);
+	//	var_dump($user->myfr);
+	//	echo "foto".$user->countphoto;
+		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton,'status'=>$user->myfrstatus,'cf'=>$this->dirarray));
 
 	}
 
@@ -173,7 +179,10 @@ class UserController extends Controller
 		$batton='<'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="Add to your friends"' . 'onclick=' . "location.href='index.php?r=user&a=addFriend&add=";
 		$user->people($_SESSION);
 		$user->online($_SESSION,1);
-		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton, 'status'=>$user->peoplestatus));
+		//var_dump($user->peoplen);
+		$user->countphoto=$this->count_files_array($user->peoplen);
+		//var_dump($this->dirarray);
+		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton, 'status'=>$user->peoplestatus,'cf'=>$this->dirarray));
 	}
 	
 	//добавление в друзья
@@ -260,7 +269,28 @@ class UserController extends Controller
 		$user->getid($_SESSION);
 		$user->deletegift($user->myid);
 	}
-
+	
+	public function count_files_array($dir)//кол-во файлов в директории
+    { 
+		//echo "count_files_array";
+		//var_dump ($dir);
+		foreach($dir as $dir){
+			$c=0; // количество файлов. Считаем с нуля
+			$d=dir("image/galery/".$dir."/avatar"); // 
+		//	echo "<br>".$d;
+			while($str=$d->read())
+			{ 
+				if($str{0}!='.')
+				{ 
+					if(is_dir($dir.'/'.$str)) $c+=count_files($dir.'/'.$str); 
+					else $c++; 
+				}
+            }
+            $d->close(); // закрываем директорию
+		//	echo "<br>".$c;
+             $this->dirarray[]=$c;
+		}
+    } 
 
 	
 }

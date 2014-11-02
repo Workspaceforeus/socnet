@@ -7,7 +7,7 @@
 <script type="text/javascript" src="../app/js/showform.js"></script>
 <script type="text/javascript" src="../app/js/sendstatusform.js"></script>
 <script type="text/javascript" src="../app/js/addcomment.js"></script>
-<script type="text/javascript" src="../app/js/sendGift.js"></script>
+<script type="text/javascript" src="../app/js/sendgift.js"></script>
 
 
 

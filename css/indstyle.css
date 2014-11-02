@@ -515,15 +515,12 @@ font-size:23px;
 color: #CC0000;
 }
 
-.photo:hover::after { 
+/* .photo:hover::after { 
  position:absolute;
  content: attr(data-title); 
- left: 0; right: 0; bottom: 600px; /* Положение подсказки */
-    z-index: 1; /* Отображаем подсказку поверх других элементов */
-    background: rgba(0,42,167,0.6); /* Полупрозрачный цвет фона */
-    color: #fff; /* Цвет текста */
-    text-align: center; /* Выравнивание текста по центру */
-    font-family: Arial, sans-serif; /* Гарнитура шрифта */
-    font-size: 40px; /* Размер текста подсказки */
-    padding: 50px 50px; /* Поля */
-}
+ left: 0; right: 0; bottom: 7%; 
+    z-index: 500; 
+    color: #fff;
+    text-align: center;
+    padding: 50px 50px; 
+} */
