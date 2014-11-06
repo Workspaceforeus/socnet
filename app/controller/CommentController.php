@@ -178,7 +178,7 @@ class CommentController extends Controller
 		$commit->myid=null;
 		$commit->getid($arr);
 		$comment['id']=$commit->myid;
-		$comment['filename']=$arr['filename'];
+		$comment['filename']="image/commit/".$arr['filename'];
 		$comment['body']=$arr['body'];
 		$comment['dt'] = date('r',time());
 		echo '<div class="commentbody">';

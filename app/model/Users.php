@@ -12,6 +12,7 @@ class Users extends Database
 	public $mysex;
 	public $mygenre;
 	public $mylogin;
+	public $myavatar; //полный путь с именем файла аватарки пользователя
 	protected $mypass;
 	public $mydob;
 	public $val;
@@ -24,9 +25,11 @@ class Users extends Database
 	public $myfr;
 	public $myfrdob;
 	public $myfrstatus;
+	public $myfravatar; //массив с аватарами друзей
 	public $peoplestatus;
 	public $peoplen;
 	public $peopled;
+	public $peopleavatar;
 	public $status;
 	public $CommentsId; //массив хранящий ID пользователей - авторов комментариев
 	public $CommentsImage; //массив хранящий URL ссылок из комментариев
@@ -41,6 +44,8 @@ class Users extends Database
 	public $gifttime;//время в которое подарен
 	public $giftname;//имя дарителя
 	public $AlbumName;//имя альбома
+	public $album_id;//id альбома
+	public $fotos;//массив содержащий все пути и имена фотографий
 	
 
 	public function validate($data)
@@ -176,8 +181,8 @@ class Users extends Database
 	public function getinformation($data)
 	{
 		$username=$data['login'];
-		$sql=" SELECT dob,login,email,sex,genre FROM users WHERE login='$username'";
-		$get = $this->db->prepare($sql);
+		$sql=" SELECT dob,login,email,sex,genre,img FROM users WHERE login='$username'";
+		 $get = $this->db->prepare($sql);
 		$get->execute();
 		
 		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
@@ -187,8 +192,9 @@ class Users extends Database
 				$this->mylogin.=$myrow['login'];
 				$this->mygenre.=$myrow['genre'];
 				$this->mydob.=$myrow['dob'];
+				$this->myavatar=$myrow['img'];
 			}
-
+ 
 	}
 	public function getage($data)
 	{
@@ -305,8 +311,8 @@ class Users extends Database
 	public function friends($data)
 	{
 		$this->getid($data);
-		$sql="SELECT users.id,users.login, users.dob, users.status FROM users JOIN friends WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
-		$peo = $this->db->prepare($sql);
+		$sql="SELECT users.id,users.login, users.dob, users.status, users.img FROM users JOIN friends WHERE friends.id='$this->myid' AND users.id=friends.friend_id ";
+		 $peo = $this->db->prepare($sql);
 		$peo->execute();
 		while($myrow = $peo->fetch(PDO::FETCH_ASSOC))
 		{
@@ -314,13 +320,14 @@ class Users extends Database
 			$this->myfrdob[]=$myrow['dob'];
 			$this->myfrid[]=$myrow['id'];
 			$this->myfrstatus[]=$myrow['status'];
-		}
+			$this->myfravatar[]=$myrow['img'];
+		} 
 	}
 
 	public function people($people)
 	{
 		$this->getid($people);
-		$sql="SELECT users.id,users.login, users.dob FROM users ";
+		$sql="SELECT users.id,users.login, users.dob, users.img FROM users ";
 		$ople = $this->db->prepare($sql);
 		$ople->execute();
 		while($myrow = $ople->fetch(PDO::FETCH_ASSOC))
@@ -329,6 +336,7 @@ class Users extends Database
 			$this->peopled[]=$myrow['dob'];
 			$this->peopleid[]=$myrow['id'];
 			$this->peoplestatus[]=$myrow['status'];
+			$this->peopleavatar[]=$myrow['img'];
 		}
 	}
 
@@ -532,6 +540,8 @@ class Users extends Database
 		$insert->execute();
 	}
 	
+	
+	//Метод получает имя пользователя, а выдает массив содержащий имена его альбомов
 	public function GetAlbums($FriendLogin){
 		//echo "Get Albums";
 	//	var_dump($FriendLogin);
@@ -550,6 +560,77 @@ class Users extends Database
 	//	echo "<br>";
 		//var_dump($this->AlbumName);
 	}
-
+	
+	
+	//Метод отвечает за сохранение имени и полного пути к файлу изображения аватара пользователя
+	public function UploadAvatarToDataBase($filename,$login){
+	//	echo "UploadAvatarToDataBase<br>";
+		 $sqlavatar="UPDATE users SET img='$filename' WHERE login='$login'";
+		// echo $sqlavatar;
+		  $insert=$this->db->prepare($sqlavatar);
+		$insert->execute(); 
+	}
+	
+	//Метод сохраняет адреса всех загружаемых фоток в базу данных
+	public function SaveFotoToDataBase($filename,$login,$album_id){
+		//echo "<br>".$filename."<br>".$login."<br>".$album_id;
+		 $this->myid=null;
+		$FriendLogin['login']=$login;
+		$this->getid($FriendLogin); 
+		$sqlimage="INSERT INTO fotos (id,image,album_id) VALUES ('$this->myid','$filename','$album_id')";
+		//echo "<br>".$sqlimage;
+		 $insert=$this->db->prepare($sqlimage);
+		$insert->execute();   
+	
+	}
+	
+	
+	//метод получает название альбома, а возвращает его ID
+	public function getIdAlbum($album,$login){
+	//echo "<br>".$album."<br>".$login;
+	$this->myid=null;
+	$FriendLogin['login']=$login;
+	$this->getid($FriendLogin);
+	$sql="SELECT album_id FROM albums WHERE album_name='$album' AND id='$this->myid'";
+	//echo $sql;
+	 $get = $this->db->prepare($sql);
+	$get->execute();
+		
+	while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+		{
+			$this->album_id=$myrow['album_id'];
+		}	
+	}
+	
+	//метод получает логин пользователя, а выдает массив, содержащий пути ко всем фотографиям пользователя
+	public function GetAllPhotos($login){
+		$this->myid=null;
+		$FriendLogin['login']=$login;
+		$this->getid($FriendLogin);
+		$sql="SELECT image FROM fotos WHERE id='$this->myid'";
+		$get = $this->db->prepare($sql);
+		$get->execute();
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+		{
+			$this->fotos[]=$myrow['image'];
+		}	
+		
+	}
+	
+	
+	//Метод получает логин пользователя и название его альбома, а выдает массив содержащий пути и имена ко всем фотографиям альбома
+	public function GetPhotoFromDataBase($login,$album_id){
+		$this->myid=null;
+		$FriendLogin['login']=$login;
+		$this->getid($FriendLogin);
+		$sql="SELECT image FROM fotos WHERE id='$this->myid' AND album_id='$this->album_id'";
+		//echo $sql;
+		 $get = $this->db->prepare($sql);
+		$get->execute();
+		while ($myrow = $get->fetch(PDO::FETCH_ASSOC)) 
+		{
+			$this->fotos[]=$myrow['image'];
+		}	 
+	}
 
 }

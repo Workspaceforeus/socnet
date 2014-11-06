@@ -22,13 +22,13 @@
 <div class="main"> 
         <div class="profile">
             <div class="photo">
-                <?php echo '<img src="/image/galery/'.$data['name'].'/avatar/'.$data['name'].$data['cf'].'.jpg">'; ?> 
+                <?php echo '<img src="'.$data['avatar'].'">'; ?> 
 				<form>
 				<input class="button stroke1" type="button"  value="Edit photo" onclick="location.href='/index.php?r=user&a=editphoto'" >
                 <input class="button stroke" type="button"  value="Edit profile" onclick="location.href='/index.php?r=user&a=update'" >
 				<input class="button friends1" type="button"  value="friends" onclick="location.href='/index.php?r=user&a=friends'" >
                 <input class="button feed" type="button" value="Achivments"  onclick="location.href='/index.php?r=user&a=galery'" 	>
-                <input class="button feed" type="button" value="Photo gallery"  onclick="location.href='/index.php?r=album&a=ShowPhoto&add=<?php echo $data['name'];?>&album=avatar'"   >
+                <input class="button feed" type="button" value="Photo gallery"  onclick="location.href='/index.php?r=album&a=ShowAllPhoto&add=<?php echo $data['name'];?>'"   >
 				<input class="button startle" type="button" value="Logout" onclick="location.href='/index.php?r=user&a=logout'">
 	
 				</form>
@@ -69,7 +69,7 @@
                 
                 <h2>Albums</h2>
                <div class="album">
-               <input class="button stroke" type="button"  value="<?php echo $data['name'];?>'s album" onclick="location.href='/index.php?r=album&a=ShowPhoto&add=<?php echo $data['name'];?>&album=avatar'" >
+               <input class="button stroke" type="button"  value="<?php echo $data['name'];?>'s album" onclick="location.href='/index.php?r=album&a=ShowAllPhoto&add=<?php echo $data['name'];?>'" >
 				<?php echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$data['cf'].'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-1; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
                     <?php $cf= $data['cf']-2; echo '<a tabindex="13"><img src="image/galery/'.$data['name'].'/'.$data['name'].$cf.'.jpg"></a>'; ?>
@@ -92,7 +92,7 @@
 					echo $data['dt'][$i].'<br>';
 					
 					if (!empty($data['image'][$i])) { 
-						echo '<img height="60px" width="60px" alt="no picture"  src="/image/commit/'.$data['image'][$i].'">';
+						echo '<img height="60px" width="60px" alt="no picture"  src="'.$data['image'][$i].'">';
 						echo '<a href="/image/commit/'.$data['image'][$i]. '">'. 'Открыть картинку в полном размере!' .'</a>';
 					};
 					echo '</div>';

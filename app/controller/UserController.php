@@ -47,7 +47,7 @@ class UserController extends Controller
 		$user->countphoto=Controller::count_files("image/galery/".$data["login"].'/avatar');
 		$user->online($data,2);
 		$user->getgift($user->myid);
-		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline,'giftid'=>$user->giftid,'gifttype'=>$user->gifttype,'gifttime'=>$user->gifttime,'giftname'=>$user->giftname));
+		$this->renderView('user/profile', array('result' => $user->result, 'commentname'=>$user->CommentsName , 'name'=> $user->mylogin, 'avatar'=>$user->myavatar,'genre'=>$user->mygenre, 'sex'=>$user->mysex, 'dob'=>$user->myage,'cf'=>$user->countphoto,'CommentsId'=>$user->CommentsId,'image'=>$user->CommentsImage,'Friend_id'=>$user->CommentsFriend_id,'body'=>$user->CommentsBody,'dt'=>$user->CommentsDt,'status'=>$status,'count'=>$user->CountComments,'online'=>$user->isonline,'giftid'=>$user->giftid,'gifttype'=>$user->gifttype,'gifttime'=>$user->gifttime,'giftname'=>$user->giftname));
 		
 
  	}
@@ -149,8 +149,10 @@ class UserController extends Controller
 
 	public function editphoto()
 	{
-		$cf=Controller::count_files("image/galery/".$_SESSION["login"].'/avatar');
-		$this->renderView('user/editphoto',array('number'=>$cf));
+		//$cf=Controller::count_files("image/galery/".$_SESSION["login"].'/avatar');
+		$user=new Users();
+		$user->getinformation($_SESSION);
+		$this->renderView('user/editphoto',array('avatar'=>$user->myavatar));
 	}
 
 	public function maketprof() //Рендер на посмотреть
@@ -165,11 +167,8 @@ class UserController extends Controller
 		$user->friends($_SESSION);
 		$user->online($_SESSION,1);
 	//	$user->countphoto=Controller::count_files("image/galery/".$_SESSION["login"].'/avatar');
-		$user->countphoto=$this->count_files_array($user->myfr);
-	//	var_dump($this->dirarray);
-	//	var_dump($user->myfr);
-	//	echo "foto".$user->countphoto;
-		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton,'status'=>$user->myfrstatus,'cf'=>$this->dirarray));
+	//	$user->countphoto=$this->count_files_array($user->myfr);
+		$this->renderView('user/friends', array('logins'=>$user->myfr,'dobs'=>$user->myfrdob,'batton'=>$batton,'status'=>$user->myfrstatus, 'friends_avatar'=>$user->myfravatar,'cf'=>$this->dirarray));
 
 	}
 
@@ -182,7 +181,7 @@ class UserController extends Controller
 		//var_dump($user->peoplen);
 		$user->countphoto=$this->count_files_array($user->peoplen);
 		//var_dump($this->dirarray);
-		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton, 'status'=>$user->peoplestatus,'cf'=>$this->dirarray));
+		$this->renderView('user/friends', array('logins'=>$user->peoplen,'dobs'=>$user->peopled,'batton'=>$batton, 'status'=>$user->peoplestatus,'cf'=>$this->dirarray,'friends_avatar'=>$user->peopleavatar));
 	}
 	
 	//добавление в друзья

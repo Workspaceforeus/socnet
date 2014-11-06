@@ -19,8 +19,6 @@
         ?>
         <p><?php echo $data['name']."'s albums";
                 echo "<br>";
-                echo '<a href="/index.php?r=album&a=ShowPhoto&add='.$data['name'].'&album='."avatar".'">'.avatar.'</a>';
-                            echo "<br>";
                 if (!empty($data['albums'])){
                     foreach($data['albums'] as $album)
                         {
@@ -28,16 +26,16 @@
                             echo "<br>";
                         }
                     };
-                //var_dump($data['albums']);
             ?></p>
         <h1>The Album <?php echo $data['album_folder']." of ".$data['name']."<br>"; ?><h1>
         <div class="gallery">
         <?php
-            $ar=glob('image/galery/'.$data['name'].'/'.$data['album_folder'].'/*.jpg');
-        foreach($ar as $file)
-            {
-             echo '<a tabindex="1"><img src="'.$file.'"></a>';
-            }
+			if (!empty($data['fotos'])){
+				foreach($data['fotos'] as $fotos)
+				{
+					echo '<a tabindex="1"><img src="'.$fotos.'"></a>';
+				} 
+			}else {echo "The Album is empty";};
         ?>
         </div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

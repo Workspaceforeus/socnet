@@ -13,11 +13,10 @@
 		<div class="out-here">
 		<?php
 		// foreach($data['logins'] as $k=> $massiv)
-		foreach(array_combine($data['logins'], $data['cf'])as $logins =>$cf)
+		foreach(array_combine($data['logins'], $data['friends_avatar'])as $logins =>$avatars)
 		{
-		echo "<br>".$logins;
 		//{
-		echo  '<div class="letter">'.$massiv['$inner_key'].'</div>' . '<img width="200" heigh="150" src="/image/galery/'.$logins.'/avatar/'.$logins.$cf.'.jpg">' ;
+		echo  '<div class="letter">'.$logins.'</div>' . '<img width="200" heigh="150" src="'.$avatars.'">' ;
 		echo '<br><'. 'input class' . '=' . '"button startle"' . 'type="button"' .  'value="go to the page the user"' . 'onclick=' . "location.href='index.php?r=user&a=userpage&add=".$logins."'><br>";
 		echo $data['batton'].$logins."'". '>';
 		//}
